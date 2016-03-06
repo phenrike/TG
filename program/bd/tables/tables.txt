@@ -22,7 +22,7 @@ LINKpublic VARCHAR(10),
 DTINSCRICAO DATE
 );
 
-FOTO BLOB,
+FOTO BLOB, #Para o protótipo ainda não irei usar foto no perfil(Fica para o acabamento do app)
 
 INSERT INTO USER VALUES(0,'psantos','psantos','Paulo Henrique Santos','M','paulohenrique.santos.5891',
 			'TRUE','+5512982315156','TRUE','@_phenrike','TRUE',
