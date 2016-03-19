@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Services;
 using MySql.Data.MySqlClient;
 using System.Xml.Serialization;
+using System.Web.Services.Protocols;
+using System.Xml;
+using System.Web.Script.Services;
 
 [WebService(Namespace = "http://nsmainp.com/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
@@ -17,12 +20,14 @@ public class Service : System.Web.Services.WebService
 
         //Uncomment the following line if using designed components 
         //InitializeComponent(); 
+        
     }
 
     private MySqlConnection Conn;
-
+    
     [WebMethod]
-    public User CarregarPerfil()
+    [ScriptMethod(ResponseFormat = ResponseFormat.Xml)]
+    public string CarregarPerfil()
     {
         User user = new User();
 
@@ -62,7 +67,8 @@ public class Service : System.Web.Services.WebService
 
         dr.Close();
         Conn.Close();
-        return user;
+
+        return user.LOGIN;
     }
 
     public class User
@@ -90,7 +96,7 @@ public class Service : System.Web.Services.WebService
         public string DTINSCRICAO { get; set; }
 
     }
-    
+
     [WebMethod]
     public string HelloWorld() {
         return "Hello World";
