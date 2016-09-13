@@ -19,22 +19,23 @@ import java.io.IOException;
 
 public class UserPerfilAcvt extends AppCompatActivity{
 
-    private static String SOAP_ACTION="http://192.168.0.26/WSmainP/Service.asmx/teste";
+    private static String SOAP_ACTION="http://nsmainp.com/teste";
     private static String NAMESPACE="http://nsmainp.com/";
     private static String METHODNAME="teste";
-    private static String URL="http://192.168.0.26/WSmainP/Service.asmx?WSDL";
+    private static String URL="http://10.0.2.2:8WSmainP/0/Service.asmx?WSDL";
 
     ProgressDialog dialogo;
     String str="";
     String NOME="";
-    TextView text = (TextView) findViewById(R.id.tvName);
+    TextView text;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_perfil_acvt);
 
-        TextView text = (TextView) findViewById(R.id.tvName);
+        text = (TextView) findViewById(R.id.tvName);
         new asynMainp().execute();
     }
 
@@ -102,7 +103,7 @@ public class UserPerfilAcvt extends AppCompatActivity{
         return re;
     }
 
-    public void carregarNome(){
+    public void carregarNome() {
         text.setText(NOME);
     }
 
