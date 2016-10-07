@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Services;
-using MySql.Data.MySqlClient;
-using System.Xml.Serialization;
-using System.Web.Services.Protocols;
-using System.Xml;
-using System.Web.Script.Services;
+﻿using MySql.Data.MySqlClient;
 using System.Web.Script.Serialization;
+using System.Web.Script.Services;
+using System.Web.Services;
 
 [WebService(Namespace = "http://nsmainp.com/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
@@ -26,7 +19,7 @@ public class Service : System.Web.Services.WebService
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string teste()
+    public void CarregarPerfil()
     {
         User user = new User();
 
@@ -74,58 +67,6 @@ public class Service : System.Web.Services.WebService
 
         json = jsslz.Serialize(user);
 
-        return json;
-    }
-    
-    [WebMethod]
-    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public User CarregarPerfil()
-    {
-        User user = new User();
-
-        //conexão com o bd 
-        MySqlConnection Conn = new MySqlConnection("Server=localhost;Database=NSmainP;UID=root;Password=1234");
-
-        //select no bd
-        MySqlCommand cmd = new MySqlCommand("SELECT * FROM USER WHERE SEXO='F'", Conn);
-
-        Conn.Open();
-
-        //To Read From SQL Server
-        MySqlDataReader dr = cmd.ExecuteReader();
-
-        if (dr.Read())
-        {
-            user.ID = dr["ID"].ToString();
-            user.LOGIN = dr["LOGIN"].ToString();
-            user.SENHA = dr["SENHA"].ToString();
-            user.NOME = dr["NOME"].ToString();
-            user.SEXO = dr["SEXO"].ToString();
-            user.FACE = dr["FACE"].ToString();
-            user.FACEpublic = dr["FACEpublic"].ToString();
-            user.WPP = dr["WPP"].ToString();
-            user.WPPpublic = dr["WPPpublic"].ToString();
-            user.INSTA = dr["INSTA"].ToString();
-            user.INSTApublic = dr["INSTApublic"].ToString();
-            user.SNAP = dr["SNAP"].ToString();
-            user.SNAPpublic = dr["SNAPpublic"].ToString();
-            user.TWITTER = dr["TWITTER"].ToString();
-            user.TWITTERpublic = dr["TWITTERpublic"].ToString();
-            user.EMAIL = dr["EMAIL"].ToString();
-            user.EMAILpublic = dr["EMAILpublic"].ToString();
-            user.LINK = dr["LINK"].ToString();
-            user.LINKpublic = dr["LINKpublic"].ToString();
-            user.DTINSCRICAO = dr["DTINSCRICAO"].ToString();
-        }
-
-        dr.Close();
-        Conn.Close();
-
-        return user;
-    }
-
-    [WebMethod]
-    public string HelloWorld() {
-        return "Hello World";
-    }    
+        Context.Response.Output.Write(json);
+    }   
 }
