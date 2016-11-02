@@ -3,7 +3,7 @@ package com.mainp.paulosantos.mainp;
 /**
  * Created by Paulo Santos on 19/03/2016.
  */
-public class User {
+public class Usuario {
     private String ID;
     private String LOGIN;
     private String SENHA;
