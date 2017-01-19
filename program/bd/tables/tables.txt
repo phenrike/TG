@@ -1,4 +1,8 @@
-CREATE TABLE USER
+﻿CREATE DATABASE nsmainp;
+
+USE nsmainp;
+
+CREATE TABLE USUARIO
 (
 ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
 LOGIN VARCHAR(100) NOT NULL, 
@@ -6,25 +10,25 @@ SENHA VARCHAR(100) NOT NULL,
 NOME VARCHAR(200) NOT NULL, 
 SEXO VARCHAR(10),
 FACE VARCHAR(100),
-FACEpublic VARCHAR(10),
+FACEpublic BOOLEAN,
 WPP VARCHAR(100),
-WPPpublic VARCHAR(10),
+WPPpublic BOOLEAN,
 INSTA VARCHAR(100),
-INSTApublic VARCHAR(10),
+INSTApublic BOOLEAN,
 SNAP VARCHAR(100),  
-SNAPpublic VARCHAR(10),
+SNAPpublic BOOLEAN,
 TWITTER VARCHAR(100),
-TWITTERpublic VARCHAR(10),
+TWITTERpublic BOOLEAN,
 EMAIL VARCHAR(200),
-EMAILpublic VARCHAR(10),
-LINK VARCHAR(100),
-LINKpublic VARCHAR(10),
-DTINSCRICAO DATE
+EMAILpublic BOOLEAN,
+LINK VARCHAR(200),
+LINKpublic BOOLEAN,
+DTINSCRICAO DATETIME(6)
 );
 
 FOTO BLOB, #Para o protótipo ainda não irei usar foto no perfil(Fica para o acabamento do app)
 
-INSERT INTO USER VALUES(0,'psantos','psantos','Paulo Henrique Santos','M','paulohenrique.santos.5891',
+INSERT INTO USUARIO VALUES(0,'psantos','psantos','Paulo Henrique Santos','M','paulohenrique.santos.5891',
 			'TRUE','+5512982315156','TRUE','@_phenrike','TRUE',
 			'ihenrikepaulo','TRUE','@_phenrike','TRUE',
 			'paulosantossjc@hotmail.com','TRUE','www.pirateofvalley.tumblr.com','TRUE','2016-03-05');
