@@ -12,7 +12,7 @@ namespace WebAPIMainP.Controllers
     public class UsuarioController : ApiController
     {
         [AcceptVerbs("POST")]
-        [Route("usuarios/{usuario}")]
+        [Route("usuarios")]
         public void CadastrarUsuario(Usuario usuario)
         {
             Cadastro cadastro = new Cadastro();
@@ -20,7 +20,7 @@ namespace WebAPIMainP.Controllers
         }
 
         [AcceptVerbs("POST")]
-        [Route("usuarios/{login}/senha")]
+        [Route("usuarios/{login}/{senha}")]
         public void Logar(String login, String senha)
         {
             
@@ -30,14 +30,16 @@ namespace WebAPIMainP.Controllers
         [Route("usuarios")]
         public void AlterarUsuario(Usuario usuario)
         {
-            //AÇÃO
+            Edicao edicao = new Edicao();
+            edicao.editarUsuario(usuario);
         }
 
         [AcceptVerbs("DELETE")]
-        [Route("usuarios/{codigo}")]
-        public void ExcluirUsuario(int codigo)
+        [Route("usuarios")]
+        public void ExcluirUsuario(Usuario usuario)
         {
-            //AÇÃO
+            Exclusao exclusao = new Exclusao();
+            exclusao.excluirUsuario(usuario);
         }
 
         [AcceptVerbs("GET")]

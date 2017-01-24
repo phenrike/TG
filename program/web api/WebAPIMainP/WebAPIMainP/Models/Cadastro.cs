@@ -22,7 +22,7 @@ namespace WebAPIMainP.Models
             DateTime localDate = DateTime.Now;
             usuario.Dtinscricao = localDate;
 
-            con.salvarUsuario(usuario);
+            con.save(usuario);
         }
     }
 }

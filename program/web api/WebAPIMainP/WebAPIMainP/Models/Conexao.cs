@@ -40,19 +40,25 @@ namespace WebAPIMainP.Models
             this.transaction.Commit();
         }
 
-        public void salvarUsuario(Usuario u)
+        public void save(Usuario u)
         {
             this.session.SaveOrUpdate(u);
             fazerCommit();
         }
 
-        public void alterarUsuario(Usuario u)
+        public void update(Object o)
         {
-            this.session.Update(u);
+            this.session.Update(o);
             fazerCommit();
         }
 
-        public IList<Usuario> buscarUsuario(int rede, String busca)
+        public void delete(Object o)
+        {
+            this.session.Delete(o);
+            fazerCommit();
+        }
+
+        public IList<Usuario> search(int rede, String busca)
         {
             IList<Usuario> listaConsulta = null;
             IQueryOver<Usuario> qo;

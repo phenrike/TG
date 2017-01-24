@@ -7,5 +7,11 @@ namespace WebAPIMainP.Models
 {
     public class Edicao
     {
+        public void editarUsuario(Usuario usuario)
+        {
+            Conexao con = new Conexao();
+
+            con.update(usuario);
+        }
     }
 }
