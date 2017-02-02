@@ -1,0 +1,185 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity$PlaceholderFragment">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivFoto"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/perfilimg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Paulo Santos"
+        android:id="@+id/tvNome"
+        android:layout_below="@+id/ivFoto"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000000" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivFace"
+        android:src="@drawable/imgface"
+        android:layout_below="@+id/tvNome"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Paulo Santos"
+        android:id="@+id/tvFace"
+        android:textColor="#000000"
+        android:layout_alignBottom="@+id/ivFace"
+        android:layout_alignLeft="@+id/tvLink"
+        android:layout_alignStart="@+id/tvLink" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivWpp"
+        android:src="@drawable/imgwpp"
+        android:layout_below="@+id/tvFace"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="+55 12 98200-0777"
+        android:id="@+id/tvWpp"
+        android:textColor="#000000"
+        android:layout_alignBottom="@+id/ivWpp"
+        android:layout_alignLeft="@+id/tvSnap"
+        android:layout_alignStart="@+id/tvSnap" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivInsta"
+        android:src="@drawable/imginsta"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvWpp"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="\@paulosantos"
+        android:id="@+id/tvInsta"
+        android:textColor="#000000"
+        android:layout_alignBottom="@+id/ivInsta"
+        android:layout_alignLeft="@+id/tvWpp"
+        android:layout_alignStart="@+id/tvWpp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivSnap"
+        android:src="@drawable/imgsnap"
+        android:layout_below="@+id/tvInsta"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="ipaulosantos"
+        android:id="@+id/tvSnap"
+        android:textColor="#000000"
+        android:layout_above="@+id/ivTwitter"
+        android:layout_alignRight="@+id/tvFace"
+        android:layout_alignEnd="@+id/tvFace" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivTwitter"
+        android:src="@drawable/imgtwitter"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ivSnap"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="\@assimdissepaulo"
+        android:id="@+id/tvTwitter"
+        android:textColor="#000000"
+        android:layout_alignBottom="@+id/ivTwitter"
+        android:layout_alignLeft="@+id/tvSnap"
+        android:layout_alignStart="@+id/tvSnap" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivEmail"
+        android:src="@drawable/imglink"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvEmail"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="paulosantos@gmail.com"
+        android:id="@+id/tvEmail"
+        android:textColor="#000000"
+        android:layout_alignBottom="@+id/ivLink"
+        android:layout_alignLeft="@+id/tvTwitter"
+        android:layout_alignStart="@+id/tvTwitter" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivLink"
+        android:src="@drawable/imgemail"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvTwitter"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="www.linkedin.com/santospaulo"
+        android:id="@+id/tvLink"
+        android:textColor="#000000"
+        android:layout_alignBottom="@+id/ivEmail"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sair"
+        android:id="@+id/btSair"
+        android:backgroundTint="#fb3535"
+        android:layout_below="@+id/tvLink"
+        android:layout_alignRight="@+id/tvEmail"
+        android:layout_alignEnd="@+id/tvEmail" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar"
+        android:id="@+id/btEditar"
+        android:backgroundTint="#ffc936"
+        android:layout_below="@+id/tvLink"
+        android:layout_alignRight="@+id/tvInsta"
+        android:layout_alignEnd="@+id/tvInsta" />
+</RelativeLayout>
