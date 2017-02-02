@@ -5,18 +5,25 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using WebAPIMainP.Models;
+using WebAPIMainP.Repository;
 
 namespace WebAPIMainP.Controllers
 {
     [RoutePrefix("api/mainp")]
     public class UsuarioController : ApiController
     {
+        UsuarioRepository usuarioRepository;
+
+        public UsuarioController()
+        {
+            usuarioRepository = new UsuarioRepository();
+        }
+
         [AcceptVerbs("POST")]
         [Route("usuarios")]
         public void CadastrarUsuario(Usuario usuario)
         {
-            Cadastro cadastro = new Cadastro();
-            cadastro.cadastrarUsuario(usuario);
+            usuarioRepository.Salvar(usuario);
         }
 
         [AcceptVerbs("POST")]
@@ -30,26 +37,21 @@ namespace WebAPIMainP.Controllers
         [Route("usuarios")]
         public void AlterarUsuario(Usuario usuario)
         {
-            Edicao edicao = new Edicao();
-            edicao.editarUsuario(usuario);
+            usuarioRepository.Alterar(usuario);
         }
 
         [AcceptVerbs("DELETE")]
         [Route("usuarios")]
         public void ExcluirUsuario(Usuario usuario)
         {
-            Exclusao exclusao = new Exclusao();
-            exclusao.excluirUsuario(usuario);
+            usuarioRepository.Excluir(usuario);
         }
 
         [AcceptVerbs("GET")]
         [Route("usuarios/{redeSocial}/{busca}")]
         public IList<Usuario> buscarUsuario(int redeSocial, String busca)
         {
-            IList<Usuario> usuarios = null;
-            Busca b = new Busca();
-            usuarios = b.buscarUsuario(redeSocial, busca);
-            return usuarios;
+            return usuarioRepository.BuscarUsuarios(redeSocial, busca); ;
         }
     }
 }

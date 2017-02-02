@@ -1,28 +1,35 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
-using NHibernate.Cfg;
 using NHibernate.Criterion;
-using NHibernate.Tool.hbm2ddl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Web;
+using WebAPIMainP.Models;
 
-namespace WebAPIMainP.Models
+namespace WebAPIMainP.Repository
 {
-    public class Conexao
+    public class UsuarioRepository
     {
         private ISessionFactory sessionFactory;
         private ISession session;
         private ITransaction transaction;
 
-        public Conexao()
+        public UsuarioRepository()
         {
             this.sessionFactory = CreateSessionFactory();
-            abrirConexao();
-            iniciarTransacao();
+        }
+
+        private static ISessionFactory CreateSessionFactory()
+        {
+            ISessionFactory isessionFactory = Fluently.Configure()
+        .Database(MySQLConfiguration.Standard.ConnectionString(@"Server=localhost;Database=nsmainp;Uid=root;Pwd=1234;"))
+        .Mappings(m => m
+        .FluentMappings.AddFromAssemblyOf<UsuarioMap>())
+        .BuildSessionFactory();
+
+            return isessionFactory;
         }
 
         private void abrirConexao()
@@ -32,34 +39,50 @@ namespace WebAPIMainP.Models
 
         private void iniciarTransacao()
         {
+            abrirConexao();
             this.transaction = this.session.BeginTransaction();
         }
 
         private void fazerCommit()
         {
             this.transaction.Commit();
+            fecharConexao();
         }
 
-        public void save(Usuario u)
+        private void fecharConexao()
         {
-            this.session.SaveOrUpdate(u);
+            this.session.Close();
+        }
+
+        public void Salvar(Usuario usuario)
+        {
+            iniciarTransacao();
+
+            // Variável para pegar a data e hora de cadastro do usuário
+            DateTime localDate = DateTime.Now;
+            usuario.Dtinscricao = localDate;
+
+            this.session.Save(usuario);
             fazerCommit();
         }
 
-        public void update(Object o)
+        public void Alterar(Usuario usuario)
         {
-            this.session.Update(o);
+            iniciarTransacao();
+            this.session.Update(usuario);
             fazerCommit();
         }
 
-        public void delete(Object o)
+        public void Excluir(Usuario usuario)
         {
-            this.session.Delete(o);
+            iniciarTransacao();
+            this.session.Delete(usuario);
             fazerCommit();
         }
 
-        public IList<Usuario> search(int rede, String busca)
+        public IList<Usuario> BuscarUsuarios(int rede, String busca)
         {
+            abrirConexao();
             IList<Usuario> listaConsulta = null;
             IQueryOver<Usuario> qo;
 
@@ -76,7 +99,7 @@ namespace WebAPIMainP.Models
                     qo = this.session.QueryOver<Usuario>().Where(Restrictions.On<Usuario>(x => x.Wpp).IsLike(busca, MatchMode.Anywhere));
                     listaConsulta = qo.List<Usuario>();
                     break;
-                
+
                 //Instagram
                 case 2:
                     qo = this.session.QueryOver<Usuario>().Where(Restrictions.On<Usuario>(x => x.Insta).IsLike(busca, MatchMode.Anywhere));
@@ -108,19 +131,9 @@ namespace WebAPIMainP.Models
                     break;
             }
 
+            fecharConexao();
+
             return listaConsulta;
-
-        }
-
-        private static ISessionFactory CreateSessionFactory()
-        {
-            ISessionFactory isessionFactory = Fluently.Configure()
-        .Database(MySQLConfiguration.Standard.ConnectionString(@"Server=localhost;Database=nsmainp;Uid=root;Pwd=1234;"))
-        .Mappings(m => m
-        .FluentMappings.AddFromAssemblyOf<UsuarioMap>())
-        .BuildSessionFactory();
-
-            return isessionFactory;
         }
     }
 }
