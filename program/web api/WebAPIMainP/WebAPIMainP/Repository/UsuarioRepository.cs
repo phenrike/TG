@@ -73,6 +73,17 @@ namespace WebAPIMainP.Repository
             fazerCommit();
         }
 
+        public Usuario Buscar(String login, String senha)
+        {
+            abrirConexao();
+            Usuario usuario = new Usuario();
+            IQueryOver<Usuario> qo;
+            qo = this.session.QueryOver<Usuario>().Where(x => x.Login == login).And(x => x.Senha == senha);
+            usuario = qo.SingleOrDefault<Usuario>();
+            fecharConexao();
+            return usuario;
+        }
+
         public void Excluir(Usuario usuario)
         {
             iniciarTransacao();

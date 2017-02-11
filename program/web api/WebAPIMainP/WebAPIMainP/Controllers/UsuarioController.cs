@@ -9,6 +9,7 @@ using WebAPIMainP.Repository;
 
 namespace WebAPIMainP.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/mainp")]
     public class UsuarioController : ApiController
     {
@@ -19,6 +20,7 @@ namespace WebAPIMainP.Controllers
             usuarioRepository = new UsuarioRepository();
         }
 
+        [AllowAnonymous]
         [AcceptVerbs("POST")]
         [Route("usuarios")]
         public void CadastrarUsuario(Usuario usuario)
@@ -28,9 +30,9 @@ namespace WebAPIMainP.Controllers
 
         [AcceptVerbs("POST")]
         [Route("usuarios/{login}/{senha}")]
-        public void Logar(String login, String senha)
+        public Usuario CarregarUsuario(String login, String senha)
         {
-            
+            return usuarioRepository.Buscar(login, senha);
         }
 
         [AcceptVerbs("PUT")]
