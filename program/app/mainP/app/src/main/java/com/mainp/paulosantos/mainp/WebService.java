@@ -20,7 +20,7 @@ public class WebService {
     public JSONObject carregarPerfil() {
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpGet httpget = new HttpGet("http://192.168.0.21/WSmainP/Service.asmx/CarregarPerfil");
+        HttpGet httpget = new HttpGet("http://192.168.0.17/WSmainP/Service.asmx/CarregarPerfil");
         //HttpGet httpget = new HttpGet("https://api.myjson.com/bins/42eia");
 
         try {

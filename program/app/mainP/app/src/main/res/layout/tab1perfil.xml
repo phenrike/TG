@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Paulo Santos"
+        android:text="Nome Usuário"
         android:id="@+id/tvNome"
         android:layout_below="@+id/ivFoto"
         android:layout_centerHorizontal="true"
@@ -30,156 +30,149 @@
         android:layout_height="wrap_content"
         android:id="@+id/ivFace"
         android:src="@drawable/imgface"
-        android:layout_below="@+id/tvNome"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="100dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Paulo Santos"
+        android:text="facebook"
         android:id="@+id/tvFace"
         android:textColor="#000000"
-        android:layout_alignBottom="@+id/ivFace"
-        android:layout_alignLeft="@+id/tvLink"
-        android:layout_alignStart="@+id/tvLink" />
+        android:layout_marginTop="111dp"
+        android:layout_marginLeft="50dp" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ivWpp"
         android:src="@drawable/imgwpp"
-        android:layout_below="@+id/tvFace"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="false"
+        android:layout_marginTop="150dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="+55 12 98200-0777"
+        android:text="+00 00 00000-0000"
         android:id="@+id/tvWpp"
         android:textColor="#000000"
-        android:layout_alignBottom="@+id/ivWpp"
-        android:layout_alignLeft="@+id/tvSnap"
-        android:layout_alignStart="@+id/tvSnap" />
+        android:layout_alignStart="@+id/tvSnap"
+        android:layout_marginTop="162dp" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ivInsta"
         android:src="@drawable/imginsta"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tvWpp"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="200dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="\@paulosantos"
+        android:text="\@instagram"
         android:id="@+id/tvInsta"
         android:textColor="#000000"
-        android:layout_alignBottom="@+id/ivInsta"
-        android:layout_alignLeft="@+id/tvWpp"
-        android:layout_alignStart="@+id/tvWpp" />
+        android:layout_alignStart="@+id/tvWpp"
+        android:layout_marginTop="211dp" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ivSnap"
         android:src="@drawable/imgsnap"
-        android:layout_below="@+id/tvInsta"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginTop="250dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="ipaulosantos"
+        android:text="snapchat"
         android:id="@+id/tvSnap"
         android:textColor="#000000"
-        android:layout_above="@+id/ivTwitter"
-        android:layout_alignRight="@+id/tvFace"
-        android:layout_alignEnd="@+id/tvFace" />
+        android:layout_alignEnd="@+id/tvFace"
+        android:layout_marginTop="261dp" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ivTwitter"
         android:src="@drawable/imgtwitter"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/ivSnap"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="300dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="\@assimdissepaulo"
+        android:text="\@twitter"
         android:id="@+id/tvTwitter"
         android:textColor="#000000"
-        android:layout_alignBottom="@+id/ivTwitter"
-        android:layout_alignLeft="@+id/tvSnap"
-        android:layout_alignStart="@+id/tvSnap" />
+        android:layout_alignStart="@+id/tvSnap"
+        android:layout_marginTop="311dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivLinkk"
+        android:src="@drawable/imglink"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="350dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="http://www.site.com/"
+        android:id="@+id/tvLink"
+        android:textColor="#000000"
+        android:layout_alignStart="@+id/tvEmail"
+        android:layout_marginTop="361dp" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ivEmail"
-        android:src="@drawable/imglink"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tvEmail"
-        android:layout_alignParentLeft="true" />
+        android:src="@drawable/imgemail"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="400dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="paulosantos@gmail.com"
+        android:text="email@email.com"
         android:id="@+id/tvEmail"
         android:textColor="#000000"
-        android:layout_alignBottom="@+id/ivLink"
-        android:layout_alignLeft="@+id/tvTwitter"
-        android:layout_alignStart="@+id/tvTwitter" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ivLink"
-        android:src="@drawable/imgemail"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tvTwitter"
-        android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="www.linkedin.com/santospaulo"
-        android:id="@+id/tvLink"
-        android:textColor="#000000"
-        android:layout_alignBottom="@+id/ivEmail"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/tvTwitter"
+        android:layout_marginTop="411dp" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:text="Sair"
         android:id="@+id/btSair"
         android:backgroundTint="#fb3535"
-        android:layout_below="@+id/tvLink"
-        android:layout_alignRight="@+id/tvEmail"
-        android:layout_alignEnd="@+id/tvEmail" />
+        android:layout_marginTop="450dp"
+        android:layout_marginLeft="175dp" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:text="Editar"
         android:id="@+id/btEditar"
         android:backgroundTint="#ffc936"
-        android:layout_below="@+id/tvLink"
-        android:layout_alignRight="@+id/tvInsta"
-        android:layout_alignEnd="@+id/tvInsta" />
+        android:layout_marginTop="450dp"
+        android:layout_marginLeft="0dp" />
 </RelativeLayout>

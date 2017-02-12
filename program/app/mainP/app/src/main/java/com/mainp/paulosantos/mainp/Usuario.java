@@ -1,35 +1,70 @@
 package com.mainp.paulosantos.mainp;
 
+import android.util.Log;
+import java.io.Serializable;
+import org.json.JSONObject;
+
+import java.util.Date;
+
 /**
  * Created by Paulo Santos on 19/03/2016.
  */
-public class Usuario {
-    private String ID;
+public class Usuario implements Serializable{
+    private int ID;
     private String LOGIN;
     private String SENHA;
     private String NOME;
     private String SEXO;
     private String FACE;
-    private String FACEpublic;
+    private Boolean FACEpublic;
     private String WPP;
-    private String WPPpublic;
+    private Boolean WPPpublic;
     private String INSTA;
-    private String INSTApublic;
+    private Boolean INSTApublic;
     private String SNAP;
-    private String SNAPpublic;
+    private Boolean SNAPpublic;
     private String TWITTER;
-    private String TWITTERpublic;
+    private Boolean TWITTERpublic;
     private String EMAIL;
-    private String EMAILpublic;
+    private Boolean EMAILpublic;
     private String LINK;
-    private String LINKpublic;
+    private Boolean LINKpublic;
     private String DTINSCRICAO;
 
-    public String getID() {
+    public void carregarUsuario(JSONObject jsonUsuario){
+        try {
+            this.ID = jsonUsuario.getInt("id");
+            this.LOGIN = jsonUsuario.getString("login");
+            this.SENHA = jsonUsuario.getString("senha");
+            this.NOME = jsonUsuario.getString("nome");
+            this.SEXO = jsonUsuario.getString("sexo");
+            this.FACE = jsonUsuario.getString("face");
+            this.FACEpublic = jsonUsuario.getBoolean("facepublic");
+            this.WPP = jsonUsuario.getString("wpp");
+            this.WPPpublic = jsonUsuario.getBoolean("wpppublic");
+            this.INSTA = jsonUsuario.getString("insta");
+            this.INSTApublic = jsonUsuario.getBoolean("instapublic");
+            this.SNAP = jsonUsuario.getString("snap");
+            this.SNAPpublic = jsonUsuario.getBoolean("snappublic");
+            this.TWITTER = jsonUsuario.getString("twitter");
+            this.TWITTERpublic = jsonUsuario.getBoolean("twitterpublic");
+            this.EMAIL = jsonUsuario.getString("email");
+            this.EMAILpublic = jsonUsuario.getBoolean("emailpublic");
+            this.LINK = jsonUsuario.getString("link");
+            this.LINKpublic = jsonUsuario.getBoolean("linkpublic");
+            this.DTINSCRICAO = jsonUsuario.getString("dtinscricao");
+            setTWITTER(jsonUsuario.getString("twitter"));
+        }catch (Exception e) {
+            Log.e("Classe Usuario", "Falha ao carregar perfil", e);
+        }
+
+    }
+
+    public int getID() {
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 
@@ -73,11 +108,11 @@ public class Usuario {
         this.FACE = FACE;
     }
 
-    public String getFACEpublic() {
+    public Boolean getFACEpublic() {
         return FACEpublic;
     }
 
-    public void setFACEpublic(String FACEpublic) {
+    public void setFACEpublic(Boolean FACEpublic) {
         this.FACEpublic = FACEpublic;
     }
 
@@ -89,11 +124,11 @@ public class Usuario {
         this.WPP = WPP;
     }
 
-    public String getWPPpublic() {
+    public Boolean getWPPpublic() {
         return WPPpublic;
     }
 
-    public void setWPPpublic(String WPPpublic) {
+    public void setWPPpublic(Boolean WPPpublic) {
         this.WPPpublic = WPPpublic;
     }
 
@@ -105,11 +140,11 @@ public class Usuario {
         this.INSTA = INSTA;
     }
 
-    public String getINSTApublic() {
+    public Boolean getINSTApublic() {
         return INSTApublic;
     }
 
-    public void setINSTApublic(String INSTApublic) {
+    public void setINSTApublic(Boolean INSTApublic) {
         this.INSTApublic = INSTApublic;
     }
 
@@ -121,11 +156,11 @@ public class Usuario {
         this.SNAP = SNAP;
     }
 
-    public String getSNAPpublic() {
+    public Boolean getSNAPpublic() {
         return SNAPpublic;
     }
 
-    public void setSNAPpublic(String SNAPpublic) {
+    public void setSNAPpublic(Boolean SNAPpublic) {
         this.SNAPpublic = SNAPpublic;
     }
 
@@ -137,11 +172,11 @@ public class Usuario {
         this.TWITTER = TWITTER;
     }
 
-    public String getTWITTERpublic() {
+    public Boolean getTWITTERpublic() {
         return TWITTERpublic;
     }
 
-    public void setTWITTERpublic(String TWITTERpublic) {
+    public void setTWITTERpublic(Boolean TWITTERpublic) {
         this.TWITTERpublic = TWITTERpublic;
     }
 
@@ -153,11 +188,11 @@ public class Usuario {
         this.EMAIL = EMAIL;
     }
 
-    public String getEMAILpublic() {
+    public Boolean getEMAILpublic() {
         return EMAILpublic;
     }
 
-    public void setEMAILpublic(String EMAILpublic) {
+    public void setEMAILpublic(Boolean EMAILpublic) {
         this.EMAILpublic = EMAILpublic;
     }
 
@@ -169,11 +204,11 @@ public class Usuario {
         this.LINK = LINK;
     }
 
-    public String getLINKpublic() {
+    public Boolean getLINKpublic() {
         return LINKpublic;
     }
 
-    public void setLINKpublic(String LINKpublic) {
+    public void setLINKpublic(Boolean LINKpublic) {
         this.LINKpublic = LINKpublic;
     }
 
