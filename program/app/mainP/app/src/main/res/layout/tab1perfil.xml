@@ -60,8 +60,8 @@
         android:text="+00 00 00000-0000"
         android:id="@+id/tvWpp"
         android:textColor="#000000"
-        android:layout_alignStart="@+id/tvSnap"
-        android:layout_marginTop="162dp" />
+        android:layout_marginTop="162dp"
+        android:layout_marginLeft="50dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -79,8 +79,8 @@
         android:text="\@instagram"
         android:id="@+id/tvInsta"
         android:textColor="#000000"
-        android:layout_alignStart="@+id/tvWpp"
-        android:layout_marginTop="211dp" />
+        android:layout_marginTop="211dp"
+        android:layout_marginLeft="50dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -95,11 +95,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="snapchat"
+        android:text="\@snapchat"
         android:id="@+id/tvSnap"
         android:textColor="#000000"
-        android:layout_alignEnd="@+id/tvFace"
-        android:layout_marginTop="261dp" />
+        android:layout_marginTop="261dp"
+        android:layout_marginLeft="50dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -117,8 +117,8 @@
         android:text="\@twitter"
         android:id="@+id/tvTwitter"
         android:textColor="#000000"
-        android:layout_alignStart="@+id/tvSnap"
-        android:layout_marginTop="311dp" />
+        android:layout_marginTop="311dp"
+        android:layout_marginLeft="50dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -136,8 +136,8 @@
         android:text="http://www.site.com/"
         android:id="@+id/tvLink"
         android:textColor="#000000"
-        android:layout_alignStart="@+id/tvEmail"
-        android:layout_marginTop="361dp" />
+        android:layout_marginTop="361dp"
+        android:layout_marginLeft="50dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -155,8 +155,8 @@
         android:text="email@email.com"
         android:id="@+id/tvEmail"
         android:textColor="#000000"
-        android:layout_alignStart="@+id/tvTwitter"
-        android:layout_marginTop="411dp" />
+        android:layout_marginTop="411dp"
+        android:layout_marginLeft="50dp" />
 
     <Button
         android:layout_width="175dp"

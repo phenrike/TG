@@ -3,4 +3,13 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_main">MainActivity</string>
+    <string-array name="redes_sociais">
+        <item>Facebook</item>
+        <item>WhatsApp</item>
+        <item>Instagram</item>
+        <item>Snapchat</item>
+        <item>Twitter</item>
+        <item>Site</item>
+        <item>E-mail</item>
+    </string-array>
 </resources>
