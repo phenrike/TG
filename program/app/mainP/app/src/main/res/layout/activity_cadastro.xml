@@ -88,11 +88,12 @@
         android:layout_height="wrap_content"
         android:text="Cadastrar"
         android:id="@+id/btCadastrar"
-        android:backgroundTint="#23eb0e"
+        android:backgroundTint="#2cd72f"
         android:layout_below="@+id/etNome"
         android:layout_alignRight="@+id/etNome"
         android:layout_alignEnd="@+id/etNome"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
 
     <Button
         android:layout_width="170dp"
@@ -102,7 +103,8 @@
         android:layout_alignBottom="@+id/btCadastrar"
         android:layout_toLeftOf="@+id/btCadastrar"
         android:layout_toStartOf="@+id/btCadastrar"
-        android:backgroundTint="#f20a0a"
-        android:textColor="#ffffff" />
+        android:backgroundTint="#fb3535"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
 
 </RelativeLayout>

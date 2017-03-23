@@ -53,7 +53,6 @@ public class Usuario implements Serializable{
             this.LINK = jsonUsuario.getString("link");
             this.LINKpublic = jsonUsuario.getBoolean("linkpublic");
             this.DTINSCRICAO = jsonUsuario.getString("dtinscricao");
-            setTWITTER(jsonUsuario.getString("twitter"));
         }catch (Exception e) {
             Log.e("Classe Usuario", "Falha ao carregar perfil", e);
         }

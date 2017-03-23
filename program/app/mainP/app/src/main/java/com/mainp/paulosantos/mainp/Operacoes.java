@@ -16,6 +16,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,12 +30,10 @@ import java.util.List;
  */
 public class Operacoes {
 
-
-
     public void logar(Activity activity, String login, String senha) throws UnsupportedEncodingException, JSONException {
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://192.168.0.17/WebAPIMainP/token");
+        HttpPost httppost = new HttpPost("http://192.168.0.11/WebAPIMainP/token");
         JSONObject jObect = null;
 
         List<NameValuePair> pairs = new ArrayList<NameValuePair>();
@@ -61,7 +60,7 @@ public class Operacoes {
         if(jObect.has("access_token")){
 
             httpclient = new DefaultHttpClient();
-            httppost = new HttpPost("http://192.168.0.17/WebAPIMainP/api/mainp/usuarios/"+login+"/"+senha);
+            httppost = new HttpPost("http://192.168.0.11/WebAPIMainP/api/mainp/usuarios/"+login+"/"+senha);
             String accessToken = jObect.getString("access_token");
             httppost.setHeader("Authorization", "bearer " + accessToken);
 
@@ -90,16 +89,37 @@ public class Operacoes {
             } catch (Exception e) {
                 Log.e("Classe Operacoes.java", "Falha ao Carregar perfil", e);
             }
-
-        }else{
-            Intent telaLogin = new Intent(activity, LoginActivity.class);
-            String msg = "O login ou a senha é inválido!";
-            telaLogin.putExtra("msg", msg);
-            activity.startActivity(telaLogin);
         }
     }
 
-    public void buscar(int rede, String buscar,String token){
+    public JSONArray buscar(int rede, String busca){
 
+        HttpClient httpclient;
+        HttpGet httpget;
+        JSONArray perfis;
+
+        perfis = null;
+        httpclient = new DefaultHttpClient();
+        httpget = new HttpGet("http://192.168.0.11/WebAPIMainP/api/mainp/usuarios/"+Integer.toString(rede)+"/"+busca);
+        httpget.setHeader("Authorization", "bearer " + "Ocf8mTzpxo1tuCLaOJB0VAd1qJxbzBafUo9cDVVlOEMCaT0SqEwspKvMRycFsEsNw90KCM0jwDpC2VBzMuHQm6ReUovWk58kvTiPkZaoXYO17JVAaL29DC7x0-z1kNfEFff3U8CXkfIaheaLJubmKrombLJb4iJDCu_BvpFTJjLSg50Aba6B7OsPTbfM0pqxDklhaRFXjXzfkj75hS1-ytdeFBiY8wcUvbUdQnUP6Wo");
+
+        try {
+            HttpResponse response = httpclient.execute(httpget);
+
+            HttpEntity entity = response.getEntity();
+
+            if (entity != null) {
+
+                String retSrc = EntityUtils.toString(entity);
+
+                perfis = new JSONArray(retSrc);
+            }else{
+                perfis = null;
+            }
+        } catch (Exception e) {
+            Log.e("Classe Operacoes.java", "Falha ao buscar perfis", e);
+        }
+
+        return perfis;
     }
 }

@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">mainP</string>
+    <string name="app_name">IFY</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">IFY</string>
     <string-array name="redes_sociais">
         <item>Facebook</item>
         <item>WhatsApp</item>
@@ -12,4 +12,5 @@
         <item>Site</item>
         <item>E-mail</item>
     </string-array>
+    <string name="title_activity_perfil_outro_usu">PerfilOutroUsuActivity</string>
 </resources>

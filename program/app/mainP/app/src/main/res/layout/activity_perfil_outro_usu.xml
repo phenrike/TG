@@ -1,7 +1,4 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity$PlaceholderFragment">
+    tools:context="com.mainp.paulosantos.mainp.PerfilOutroUsuActivity">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -40,8 +37,8 @@
         android:layout_marginTop="100dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="205dp"
+        android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="facebook"
         android:id="@+id/tvFace"
@@ -58,8 +55,8 @@
         android:layout_marginTop="150dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="205dp"
+        android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="+00 00 00000-0000"
         android:id="@+id/tvWpp"
@@ -77,8 +74,8 @@
         android:layout_marginTop="200dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="205dp"
+        android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="\@instagram"
         android:id="@+id/tvInsta"
@@ -96,8 +93,8 @@
         android:layout_marginTop="250dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="205dp"
+        android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="\@snapchat"
         android:id="@+id/tvSnap"
@@ -115,8 +112,8 @@
         android:layout_marginTop="300dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="205dp"
+        android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="\@twitter"
         android:id="@+id/tvTwitter"
@@ -134,8 +131,8 @@
         android:layout_marginTop="350dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="205dp"
+        android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="http://www.site.com/"
         android:id="@+id/tvLink"
@@ -153,8 +150,8 @@
         android:layout_marginTop="400dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="205dp"
+        android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="email@email.com"
         android:id="@+id/tvEmail"
@@ -162,26 +159,123 @@
         android:layout_marginTop="411dp"
         android:layout_marginLeft="50dp" />
 
-    <Button
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:text="Sair"
-        android:id="@+id/btSair"
-        android:backgroundTint="#fb3535"
-        android:layout_marginTop="450dp"
-        android:layout_marginLeft="175dp"
-        android:textColor="#ffffff"
-        android:textStyle="bold" />
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:id="@+id/btCopiarFb"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="255dp"
+        android:layout_marginTop="102dp"
+        android:src="@drawable/copiar" />
 
-    <Button
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:text="Editar"
-        android:id="@+id/btEditar"
-        android:backgroundTint="#ffc936"
-        android:layout_marginTop="450dp"
-        android:layout_marginLeft="0dp"
-        android:textColor="#ffffff"
-        android:textStyle="bold" />
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:id="@+id/btSalvarNumero"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="255dp"
+        android:layout_marginTop="153dp"
+        android:src="@drawable/copiar" />
+
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:id="@+id/btCopiarInsta"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="255dp"
+        android:layout_marginTop="202dp"
+        android:src="@drawable/copiar" />
+
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:id="@+id/btCopiarSnap"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="255dp"
+        android:layout_marginTop="253dp"
+        android:src="@drawable/copiar" />
+
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:id="@+id/btCopiarTwitter"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="255dp"
+        android:layout_marginTop="302dp"
+        android:src="@drawable/copiar" />
+
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:id="@+id/btCopiarSite"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="255dp"
+        android:layout_marginTop="353dp"
+        android:src="@drawable/copiar" />
+
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:id="@+id/btCopiarEmail"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="255dp"
+        android:layout_marginTop="402dp"
+        android:src="@drawable/copiar" />
+
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:id="@+id/btBrowseFace"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="102dp"
+        android:src="@drawable/browse" />
+
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:id="@+id/btBrowseTwitter"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="302dp"
+        android:src="@drawable/browse" />
+
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:id="@+id/btBrowseSite"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="353dp"
+        android:src="@drawable/browse" />
+
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:id="@+id/btBrowseInta"
+        android:src="@drawable/browse"
+        android:layout_alignParentTop="false"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="202dp" />
+
 </RelativeLayout>
-</ScrollView>
