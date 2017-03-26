@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class Requisicao {
 
-    private static String tokenDeAcesso;
+    public static String tokenDeAcesso;
 
     private void gerarTokenDeAcesso(String login, String senha) throws UnsupportedEncodingException {
 
@@ -80,7 +80,7 @@ public class Requisicao {
             gerarTokenDeAcesso(login, senha);
 
             //Verifica se um token foi gerado e realiza o login
-            if (!tokenDeAcesso.equals("") || !tokenDeAcesso.equals(null)) {
+            if ((!tokenDeAcesso.equals("")) && (!tokenDeAcesso.equals(null))) {
 
                 //Monta cabeçalho da requisição
                 httppost.setHeader("Authorization", "bearer " + tokenDeAcesso);

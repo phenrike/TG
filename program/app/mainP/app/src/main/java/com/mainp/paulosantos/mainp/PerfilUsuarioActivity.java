@@ -15,8 +15,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_usuario);
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
-        if (SDK_INT > 8)
-        {
+        if (SDK_INT > 8) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                     .permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -25,13 +24,13 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
             JSONObject usuario;
             WebService ws = new WebService();
             usuario = ws.carregarPerfil();
-            String nome="";
-            String fb="";
-            String tt="";
-            String snap="";
-            String insta="";
-            String wpp="";
-            String link="";
+            String nome = "";
+            String fb = "";
+            String tt = "";
+            String snap = "";
+            String insta = "";
+            String wpp = "";
+            String link = "";
             try {
                 nome = usuario.getString("NOME").toString();
                 fb = usuario.getString("FACE").toString();

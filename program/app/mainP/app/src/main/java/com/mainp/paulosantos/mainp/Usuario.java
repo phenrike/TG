@@ -1,7 +1,9 @@
 package com.mainp.paulosantos.mainp;
 
 import android.util.Log;
+
 import java.io.Serializable;
+
 import org.json.JSONObject;
 
 import java.util.Date;
@@ -9,7 +11,8 @@ import java.util.Date;
 /**
  * Created by Paulo Santos on 19/03/2016.
  */
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
+
     private int ID;
     private String LOGIN;
     private String SENHA;
@@ -31,7 +34,7 @@ public class Usuario implements Serializable{
     private Boolean LINKpublic;
     private String DTINSCRICAO;
 
-    public void carregarUsuario(JSONObject jsonUsuario){
+    public void carregarUsuario(JSONObject jsonUsuario) {
         try {
             this.ID = jsonUsuario.getInt("id");
             this.LOGIN = jsonUsuario.getString("login");
@@ -53,7 +56,7 @@ public class Usuario implements Serializable{
             this.LINK = jsonUsuario.getString("link");
             this.LINKpublic = jsonUsuario.getBoolean("linkpublic");
             this.DTINSCRICAO = jsonUsuario.getString("dtinscricao");
-        }catch (Exception e) {
+        } catch (Exception e) {
             Log.e("Classe Usuario", "Falha ao carregar perfil", e);
         }
 

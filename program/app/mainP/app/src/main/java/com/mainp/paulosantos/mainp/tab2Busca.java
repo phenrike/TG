@@ -29,6 +29,8 @@ public class tab2Busca extends Fragment {
 
     public EditText etBusca;
     public Spinner redesSociais;
+    public TextView tvMensagem;
+    public ListView lvPerfis;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,59 +43,76 @@ public class tab2Busca extends Fragment {
 
         etBusca = (EditText) view.findViewById(R.id.etBusca);
         ImageButton btBuscar = (ImageButton) view.findViewById(R.id.btBuscar);
+        tvMensagem = (TextView) view.findViewById(R.id.tvMensagem);
+        lvPerfis = (ListView) view.findViewById(R.id.lvPerfis);
 
         btBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    int SDK_INT = android.os.Build.VERSION.SDK_INT;
-                    if (SDK_INT > 8) {
-                        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                                .permitAll().build();
-                        StrictMode.setThreadPolicy(policy);
-
-                        TextView tvMensagem = (TextView) v.findViewById(R.id.tvMensagem);
-                        ListView lvPerfis = (ListView) v.findViewById(R.id.lvPerfis);
-
-                        Requisicao requisicao = new Requisicao();
-                        JSONArray jsonArrayUsuario = null;
-                        JSONObject jsonObjectUsuario = null;
-
-                        if (!etBusca.getText().toString().equals("") || !etBusca.getText().toString().equals(null)) {
-                            jsonArrayUsuario = requisicao.buscar(redesSociais.getSelectedItemPosition(), etBusca.getText().toString());
-                        } else {
-                            lvPerfis.setVisibility(View.INVISIBLE);
-                            tvMensagem.setVisibility(View.VISIBLE);
-                            tvMensagem.setText("Preencha o campo de busca!");
-                        }
-
-                        if (jsonArrayUsuario != null) {
-                            List<Usuario> listaDeUsuarios = new ArrayList<Usuario>();
-
-                            //Transforma JsonArray em ArrayList
-                            for (int i = 0; i < jsonArrayUsuario.length(); i++) {
-                                Usuario usuario = new Usuario();
-                                jsonObjectUsuario = jsonArrayUsuario.getJSONObject(i);
-                                usuario.carregarUsuario(jsonObjectUsuario);
-                                listaDeUsuarios.add(usuario);
-                            }
-
-                            tvMensagem.setVisibility(v.INVISIBLE);
-
-                            ListaDeUsuariosAdapter usuariosAdapter = new ListaDeUsuariosAdapter(getActivity(), listaDeUsuarios);
-                            lvPerfis.setAdapter(usuariosAdapter);
-                        } else {
-                            lvPerfis.setVisibility(v.INVISIBLE);
-                            tvMensagem.setVisibility(v.VISIBLE);
-                            tvMensagem.setText("Nenhum usuário encontrado! Tente novamente.");
-                        }
-                    }
-                } catch (Exception e) {
-                    Log.e("LoginActivity", "Falha ao buscar usuários.", e);
-                }
+                buscar(v);
             }
         });
 
         return view;
+    }
+
+    public void buscar(View v) {
+        try {
+            int SDK_INT = android.os.Build.VERSION.SDK_INT;
+            if (SDK_INT > 8) {
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                        .permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+
+                Requisicao requisicao = new Requisicao();
+                JSONArray jsonArrayUsuario = null;
+
+                if ((!etBusca.getText().toString().equals("")) && (!etBusca.getText().toString().equals(null))) {
+                    String conteudoDaBusca = substituirCaracteresEspeciais(etBusca.getText().toString());
+                    jsonArrayUsuario = requisicao.buscar(redesSociais.getSelectedItemPosition(), conteudoDaBusca);
+                } else {
+                    lvPerfis.setVisibility(v.INVISIBLE);
+                    tvMensagem.setVisibility(v.VISIBLE);
+                    tvMensagem.setText("Preencha o campo de busca!");
+                }
+
+                if (jsonArrayUsuario != null) {
+                    List<Usuario> listaDeUsuarios = new ArrayList<Usuario>();
+
+                    //Transforma JsonArray em ArrayList
+                    for (int i = 0; i < jsonArrayUsuario.length(); i++) {
+                        Usuario usuario = new Usuario();
+                        JSONObject jsonObjectUsuario = jsonArrayUsuario.getJSONObject(i);
+                        usuario.carregarUsuario(jsonObjectUsuario);
+                        listaDeUsuarios.add(usuario);
+                    }
+
+                    tvMensagem.setVisibility(v.INVISIBLE);
+                    lvPerfis.setVisibility(View.VISIBLE);
+
+                    ListaDeUsuariosAdapter usuariosAdapter = new ListaDeUsuariosAdapter(getActivity(), listaDeUsuarios);
+                    lvPerfis.setAdapter(usuariosAdapter);
+                } else {
+                    lvPerfis.setVisibility(v.INVISIBLE);
+                    tvMensagem.setVisibility(v.VISIBLE);
+                    tvMensagem.setText("Nenhum usuário encontrado! Tente novamente.");
+                }
+            }
+        } catch (Exception e) {
+            Log.e("tab2Busca", "Falha ao buscar usuários.", e);
+        }
+    }
+
+    public String substituirCaracteresEspeciais(String conteudoDaBusca) {
+        String[] caracteresEspeciais = {"!", "@", "#", "$", "%", "¨", "&", "*", "(", ")", "'", "_", "-", "+"};
+        String[] espacos = {"       ", "      ", "     ", "    ", "   ", "  ", " "};
+
+        for (String ce : caracteresEspeciais)
+            conteudoDaBusca = conteudoDaBusca.replace(ce, "");
+
+        for (String e : espacos)
+            conteudoDaBusca = conteudoDaBusca.replace(e, "_");
+
+        return conteudoDaBusca;
     }
 }

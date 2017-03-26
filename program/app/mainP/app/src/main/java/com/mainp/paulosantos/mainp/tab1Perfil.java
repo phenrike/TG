@@ -10,10 +10,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONException;
+
+import java.io.Serializable;
 
 public class tab1Perfil extends Fragment {
 
@@ -22,6 +25,10 @@ public class tab1Perfil extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.tab1perfil, container, false);
+
+        //Esconde o teclado
+        getActivity().getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         Usuario usuario = (Usuario) getActivity().getIntent().getSerializableExtra("usuario");
 
@@ -33,32 +40,50 @@ public class tab1Perfil extends Fragment {
         TextView tvTwitter = (TextView) rootView.findViewById(R.id.tvTwitter);
         TextView tvEmail = (TextView) rootView.findViewById(R.id.tvEmail);
         TextView tvLink = (TextView) rootView.findViewById(R.id.tvLink);
+        Button btSair = (Button) rootView.findViewById(R.id.btSair);
 
-        if(usuario.getNOME() != null){
+        if (usuario.getNOME() != null) {
             tvNome.setText(usuario.getNOME());
         }
-        if(usuario.getFACE() != null){
+        if (usuario.getFACE() != null) {
             tvFace.setText(usuario.getFACE());
         }
-        if(usuario.getWPP() != null){
+        if (usuario.getWPP() != null) {
             tvWpp.setText(usuario.getWPP());
         }
-        if(usuario.getINSTA() != null){
+        if (usuario.getINSTA() != null) {
             tvInsta.setText(usuario.getINSTA());
         }
-        if(usuario.getSNAP() != null){
+        if (usuario.getSNAP() != null) {
             tvSnap.setText(usuario.getSNAP());
         }
-        if(usuario.getTWITTER() != null){
+        if (usuario.getTWITTER() != null) {
             tvTwitter.setText(usuario.getTWITTER());
         }
-        if(usuario.getEMAIL() != null){
+        if (usuario.getEMAIL() != null) {
             tvEmail.setText(usuario.getEMAIL());
         }
-        if(usuario.getLINK() != null){
+        if (usuario.getLINK() != null) {
             tvLink.setText(usuario.getLINK());
         }
 
+        btSair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deslogar();
+            }
+        });
+
         return rootView;
+    }
+
+    public void deslogar() {
+        //Cria tela login do app
+        Intent loginActivity = new Intent(getActivity(), LoginActivity.class);
+
+        Requisicao.tokenDeAcesso = "";
+
+        //Vai para a tela de login
+        getActivity().startActivity(loginActivity);
     }
 }

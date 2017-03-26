@@ -28,7 +28,7 @@ public class ListaDeUsuariosAdapter extends ArrayAdapter<Usuario> {
     public View getView(int position, View view, ViewGroup parent) {
         Usuario usuario = listaDeSsuarios.get(position);
 
-        if(view == null)
+        if (view == null)
             view = LayoutInflater.from(context).inflate(R.layout.lista_de_usuarios, null);
 
         //Quando o usuário tiver foto
