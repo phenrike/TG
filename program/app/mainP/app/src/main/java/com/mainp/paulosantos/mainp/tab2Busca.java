@@ -4,10 +4,10 @@ package com.mainp.paulosantos.mainp;
  * Created by Paulo Santos on 24/01/2017.
  */
 
-import android.content.DialogInterface;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +17,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -28,68 +27,73 @@ import java.util.List;
 
 public class tab2Busca extends Fragment {
 
-    Spinner redes;
+    public EditText etBusca;
+    public Spinner redesSociais;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.tab2busca, container, false);
+        final View view = inflater.inflate(R.layout.tab2busca, container, false);
 
-        redes = (Spinner) rootView.findViewById(R.id.spRedes);
-        final EditText etBusca = (EditText) rootView.findViewById(R.id.etBusca);
-        final ListView lvPerfis = (ListView) rootView.findViewById(R.id.lvPerfis);
-        ImageButton btbuscar = (ImageButton) rootView.findViewById(R.id.btBuscar);
+        redesSociais = (Spinner) view.findViewById(R.id.spRedes);
+        ArrayAdapter aa = ArrayAdapter.createFromResource(getActivity(), R.array.redes_sociais, android.R.layout.simple_spinner_item);
+        redesSociais.setAdapter(aa);
 
-        btbuscar.setOnClickListener(new View.OnClickListener() {
+        etBusca = (EditText) view.findViewById(R.id.etBusca);
+        ImageButton btBuscar = (ImageButton) view.findViewById(R.id.btBuscar);
+
+        btBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Operacoes operacoes = new Operacoes();
-                JSONArray jsonArray;
-                JSONObject jsonObject = null;
+                try {
+                    int SDK_INT = android.os.Build.VERSION.SDK_INT;
+                    if (SDK_INT > 8) {
+                        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                                .permitAll().build();
+                        StrictMode.setThreadPolicy(policy);
 
-                int SDK_INT = android.os.Build.VERSION.SDK_INT;
-                if (SDK_INT > 8)
-                {
-                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                            .permitAll().build();
-                    StrictMode.setThreadPolicy(policy);
+                        TextView tvMensagem = (TextView) v.findViewById(R.id.tvMensagem);
+                        ListView lvPerfis = (ListView) v.findViewById(R.id.lvPerfis);
 
-                    jsonArray = operacoes.buscar(redes.getSelectedItemPosition(), etBusca.getText().toString());
-                    //jsonArray = operacoes.buscar(0, etBusca.getText().toString());
+                        Requisicao requisicao = new Requisicao();
+                        JSONArray jsonArrayUsuario = null;
+                        JSONObject jsonObjectUsuario = null;
 
-                    if (jsonArray != null)
-
-                    {
-
-                        List<Usuario> perfis = new ArrayList<Usuario>();
-
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            Usuario usuario = new Usuario();
-
-                            try {
-                                jsonObject = jsonArray.getJSONObject(i);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                            usuario.carregarUsuario(jsonObject);
-
-                            perfis.add(usuario);
+                        if (!etBusca.getText().toString().equals("") || !etBusca.getText().toString().equals(null)) {
+                            jsonArrayUsuario = requisicao.buscar(redesSociais.getSelectedItemPosition(), etBusca.getText().toString());
+                        } else {
+                            lvPerfis.setVisibility(View.INVISIBLE);
+                            tvMensagem.setVisibility(View.VISIBLE);
+                            tvMensagem.setText("Preencha o campo de busca!");
                         }
 
-                        ArrayAdapter<Usuario> arrayAdapter = new ArrayAdapter<Usuario>(
-                                getActivity().getApplicationContext(),
-                                android.R.layout.simple_list_item_1,
-                                perfis);
+                        if (jsonArrayUsuario != null) {
+                            List<Usuario> listaDeUsuarios = new ArrayList<Usuario>();
 
-                        lvPerfis.setAdapter(arrayAdapter);
+                            //Transforma JsonArray em ArrayList
+                            for (int i = 0; i < jsonArrayUsuario.length(); i++) {
+                                Usuario usuario = new Usuario();
+                                jsonObjectUsuario = jsonArrayUsuario.getJSONObject(i);
+                                usuario.carregarUsuario(jsonObjectUsuario);
+                                listaDeUsuarios.add(usuario);
+                            }
+
+                            tvMensagem.setVisibility(v.INVISIBLE);
+
+                            ListaDeUsuariosAdapter usuariosAdapter = new ListaDeUsuariosAdapter(getActivity(), listaDeUsuarios);
+                            lvPerfis.setAdapter(usuariosAdapter);
+                        } else {
+                            lvPerfis.setVisibility(v.INVISIBLE);
+                            tvMensagem.setVisibility(v.VISIBLE);
+                            tvMensagem.setText("Nenhum usuário encontrado! Tente novamente.");
+                        }
                     }
+                } catch (Exception e) {
+                    Log.e("LoginActivity", "Falha ao buscar usuários.", e);
                 }
             }
         });
 
-        ArrayAdapter aa = ArrayAdapter.createFromResource(getActivity().getApplicationContext(), R.array.redes_sociais, android.R.layout.simple_spinner_item);
-        redes.setAdapter(aa);
-        return rootView;
+        return view;
     }
 }

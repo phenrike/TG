@@ -1,7 +1,9 @@
 package com.mainp.paulosantos.mainp;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,41 +11,37 @@ import android.widget.TextView;
 
 import java.io.UnsupportedEncodingException;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Button btEntrar = (Button) findViewById(R.id.btEntrar);
-
-        assert btEntrar != null;
-        btEntrar.setOnClickListener(this);
     }
 
-    public void onClick(View v) {
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    Operacoes operacoes = new Operacoes();
-                    EditText etLogin = (EditText) findViewById(R.id.etLogin);
-                    EditText etSenha = (EditText) findViewById(R.id.etSenha);
-                    TextView tvMensagem = (TextView) findViewById(R.id.tvMensagem);
+    public void logar(View v) {
+        try {
+            int SDK_INT = android.os.Build.VERSION.SDK_INT;
+            if (SDK_INT > 8) {
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                        .permitAll().build();
+                StrictMode.setThreadPolicy(policy);
 
-                    if ((etLogin.getText().toString() != null) && (etSenha.getText().toString() != null)) {
-                        tvMensagem.setVisibility(View.VISIBLE);
-                        try {
-                            tvMensagem.setText(operacoes.gerarTokenDeAcesso(etLogin.getText().toString(), etSenha.getText().toString(), LoginActivity.this));
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        tvMensagem.setVisibility(View.VISIBLE);
-                        tvMensagem.setText("Preencha o Login e a Senha!");
-                    }
-                } catch (Exception e) {
+                Requisicao requisicao = new Requisicao();
+                EditText etLogin = (EditText) findViewById(R.id.etLogin);
+                EditText etSenha = (EditText) findViewById(R.id.etSenha);
+                TextView tvMensagem = (TextView) findViewById(R.id.tvMensagem);
+
+                if ((!etLogin.getText().toString().equals("")) || (!etSenha.getText().toString().equals(""))) {
+                    tvMensagem.setVisibility(View.VISIBLE);
+                    tvMensagem.setText(requisicao.logar(etLogin.getText().toString(), etSenha.getText().toString(), LoginActivity.this));
+                } else {
+                    tvMensagem.setVisibility(View.VISIBLE);
+                    tvMensagem.setText("Preencha o Login e a Senha!");
                 }
             }
-        }).start();
+        } catch (Exception e) {
+            Log.e("LoginActivity", "Falha ao tentar realizar o login.", e);
+        }
     }
 }
