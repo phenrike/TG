@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
                 EditText etSenha = (EditText) findViewById(R.id.etSenha);
                 TextView tvMensagem = (TextView) findViewById(R.id.tvMensagem);
 
-                if ((!etLogin.getText().toString().equals("")) && (!etSenha.getText().toString().equals(""))) {
+                if ((!etLogin.getText().toString().isEmpty()) && (!etSenha.getText().toString().isEmpty())) {
                     tvMensagem.setVisibility(View.VISIBLE);
                     tvMensagem.setText(requisicao.logar(etLogin.getText().toString(), etSenha.getText().toString(), LoginActivity.this));
                 } else {

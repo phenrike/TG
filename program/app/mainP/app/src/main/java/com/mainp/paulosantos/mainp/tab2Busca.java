@@ -4,6 +4,7 @@ package com.mainp.paulosantos.mainp;
  * Created by Paulo Santos on 24/01/2017.
  */
 
+import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +24,7 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +53,19 @@ public class tab2Busca extends Fragment {
             @Override
             public void onClick(View v) {
                 buscar(v);
+            }
+        });
+
+        lvPerfis.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int pos, long id) {
+
+                //Cria tela de perfil
+                Intent perfilOutroUsuActivity = new Intent(getActivity(), PerfilOutroUsuActivity.class);
+
+                //Abre a tela de perfil passando o usuário
+                perfilOutroUsuActivity.putExtra("usuario", (Serializable) lvPerfis.);
+                getActivity().startActivity(perfilOutroUsuActivity);
             }
         });
 
@@ -88,7 +104,7 @@ public class tab2Busca extends Fragment {
                     }
 
                     tvMensagem.setVisibility(v.INVISIBLE);
-                    lvPerfis.setVisibility(View.VISIBLE);
+                    lvPerfis.setVisibility(v.VISIBLE);
 
                     ListaDeUsuariosAdapter usuariosAdapter = new ListaDeUsuariosAdapter(getActivity(), listaDeUsuarios);
                     lvPerfis.setAdapter(usuariosAdapter);
