@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/ivFoto"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/perfilimg" />
+        android:src="@drawable/perfilimg"
+        android:layout_marginTop="0dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -168,12 +169,12 @@
         android:layout_alignParentStart="false"
         android:layout_marginLeft="255dp"
         android:layout_marginTop="102dp"
-        android:src="@drawable/copiar" />
+        android:src="@drawable/copiar"/>
 
     <ImageButton
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:id="@+id/btSalvarNumero"
+        android:id="@+id/btCopiarNumero"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"

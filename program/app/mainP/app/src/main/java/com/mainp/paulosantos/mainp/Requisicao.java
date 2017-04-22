@@ -28,11 +28,12 @@ import java.util.List;
 public class Requisicao {
 
     public static String tokenDeAcesso;
+    public static String ip = "192.168.0.11";
 
     private void gerarTokenDeAcesso(String login, String senha) throws UnsupportedEncodingException {
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://192.168.0.11/WebAPIMainP/token");
+        HttpPost httppost = new HttpPost("http://"+ip+"/WebAPIMainP/token");
         List<NameValuePair> pairs = new ArrayList<>();
         JSONObject jsonResultado;
         String stringResultado;
@@ -69,7 +70,7 @@ public class Requisicao {
     public String logar(String login, String senha, Activity activity) {
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://192.168.0.11/WebAPIMainP/api/mainp/usuarios/" + login + "/" + senha);
+        HttpPost httppost = new HttpPost("http://"+ip+"/WebAPIMainP/api/mainp/usuarios/" + login + "/" + senha);
         JSONObject jsonUsuario;
         String stringResposta, mensagem = "";
         HttpResponse response;
@@ -120,7 +121,7 @@ public class Requisicao {
     public JSONArray buscar(int indexDaRedeSocial, String conteudoDaBusca) {
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpGet httpget = new HttpGet("http://192.168.0.11/WebAPIMainP/api/mainp/usuarios/" + Integer.toString(indexDaRedeSocial) + "/" + conteudoDaBusca);
+        HttpGet httpget = new HttpGet("http://"+ip+"/WebAPIMainP/api/mainp/usuarios/" + Integer.toString(indexDaRedeSocial) + "/" + conteudoDaBusca);
         JSONArray jsonArrayPerfis = null;
         String stringResposta;
         HttpResponse response;

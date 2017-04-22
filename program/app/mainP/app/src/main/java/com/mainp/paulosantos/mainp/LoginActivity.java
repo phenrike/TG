@@ -44,4 +44,8 @@ public class LoginActivity extends AppCompatActivity {
             Log.e("LoginActivity", "Falha ao tentar realizar o login.", e);
         }
     }
+
+    public void onBackPressed() {
+        finish();
+    }
 }

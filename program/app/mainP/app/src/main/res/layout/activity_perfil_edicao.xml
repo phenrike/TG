@@ -88,7 +88,8 @@
         android:layout_marginTop="450dp"
         android:layout_marginLeft="175dp"
         android:textColor="#ffffff"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:onClick="cancelar" />
 
     <Button
         android:layout_width="175dp"

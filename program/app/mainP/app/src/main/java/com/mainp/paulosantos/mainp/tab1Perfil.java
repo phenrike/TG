@@ -30,7 +30,7 @@ public class tab1Perfil extends Fragment {
         getActivity().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        Usuario usuario = (Usuario) getActivity().getIntent().getSerializableExtra("usuario");
+        final Usuario usuario = (Usuario) getActivity().getIntent().getSerializableExtra("usuario");
 
         TextView tvNome = (TextView) rootView.findViewById(R.id.tvNome);
         TextView tvFace = (TextView) rootView.findViewById(R.id.tvFace);
@@ -41,6 +41,7 @@ public class tab1Perfil extends Fragment {
         TextView tvEmail = (TextView) rootView.findViewById(R.id.tvEmail);
         TextView tvLink = (TextView) rootView.findViewById(R.id.tvLink);
         Button btSair = (Button) rootView.findViewById(R.id.btSair);
+        Button btEditar = (Button) rootView.findViewById(R.id.btEditar);
 
         if (usuario.getNOME() != null) {
             tvNome.setText(usuario.getNOME());
@@ -71,6 +72,18 @@ public class tab1Perfil extends Fragment {
             @Override
             public void onClick(View v) {
                 deslogar();
+            }
+        });
+
+        btEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Cria tela de edição de perfil
+                Intent perfilEdicaoActivity = new Intent(getActivity(), PerfilEdicaoActivity.class);
+
+                //Abre a tela de edição de perfil passando o usuário
+                perfilEdicaoActivity.putExtra("usuario", usuario);
+                getActivity().startActivity(perfilEdicaoActivity);
             }
         });
 

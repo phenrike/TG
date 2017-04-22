@@ -34,6 +34,7 @@ public class tab2Busca extends Fragment {
     public Spinner redesSociais;
     public TextView tvMensagem;
     public ListView lvPerfis;
+    public List<Usuario> listaDeUsuarios;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,12 +61,14 @@ public class tab2Busca extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int pos, long id) {
 
-                //Cria tela de perfil
-                Intent perfilOutroUsuActivity = new Intent(getActivity(), PerfilOutroUsuActivity.class);
+                if(listaDeUsuarios != null){
+                    //Cria tela de perfil
+                    Intent perfilOutroUsuActivity = new Intent(getActivity(), PerfilOutroUsuActivity.class);
 
-                //Abre a tela de perfil passando o usuário
-                perfilOutroUsuActivity.putExtra("usuario", (Serializable) lvPerfis.);
-                getActivity().startActivity(perfilOutroUsuActivity);
+                    //Abre a tela de perfil passando o usuário
+                    perfilOutroUsuActivity.putExtra("usuario", (Serializable) listaDeUsuarios.get(pos));
+                    getActivity().startActivity(perfilOutroUsuActivity);
+                }
             }
         });
 
@@ -93,7 +96,7 @@ public class tab2Busca extends Fragment {
                 }
 
                 if (jsonArrayUsuario != null) {
-                    List<Usuario> listaDeUsuarios = new ArrayList<Usuario>();
+                    listaDeUsuarios= new ArrayList<Usuario>();
 
                     //Transforma JsonArray em ArrayList
                     for (int i = 0; i < jsonArrayUsuario.length(); i++) {
