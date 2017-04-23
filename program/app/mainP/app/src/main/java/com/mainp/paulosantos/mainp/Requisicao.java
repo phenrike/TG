@@ -2,6 +2,7 @@ package com.mainp.paulosantos.mainp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.StrictMode;
 import android.util.Log;
 
 import org.apache.http.HttpEntity;
@@ -11,6 +12,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -21,6 +24,7 @@ import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Paulo Santos on 11/02/2017.
@@ -33,7 +37,7 @@ public class Requisicao {
     private void gerarTokenDeAcesso(String login, String senha) throws UnsupportedEncodingException {
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://"+ip+"/WebAPIMainP/token");
+        HttpPost httppost = new HttpPost("http://" + ip + "/WebAPIMainP/token");
         List<NameValuePair> pairs = new ArrayList<>();
         JSONObject jsonResultado;
         String stringResultado;
@@ -70,7 +74,7 @@ public class Requisicao {
     public String logar(String login, String senha, Activity activity) {
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://"+ip+"/WebAPIMainP/api/mainp/usuarios/" + login + "/" + senha);
+        HttpPost httppost = new HttpPost("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/" + login + "/" + senha);
         JSONObject jsonUsuario;
         String stringResposta, mensagem = "";
         HttpResponse response;
@@ -119,33 +123,102 @@ public class Requisicao {
     }
 
     public JSONArray buscar(int indexDaRedeSocial, String conteudoDaBusca) {
-
-        HttpClient httpclient = new DefaultHttpClient();
-        HttpGet httpget = new HttpGet("http://"+ip+"/WebAPIMainP/api/mainp/usuarios/" + Integer.toString(indexDaRedeSocial) + "/" + conteudoDaBusca);
         JSONArray jsonArrayPerfis = null;
-        String stringResposta;
-        HttpResponse response;
-        HttpEntity entity;
 
-        try {
-            httpget.setHeader("Authorization", "bearer " + tokenDeAcesso);
-            response = httpclient.execute(httpget);
-            entity = response.getEntity();
+        if (!tokenValido()) {
+            deslogar();
+        } else {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpGet httpget = new HttpGet("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/" + Integer.toString(indexDaRedeSocial) + "/" + conteudoDaBusca);
+            String stringResposta;
+            HttpResponse response;
+            HttpEntity entity;
 
-            if (entity != null) {
-                stringResposta = EntityUtils.toString(entity);
+            try {
+                httpget.setHeader("Authorization", "bearer " + tokenDeAcesso);
+                response = httpclient.execute(httpget);
+                entity = response.getEntity();
 
-                //Verifica se a resposta contém usuários e retorna um json array
-                if (!stringResposta.equals("[]")) {
-                    jsonArrayPerfis = new JSONArray(stringResposta);
-                } else {
-                    jsonArrayPerfis = null;
+                if (entity != null) {
+                    stringResposta = EntityUtils.toString(entity);
+
+                    //Verifica se a resposta contém usuários e retorna um json array
+                    if (!stringResposta.equals("[]")) {
+                        jsonArrayPerfis = new JSONArray(stringResposta);
+                    } else {
+                        jsonArrayPerfis = null;
+                    }
                 }
+            } catch (Exception e) {
+                Log.e("Classe Requisicao.java", "Falha ao buscar usuários.", e);
             }
-        } catch (Exception e) {
-            Log.e("Classe Requisicao.java", "Falha ao buscar usuários.", e);
         }
 
         return jsonArrayPerfis;
+    }
+
+    public void cadastrar(Usuario usuario) {
+
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/");
+
+        try {
+            //Monta cabeçalho da requisição
+            httpPost.setHeader("Content-Type", "application/json");
+            httpPost.setEntity(new ByteArrayEntity(
+                    usuario.toJSON().getBytes("UTF8")));
+
+            //Executa a requisição
+            httpclient.execute(httpPost);
+        } catch (Exception e) {
+            Log.e("Requisicao.Java", "Falha ao cadastrar.", e);
+        }
+    }
+
+    public boolean atualizarPerfil(Usuario usuario) {
+
+        boolean resultado = false;
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPut httpPut = new HttpPut("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/");
+
+        try {
+            //Monta cabeçalho da requisição
+            httpPut.setHeader("Content-Type", "application/json");
+            httpPut.setHeader("Authorization", "bearer " + tokenDeAcesso);
+            httpPut.setEntity(new ByteArrayEntity(
+                    usuario.toJSON().getBytes("UTF8")));
+
+            //Executa a requisição
+            httpclient.execute(httpPut);
+
+            return resultado = true;
+        } catch (Exception e) {
+            Log.e("Requisicao.Java", "Falha ao atualizar o perfil.", e);
+            return resultado = false;
+        }
+    }
+
+    public boolean tokenValido() {
+
+        boolean resposta = false;
+
+        //Se o token estiver vazio ou nulo o usuario é redirecionado para o login
+        if (tokenDeAcesso.isEmpty() || tokenDeAcesso == null) {
+            return resposta = false;
+        } else {
+            return resposta = true;
+        }
+    }
+
+    public void deslogar() {
+        final Activity Activity = new LoginActivity();
+
+        //Cria tela login do app
+        Intent loginActivity = new Intent(Activity, LoginActivity.class);
+
+        Requisicao.tokenDeAcesso = "";
+
+        //Vai para a tela de login
+        Activity.startActivity(loginActivity);
     }
 }

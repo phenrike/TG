@@ -1,11 +1,11 @@
 package com.mainp.paulosantos.mainp;
 
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -63,29 +63,29 @@ public class PerfilOutroUsuActivity extends AppCompatActivity {
         btBrowseSite = (ImageButton) findViewById(R.id.btBrowseSite);
         btCopiarEmail = (ImageButton) findViewById(R.id.btCopiarEmail);
 
-        if (usuario.getNOME() != null) {
-            tvNome.setText(usuario.getNOME());
+        if (usuario.getNome() != null) {
+            tvNome.setText(usuario.getNome());
         }
-        if (usuario.getFACE() != null) {
-            tvFace.setText(usuario.getFACE());
+        if (usuario.getFace() != null) {
+            tvFace.setText(usuario.getFace());
         }
-        if (usuario.getWPP() != null) {
-            tvWpp.setText(usuario.getWPP());
+        if (usuario.getWpp() != null) {
+            tvWpp.setText(usuario.getWpp());
         }
-        if (usuario.getINSTA() != null) {
-            tvInsta.setText(usuario.getINSTA());
+        if (usuario.getInsta() != null) {
+            tvInsta.setText(usuario.getInsta());
         }
-        if (usuario.getSNAP() != null) {
-            tvSnap.setText(usuario.getSNAP());
+        if (usuario.getSnap() != null) {
+            tvSnap.setText(usuario.getSnap());
         }
-        if (usuario.getTWITTER() != null) {
-            tvTwitter.setText(usuario.getTWITTER());
+        if (usuario.getTwitter() != null) {
+            tvTwitter.setText(usuario.getTwitter());
         }
-        if (usuario.getEMAIL() != null) {
-            tvEmail.setText(usuario.getEMAIL());
+        if (usuario.getEmail() != null) {
+            tvEmail.setText(usuario.getEmail());
         }
-        if (usuario.getLINK() != null) {
-            tvLink.setText(usuario.getLINK());
+        if (usuario.getLink() != null) {
+            tvLink.setText(usuario.getLink());
         }
 
         btCopiarFb.setOnClickListener(new View.OnClickListener() {
@@ -132,24 +132,29 @@ public class PerfilOutroUsuActivity extends AppCompatActivity {
 
         btBrowseFace.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                String url = "http://www.fb.com/" + removerCaracteresEspeciais(tvFace.getText().toString());
+                abrirUrlNoNavegador(url);
+            }
+        });
 
-                /*if (URLUtil.isValidUrl(tvFace.getText().toString())) {
+        btBrowseSite.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String url = removerCaracteresEspeciais(tvLink.getText().toString());
+                abrirUrlNoNavegador(url);
+            }
+        });
 
-                } else {
-                    AlertDialog.Builder dlgAlert = new AlertDialog.Builder(getApplication());
-                    dlgAlert.setMessage("O link do Facebook é inválido!");
-                    dlgAlert.setTitle("App Title");
-                    dlgAlert.setPositiveButton("Ok",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //dismiss the dialog
-                                }
-                            });
-                    dlgAlert.setCancelable(true);
-                    dlgAlert.create().show();
-                }*/
+        btBrowseInta.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String url = "http://www.instagram.com/" + removerCaracteresEspeciais(tvInsta.getText().toString());
+                abrirUrlNoNavegador(url);
+            }
+        });
 
-                abrirUrlNoNavegador(tvFace.getText().toString());
+        btBrowseTwitter.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String url = "http://www.twitter.com/" + removerCaracteresEspeciais(tvTwitter.getText().toString());
+                abrirUrlNoNavegador(url);
             }
         });
     }
@@ -168,8 +173,8 @@ public class PerfilOutroUsuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public String substituirCaracteresEspeciais(String texto) {
-        String[] caracteresEspeciais = {"!", "#", "$", "%", "¨", "&", "*", "(", ")", "'", "+"};
+    public String removerCaracteresEspeciais(String texto) {
+        String[] caracteresEspeciais = {"!", "#", "$", "%", "¨", "&", "*", "(", ")", "'", "+", "@"};
         String[] espacos = {"       ", "      ", "     ", "    ", "   ", "  ", " "};
 
         for (String ce : caracteresEspeciais)

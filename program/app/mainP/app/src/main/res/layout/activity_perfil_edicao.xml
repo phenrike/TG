@@ -100,7 +100,8 @@
         android:layout_marginTop="450dp"
         android:layout_marginLeft="0dp"
         android:textColor="#ffffff"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:onClick="salvar" />
 
     <EditText
         android:layout_width="250dp"

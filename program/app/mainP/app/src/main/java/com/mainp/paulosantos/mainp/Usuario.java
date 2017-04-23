@@ -4,221 +4,253 @@ import android.util.Log;
 
 import java.io.Serializable;
 
+import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Date;
 
 /**
  * Created by Paulo Santos on 19/03/2016.
  */
 public class Usuario implements Serializable {
 
-    private int ID;
-    private String LOGIN;
-    private String SENHA;
-    private String NOME;
-    private String SEXO;
-    private String FACE;
-    private Boolean FACEpublic;
-    private String WPP;
-    private Boolean WPPpublic;
-    private String INSTA;
-    private Boolean INSTApublic;
-    private String SNAP;
-    private Boolean SNAPpublic;
-    private String TWITTER;
-    private Boolean TWITTERpublic;
-    private String EMAIL;
-    private Boolean EMAILpublic;
-    private String LINK;
-    private Boolean LINKpublic;
-    private String DTINSCRICAO;
+    private int id;
+    private String login;
+    private String senha;
+    private String nome;
+    private String sexo;
+    private String face;
+    private Boolean facepublic;
+    private String wpp;
+    private Boolean wpppublic;
+    private String insta;
+    private Boolean instapublic;
+    private String snap;
+    private Boolean snappublic;
+    private String twitter;
+    private Boolean twitterpublic;
+    private String email;
+    private Boolean emailpublic;
+    private String link;
+    private Boolean linkpublic;
+    private String dtinscricao;
 
     public void carregarUsuario(JSONObject jsonUsuario) {
         try {
-            this.ID = jsonUsuario.getInt("id");
-            this.LOGIN = jsonUsuario.getString("login");
-            this.SENHA = jsonUsuario.getString("senha");
-            this.NOME = jsonUsuario.getString("nome");
-            this.SEXO = jsonUsuario.getString("sexo");
-            this.FACE = jsonUsuario.getString("face");
-            this.FACEpublic = jsonUsuario.getBoolean("facepublic");
-            this.WPP = jsonUsuario.getString("wpp");
-            this.WPPpublic = jsonUsuario.getBoolean("wpppublic");
-            this.INSTA = jsonUsuario.getString("insta");
-            this.INSTApublic = jsonUsuario.getBoolean("instapublic");
-            this.SNAP = jsonUsuario.getString("snap");
-            this.SNAPpublic = jsonUsuario.getBoolean("snappublic");
-            this.TWITTER = jsonUsuario.getString("twitter");
-            this.TWITTERpublic = jsonUsuario.getBoolean("twitterpublic");
-            this.EMAIL = jsonUsuario.getString("email");
-            this.EMAILpublic = jsonUsuario.getBoolean("emailpublic");
-            this.LINK = jsonUsuario.getString("link");
-            this.LINKpublic = jsonUsuario.getBoolean("linkpublic");
-            this.DTINSCRICAO = jsonUsuario.getString("dtinscricao");
+            this.id = jsonUsuario.getInt("id");
+            this.login = jsonUsuario.getString("login");
+            this.senha = jsonUsuario.getString("senha");
+            this.nome = jsonUsuario.getString("nome");
+            this.sexo = jsonUsuario.getString("sexo");
+            this.face = jsonUsuario.getString("face");
+            this.facepublic = jsonUsuario.getBoolean("facepublic");
+            this.wpp = jsonUsuario.getString("wpp");
+            this.wpppublic = jsonUsuario.getBoolean("wpppublic");
+            this.insta = jsonUsuario.getString("insta");
+            this.instapublic = jsonUsuario.getBoolean("instapublic");
+            this.snap = jsonUsuario.getString("snap");
+            this.snappublic = jsonUsuario.getBoolean("snappublic");
+            this.twitter = jsonUsuario.getString("twitter");
+            this.twitterpublic = jsonUsuario.getBoolean("twitterpublic");
+            this.email = jsonUsuario.getString("email");
+            this.emailpublic = jsonUsuario.getBoolean("emailpublic");
+            this.link = jsonUsuario.getString("link");
+            this.linkpublic = jsonUsuario.getBoolean("linkpublic");
+            this.dtinscricao = jsonUsuario.getString("dtinscricao");
         } catch (Exception e) {
             Log.e("Classe Usuario", "Falha ao carregar perfil", e);
         }
 
     }
 
-    public int getID() {
-        return ID;
+    public String toJSON() {
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("id", getId());
+            jsonObject.put("login", getLogin());
+            jsonObject.put("senha", getSenha());
+            jsonObject.put("nome", getNome());
+            jsonObject.put("sexo", getSexo());
+            jsonObject.put("face", getFace());
+            jsonObject.put("facepublic", getFacepublic());
+            jsonObject.put("wpp", getWpp());
+            jsonObject.put("wpppublic", getWpppublic());
+            jsonObject.put("insta", getInsta());
+            jsonObject.put("instapublic", getInstapublic());
+            jsonObject.put("snap", getSnap());
+            jsonObject.put("snappublic", getSnappublic());
+            jsonObject.put("twitter", getTwitter());
+            jsonObject.put("twitterpublic", getTwitterpublic());
+            jsonObject.put("email", getEmail());
+            jsonObject.put("emailpublic", getEmailpublic());
+            jsonObject.put("link", getLink());
+            jsonObject.put("linkpublic", getLinkpublic());
+            jsonObject.put("dtinscricao", getDtinscricao());
+
+            return jsonObject.toString();
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return "";
+        }
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public int getId() {
+        return id;
     }
 
-    public String getLOGIN() {
-        return LOGIN;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setLOGIN(String LOGIN) {
-        this.LOGIN = LOGIN;
+    public String getLogin() {
+        return login;
     }
 
-    public String getSENHA() {
-        return SENHA;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
-    public void setSENHA(String SENHA) {
-        this.SENHA = SENHA;
+    public String getSenha() {
+        return senha;
     }
 
-    public String getNOME() {
-        return NOME;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public void setNOME(String NOME) {
-        this.NOME = NOME;
+    public String getNome() {
+        return nome;
     }
 
-    public String getSEXO() {
-        return SEXO;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setSEXO(String SEXO) {
-        this.SEXO = SEXO;
+    public String getSexo() {
+        return sexo;
     }
 
-    public String getFACE() {
-        return FACE;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
-    public void setFACE(String FACE) {
-        this.FACE = FACE;
+    public String getFace() {
+        return face;
     }
 
-    public Boolean getFACEpublic() {
-        return FACEpublic;
+    public void setFace(String face) {
+        this.face = face;
     }
 
-    public void setFACEpublic(Boolean FACEpublic) {
-        this.FACEpublic = FACEpublic;
+    public Boolean getFacepublic() {
+        return facepublic;
     }
 
-    public String getWPP() {
-        return WPP;
+    public void setFacepublic(Boolean facepublic) {
+        this.facepublic = facepublic;
     }
 
-    public void setWPP(String WPP) {
-        this.WPP = WPP;
+    public String getWpp() {
+        return wpp;
     }
 
-    public Boolean getWPPpublic() {
-        return WPPpublic;
+    public void setWpp(String wpp) {
+        this.wpp = wpp;
     }
 
-    public void setWPPpublic(Boolean WPPpublic) {
-        this.WPPpublic = WPPpublic;
+    public Boolean getWpppublic() {
+        return wpppublic;
     }
 
-    public String getINSTA() {
-        return INSTA;
+    public void setWpppublic(Boolean wpppublic) {
+        this.wpppublic = wpppublic;
     }
 
-    public void setINSTA(String INSTA) {
-        this.INSTA = INSTA;
+    public String getInsta() {
+        return insta;
     }
 
-    public Boolean getINSTApublic() {
-        return INSTApublic;
+    public void setInsta(String insta) {
+        this.insta = insta;
     }
 
-    public void setINSTApublic(Boolean INSTApublic) {
-        this.INSTApublic = INSTApublic;
+    public Boolean getInstapublic() {
+        return instapublic;
     }
 
-    public String getSNAP() {
-        return SNAP;
+    public void setInstapublic(Boolean instapublic) {
+        this.instapublic = instapublic;
     }
 
-    public void setSNAP(String SNAP) {
-        this.SNAP = SNAP;
+    public String getSnap() {
+        return snap;
     }
 
-    public Boolean getSNAPpublic() {
-        return SNAPpublic;
+    public void setSnap(String snap) {
+        this.snap = snap;
     }
 
-    public void setSNAPpublic(Boolean SNAPpublic) {
-        this.SNAPpublic = SNAPpublic;
+    public Boolean getSnappublic() {
+        return snappublic;
     }
 
-    public String getTWITTER() {
-        return TWITTER;
+    public void setSnappublic(Boolean snappublic) {
+        this.snappublic = snappublic;
     }
 
-    public void setTWITTER(String TWITTER) {
-        this.TWITTER = TWITTER;
+    public String getTwitter() {
+        return twitter;
     }
 
-    public Boolean getTWITTERpublic() {
-        return TWITTERpublic;
+    public void setTwitter(String twitter) {
+        this.twitter = twitter;
     }
 
-    public void setTWITTERpublic(Boolean TWITTERpublic) {
-        this.TWITTERpublic = TWITTERpublic;
+    public Boolean getTwitterpublic() {
+        return twitterpublic;
     }
 
-    public String getEMAIL() {
-        return EMAIL;
+    public void setTwitterpublic(Boolean twitterpublic) {
+        this.twitterpublic = twitterpublic;
     }
 
-    public void setEMAIL(String EMAIL) {
-        this.EMAIL = EMAIL;
+    public String getEmail() {
+        return email;
     }
 
-    public Boolean getEMAILpublic() {
-        return EMAILpublic;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setEMAILpublic(Boolean EMAILpublic) {
-        this.EMAILpublic = EMAILpublic;
+    public Boolean getEmailpublic() {
+        return emailpublic;
     }
 
-    public String getLINK() {
-        return LINK;
+    public void setEmailpublic(Boolean emailpublic) {
+        this.emailpublic = emailpublic;
     }
 
-    public void setLINK(String LINK) {
-        this.LINK = LINK;
+    public String getLink() {
+        return link;
     }
 
-    public Boolean getLINKpublic() {
-        return LINKpublic;
+    public void setLink(String link) {
+        this.link = link;
     }
 
-    public void setLINKpublic(Boolean LINKpublic) {
-        this.LINKpublic = LINKpublic;
+    public Boolean getLinkpublic() {
+        return linkpublic;
     }
 
-    public String getDTINSCRICAO() {
-        return DTINSCRICAO;
+    public void setLinkpublic(Boolean linkpublic) {
+        this.linkpublic = linkpublic;
     }
 
-    public void setDTINSCRICAO(String DTINSCRICAO) {
-        this.DTINSCRICAO = DTINSCRICAO;
+    public String getDtinscricao() {
+        return dtinscricao;
+    }
+
+    public void setDtinscricao(String dtinscricao) {
+        this.dtinscricao = dtinscricao;
     }
 }

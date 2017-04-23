@@ -1,5 +1,6 @@
 package com.mainp.paulosantos.mainp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +44,11 @@ public class LoginActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("LoginActivity", "Falha ao tentar realizar o login.", e);
         }
+    }
+
+    public void cadastrar(View v) {
+        Intent it = new Intent(this, CadastroActivity.class);
+        startActivity(it);
     }
 
     public void onBackPressed() {

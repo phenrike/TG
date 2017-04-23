@@ -67,7 +67,8 @@
         android:layout_marginTop="370dp"
         android:backgroundTint="#1da2df"
         android:textColor="#ffffff"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:onClick="cadastrar"/>
 
     <Button
         android:layout_width="170dp"

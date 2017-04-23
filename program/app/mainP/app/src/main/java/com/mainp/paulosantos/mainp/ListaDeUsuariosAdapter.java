@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -36,7 +35,7 @@ public class ListaDeUsuariosAdapter extends ArrayAdapter<Usuario> {
         //ivFoto.setImageResource(usuario.getImagem());
 
         TextView tvNomeUsuario = (TextView) view.findViewById(R.id.tvNomeUsuario);
-        tvNomeUsuario.setText(usuario.getNOME());
+        tvNomeUsuario.setText(usuario.getNome());
 
         return view;
     }

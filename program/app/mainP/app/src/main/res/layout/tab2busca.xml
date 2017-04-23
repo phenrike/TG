@@ -22,8 +22,8 @@
         android:layout_marginTop="1dp" />
 
     <ImageButton
-        android:layout_width="41dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/btBuscar"
         android:layout_alignParentTop="false"
         android:layout_alignParentRight="false"

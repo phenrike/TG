@@ -14,10 +14,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.json.JSONException;
-
-import java.io.Serializable;
-
 public class tab1Perfil extends Fragment {
 
     @Override
@@ -43,29 +39,29 @@ public class tab1Perfil extends Fragment {
         Button btSair = (Button) rootView.findViewById(R.id.btSair);
         Button btEditar = (Button) rootView.findViewById(R.id.btEditar);
 
-        if (usuario.getNOME() != null) {
-            tvNome.setText(usuario.getNOME());
+        if (usuario.getNome() != null) {
+            tvNome.setText(usuario.getNome());
         }
-        if (usuario.getFACE() != null) {
-            tvFace.setText(usuario.getFACE());
+        if (usuario.getFace() != null) {
+            tvFace.setText(usuario.getFace());
         }
-        if (usuario.getWPP() != null) {
-            tvWpp.setText(usuario.getWPP());
+        if (usuario.getWpp() != null) {
+            tvWpp.setText(usuario.getWpp());
         }
-        if (usuario.getINSTA() != null) {
-            tvInsta.setText(usuario.getINSTA());
+        if (usuario.getInsta() != null) {
+            tvInsta.setText(usuario.getInsta());
         }
-        if (usuario.getSNAP() != null) {
-            tvSnap.setText(usuario.getSNAP());
+        if (usuario.getSnap() != null) {
+            tvSnap.setText(usuario.getSnap());
         }
-        if (usuario.getTWITTER() != null) {
-            tvTwitter.setText(usuario.getTWITTER());
+        if (usuario.getTwitter() != null) {
+            tvTwitter.setText(usuario.getTwitter());
         }
-        if (usuario.getEMAIL() != null) {
-            tvEmail.setText(usuario.getEMAIL());
+        if (usuario.getEmail() != null) {
+            tvEmail.setText(usuario.getEmail());
         }
-        if (usuario.getLINK() != null) {
-            tvLink.setText(usuario.getLINK());
+        if (usuario.getLink() != null) {
+            tvLink.setText(usuario.getLink());
         }
 
         btSair.setOnClickListener(new View.OnClickListener() {
