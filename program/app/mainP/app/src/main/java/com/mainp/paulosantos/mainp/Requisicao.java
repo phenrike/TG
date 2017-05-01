@@ -157,7 +157,7 @@ public class Requisicao {
         return jsonArrayPerfis;
     }
 
-    public void cadastrar(Usuario usuario) {
+    public boolean cadastrar(Usuario usuario) {
 
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/");
@@ -170,8 +170,10 @@ public class Requisicao {
 
             //Executa a requisição
             httpclient.execute(httpPost);
+            return true;
         } catch (Exception e) {
             Log.e("Requisicao.Java", "Falha ao cadastrar.", e);
+            return false;
         }
     }
 

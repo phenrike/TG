@@ -32,39 +32,62 @@ public class CadastroActivity extends AppCompatActivity {
     public void cadastrar(View v) {
 
         if ((!etLogin.getText().toString().isEmpty()) && (!etSenha.getText().toString().isEmpty()) && (!etNome.getText().toString().isEmpty())) {
+
+            usuario.setId(0);
             usuario.setLogin(etLogin.getText().toString());
             usuario.setSenha(etSenha.getText().toString());
             usuario.setNome(etNome.getText().toString());
+            usuario.setSexo("");
+            usuario.setFace("");
+            usuario.setFacepublic(true);
+            usuario.setWpp("");
+            usuario.setWpppublic(true);
+            usuario.setInsta("");
+            usuario.setInstapublic(true);
+            usuario.setSnap("");
+            usuario.setSnappublic(true);
+            usuario.setTwitter("");
+            usuario.setTwitterpublic(true);
+            usuario.setEmail("");
+            usuario.setEmailpublic(true);
+            usuario.setLink("");
+            usuario.setLinkpublic(true);
+            usuario.setDtinscricao("");
 
-            int SDK_INT = android.os.Build.VERSION.SDK_INT;
-            if (SDK_INT > 8) {
-                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                        .permitAll().build();
-                StrictMode.setThreadPolicy(policy);
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
 
-                Requisicao requisicao = new Requisicao();
-                requisicao.cadastrar(usuario);
-                requisicao.logar(usuario.getLogin().toString(), usuario.getSenha().toString(), CadastroActivity.this);
+            Requisicao requisicao = new Requisicao();
+
+            boolean b = requisicao.cadastrar(usuario);
+
+            if (b) {
+                mostrarMensagem("Bem-vindo!", "Seu cadastro foi realizado com sucesso.");
+            } else {
+                mostrarMensagem("Atenção!", "O cadastro não foi realizado. Tente novamente.");
             }
-
         } else {
-            mostrarMensagem("Preencha todos os campos de cadastro!");
+            mostrarMensagem("Atenção!", "Preencha todos os campos do cadastro.");
         }
     }
 
     public void cancelar(View v) {
+        voltarParaTelaLogin();
+    }
+
+    public void voltarParaTelaLogin() {
         Intent it = new Intent(CadastroActivity.this, LoginActivity.class);
         startActivity(it);
     }
 
-    public void mostrarMensagem(String s) {
+    public void mostrarMensagem(String titulo, String mensagem) {
         AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
-        dlgAlert.setMessage(s);
-        dlgAlert.setTitle("Atenção!");
+        dlgAlert.setMessage(mensagem);
+        dlgAlert.setTitle(titulo);
         dlgAlert.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        //dismiss the dialog
+                        voltarParaTelaLogin();
                     }
                 });
         dlgAlert.setCancelable(true);
