@@ -146,5 +146,12 @@ namespace WebAPIMainP.Repository
 
             return listaConsulta;
         }
+
+        public void compartilharPerfil(Compartilhamento compartilhamento)
+        {
+            iniciarTransacao();
+            this.session.Save(compartilhamento);
+            fazerCommit();
+        }
     }
 }

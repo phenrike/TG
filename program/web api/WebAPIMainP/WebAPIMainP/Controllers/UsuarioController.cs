@@ -55,5 +55,13 @@ namespace WebAPIMainP.Controllers
         {
             return usuarioRepository.BuscarUsuarios(redeSocial, busca); ;
         }
+
+        [AllowAnonymous]
+        [AcceptVerbs("POST")]
+        [Route("usuarios/compartilhar")]
+        public void compartilharPerfil(Compartilhamento compartilhamento)
+        {
+            usuarioRepository.compartilharPerfil(compartilhamento);
+        }
     }
 }
