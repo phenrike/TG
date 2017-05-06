@@ -150,8 +150,28 @@ namespace WebAPIMainP.Repository
         public void compartilharPerfil(Compartilhamento compartilhamento)
         {
             iniciarTransacao();
+
+            // Variável para pegar a data e hora da notificação
+            DateTime localDate = DateTime.Now;
+            compartilhamento.Dataehora = localDate;
+
             this.session.Save(compartilhamento);
             fazerCommit();
+        }
+
+        public IList<Compartilhamento> carregarCompartilhamentos(Usuario receptor)
+        {
+            abrirConexao();
+            IList<Compartilhamento> listaConsulta = null;
+            IQueryOver<Compartilhamento> qo;
+            Usuario usuario = null;
+
+            qo = this.session.QueryOver<Compartilhamento>().JoinAlias(x => x.Emissor, () => usuario).Where(x => x.Receptor.Id == receptor.Id);
+            listaConsulta = qo.List<Compartilhamento>();
+
+            fecharConexao();
+
+            return listaConsulta;
         }
     }
 }

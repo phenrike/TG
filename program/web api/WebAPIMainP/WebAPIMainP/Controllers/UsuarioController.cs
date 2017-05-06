@@ -63,5 +63,24 @@ namespace WebAPIMainP.Controllers
         {
             usuarioRepository.compartilharPerfil(compartilhamento);
         }
+
+        [AllowAnonymous]
+        [AcceptVerbs("POST")]
+        [Route("usuarios/notificacoes")]
+        public IList<Notificacao> carregarNotificacoes(Usuario receptor)
+        {
+            IList<Notificacao> notificacoes = new List<Notificacao>();
+            IList<Compartilhamento> compartilhamentos = new List<Compartilhamento>();
+
+            compartilhamentos = usuarioRepository.carregarCompartilhamentos(receptor);
+
+            foreach (Compartilhamento c in compartilhamentos)
+            {
+                NotificacaoCompartilhamento nc = new NotificacaoCompartilhamento(c);
+                notificacoes.Add(nc);
+            }
+
+            return notificacoes;            
+        }
     }
 }

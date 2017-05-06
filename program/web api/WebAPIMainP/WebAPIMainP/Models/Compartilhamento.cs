@@ -13,9 +13,12 @@ namespace WebAPIMainP.Models
         public virtual int Id { get; set; }
 
         [DataMember]
-        public virtual int Emissor { get; set; }
+        public virtual Usuario Emissor { get; set; }
 
         [DataMember]
-        public virtual int Receptor { get; set; }
+        public virtual Usuario Receptor { get; set; }
+
+        [DataMember]
+        public virtual DateTime Dataehora { get; set; }
     }
 }
