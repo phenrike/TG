@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -39,7 +38,9 @@ public class tab2Busca extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         final View view = inflater.inflate(R.layout.tab2busca, container, false);
+        final Usuario usuario = (Usuario) getActivity().getIntent().getSerializableExtra("usuario");
 
         redesSociais = (Spinner) view.findViewById(R.id.spRedes);
         ArrayAdapter aa = ArrayAdapter.createFromResource(getActivity(), R.array.redes_sociais, android.R.layout.simple_spinner_item);
@@ -61,12 +62,13 @@ public class tab2Busca extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int pos, long id) {
 
-                if(listaDeUsuarios != null){
+                if (listaDeUsuarios != null) {
                     //Cria tela de perfil
                     Intent perfilOutroUsuActivity = new Intent(getActivity(), PerfilOutroUsuActivity.class);
 
                     //Abre a tela de perfil passando o usuário
-                    perfilOutroUsuActivity.putExtra("usuario", (Serializable) listaDeUsuarios.get(pos));
+                    perfilOutroUsuActivity.putExtra("receptor", (Serializable) listaDeUsuarios.get(pos));
+                    perfilOutroUsuActivity.putExtra("emissor", (Serializable) usuario);
                     getActivity().startActivity(perfilOutroUsuActivity);
                 }
             }
@@ -96,7 +98,7 @@ public class tab2Busca extends Fragment {
                 }
 
                 if (jsonArrayUsuario != null) {
-                    listaDeUsuarios= new ArrayList<Usuario>();
+                    listaDeUsuarios = new ArrayList<Usuario>();
 
                     //Transforma JsonArray em ArrayList
                     for (int i = 0; i < jsonArrayUsuario.length(); i++) {

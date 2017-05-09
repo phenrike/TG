@@ -2,7 +2,6 @@ package com.mainp.paulosantos.mainp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.StrictMode;
 import android.util.Log;
 
 import org.apache.http.HttpEntity;
@@ -24,7 +23,6 @@ import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Paulo Santos on 11/02/2017.
@@ -166,7 +164,7 @@ public class Requisicao {
             //Monta cabeçalho da requisição
             httpPost.setHeader("Content-Type", "application/json");
             httpPost.setEntity(new ByteArrayEntity(
-                    usuario.toJSON().getBytes("UTF8")));
+                    usuario.toJSON().toString().getBytes("UTF8")));
 
             //Executa a requisição
             httpclient.execute(httpPost);
@@ -188,7 +186,7 @@ public class Requisicao {
             httpPut.setHeader("Content-Type", "application/json");
             httpPut.setHeader("Authorization", "bearer " + tokenDeAcesso);
             httpPut.setEntity(new ByteArrayEntity(
-                    usuario.toJSON().getBytes("UTF8")));
+                    usuario.toJSON().toString().getBytes("UTF8")));
 
             //Executa a requisição
             httpclient.execute(httpPut);
@@ -222,5 +220,79 @@ public class Requisicao {
 
         //Vai para a tela de login
         Activity.startActivity(loginActivity);
+    }
+
+    public List<Notificacao> carregarNotificacoes(Usuario usuario) {
+
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/notificacoes");
+        HttpResponse response;
+        HttpEntity entity;
+        List<Notificacao> listaDeNotificacoes = new ArrayList<Notificacao>();
+
+        try {
+            //Monta cabeçalho da requisição
+            httpPost.setHeader("Content-Type", "application/json");
+            httpPost.setEntity(new ByteArrayEntity(
+                    usuario.toJSON().toString().getBytes("UTF8")));
+
+            //Executa a requisição
+            response = httpclient.execute(httpPost);
+
+            entity = response.getEntity();
+
+            //Verifica a resposta
+            if (entity != null) {
+                String stringResposta = EntityUtils.toString(entity);
+
+                //Verifica se a resposta contém usuários e retorna um json array
+                if (!stringResposta.equals("[]")) {
+                    JSONArray jsonNotificacoes = new JSONArray(stringResposta);
+
+                    //Transforma JsonArray em ArrayList
+                    for (int i = 0; i < jsonNotificacoes.length(); i++) {
+                        Notificacao notificacao = new Notificacao(jsonNotificacoes.getJSONObject(i), usuario);
+                        listaDeNotificacoes.add(notificacao);
+                    }
+
+                    return listaDeNotificacoes;
+                } else {
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            Log.e("Requisicao.Java", "Falha ao carregar notificacoes.", e);
+            return null;
+        }
+    }
+
+    public boolean compartilhar(Usuario emissor, Usuario receptor) {
+
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/compartilhar");
+
+        try {
+            //Monta cabeçalho da requisição
+            httpPost.setHeader("Content-Type", "application/json");
+
+            JSONObject jsonObject = new JSONObject();
+
+            jsonObject.put("id", 0);
+            jsonObject.put("emissor", emissor.toJSON());
+            jsonObject.put("receptor", receptor.toJSON());
+            jsonObject.put("dataehora", "");
+
+            httpPost.setEntity(new ByteArrayEntity(
+                    jsonObject.toString().getBytes("UTF8")));
+
+            //Executa a requisição
+            httpclient.execute(httpPost);
+            return true;
+        } catch (Exception e) {
+            Log.e("Requisicao.Java", "Falha ao compartilhar.", e);
+            return false;
+        }
     }
 }

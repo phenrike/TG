@@ -1,6 +1,5 @@
 package com.mainp.paulosantos.mainp;
 
-import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 
@@ -9,22 +8,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -129,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
                     return new tab1Perfil();
                 case 1:
                     return new tab2Busca();
+                case 2:
+                    return new tab3Notifica();
                 default:
                     return null;
             }
@@ -136,8 +123,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 2 total pages.
-            return 2;
+            // Show 3 total pages.
+            return 3;
         }
 
         @Override
@@ -147,6 +134,8 @@ public class MainActivity extends AppCompatActivity {
                     return "Perfil";
                 case 1:
                     return "Buscar";
+                case 2:
+                    return "Notificação";
             }
             return null;
         }

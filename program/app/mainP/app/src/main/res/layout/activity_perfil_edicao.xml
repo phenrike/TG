@@ -108,14 +108,16 @@
         android:layout_height="45dp"
         android:id="@+id/etFace"
         android:layout_marginTop="100dp"
-        android:layout_marginLeft="50dp" />
+        android:layout_marginLeft="50dp"
+        android:textColor="#000000" />
 
     <EditText
         android:layout_width="250dp"
         android:layout_height="45dp"
         android:id="@+id/etWpp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="150dp" />
+        android:layout_marginTop="150dp"
+        android:textColor="#000000" />
 
     <EditText
         android:layout_width="250dp"
@@ -125,7 +127,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="200dp" />
+        android:layout_marginTop="200dp"
+        android:textColor="#000000" />
 
     <EditText
         android:layout_width="250dp"
@@ -135,7 +138,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="250dp" />
+        android:layout_marginTop="250dp"
+        android:textColor="#000000" />
 
     <EditText
         android:layout_width="250dp"
@@ -145,7 +149,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="300dp" />
+        android:layout_marginTop="300dp"
+        android:textColor="#000000" />
 
     <EditText
         android:layout_width="250dp"
@@ -155,7 +160,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="350dp" />
+        android:layout_marginTop="350dp"
+        android:textColor="#000000" />
 
     <EditText
         android:layout_width="250dp"
@@ -165,7 +171,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="400dp" />
+        android:layout_marginTop="400dp"
+        android:textColor="#000000" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -175,7 +182,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginTop="105dp"
-        android:layout_marginLeft="300dp" />
+        android:layout_marginLeft="300dp"
+        android:visibility="invisible" />
 
     <ImageView
         android:layout_width="20dp"
@@ -186,7 +194,8 @@
         android:layout_alignParentStart="false"
         android:layout_marginLeft="330dp"
         android:layout_marginTop="110dp"
-        android:src="@drawable/privado" />
+        android:src="@drawable/privado"
+        android:visibility="invisible" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -196,7 +205,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="300dp"
-        android:layout_marginTop="155dp" />
+        android:layout_marginTop="155dp"
+        android:visibility="invisible" />
 
     <ImageView
         android:layout_width="20dp"
@@ -206,7 +216,8 @@
         android:src="@drawable/privado"
         android:layout_alignParentLeft="false"
         android:layout_marginTop="160dp"
-        android:layout_marginLeft="330dp" />
+        android:layout_marginLeft="330dp"
+        android:visibility="invisible" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -216,7 +227,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="300dp"
-        android:layout_marginTop="205dp" />
+        android:layout_marginTop="205dp"
+        android:visibility="invisible" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -226,7 +238,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="300dp"
-        android:layout_marginTop="255dp" />
+        android:layout_marginTop="255dp"
+        android:visibility="invisible" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -236,7 +249,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="300dp"
-        android:layout_marginTop="305dp" />
+        android:layout_marginTop="305dp"
+        android:visibility="invisible" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -246,7 +260,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="300dp"
-        android:layout_marginTop="355dp" />
+        android:layout_marginTop="355dp"
+        android:visibility="invisible" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -256,7 +271,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="300dp"
-        android:layout_marginTop="405dp" />
+        android:layout_marginTop="405dp"
+        android:visibility="invisible" />
 
     <ImageView
         android:layout_width="20dp"
@@ -267,7 +283,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="330dp"
-        android:layout_marginTop="210dp" />
+        android:layout_marginTop="210dp"
+        android:visibility="invisible" />
 
     <ImageView
         android:layout_width="20dp"
@@ -278,7 +295,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="330dp"
-        android:layout_marginTop="260dp" />
+        android:layout_marginTop="260dp"
+        android:visibility="invisible" />
 
     <ImageView
         android:layout_width="20dp"
@@ -289,7 +307,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="330dp"
-        android:layout_marginTop="310dp" />
+        android:layout_marginTop="310dp"
+        android:visibility="invisible" />
 
     <ImageView
         android:layout_width="20dp"
@@ -300,7 +319,8 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="330dp"
-        android:layout_marginTop="360dp" />
+        android:layout_marginTop="360dp"
+        android:visibility="invisible" />
 
     <ImageView
         android:layout_width="20dp"
@@ -311,6 +331,7 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="330dp"
-        android:layout_marginTop="410dp" />
+        android:layout_marginTop="410dp"
+        android:visibility="invisible" />
 
 </RelativeLayout>

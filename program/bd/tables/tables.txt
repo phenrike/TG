@@ -46,4 +46,4 @@ INSERT INTO USUARIO VALUES(0,'psantos','psantos','Paulo Henrique Santos','M','pa
 			'ihenrikepaulo','TRUE','@_phenrike','TRUE',
 			'paulosantossjc@hotmail.com','TRUE','www.pirateofvalley.tumblr.com','TRUE','2016-03-05');
 
-SELECT NOME,SEXO,LOGIN,SENHA,FACE,WPP,INSTA,SNAP,TWITTER,EMAIL,LINK FROM USER;
+SELECT NOME,SEXO,LOGIN,SENHA,FACE,WPP,INSTA,SNAP,TWITTER,EMAIL,LINK FROM USUARIO;

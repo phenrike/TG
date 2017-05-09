@@ -58,10 +58,9 @@ public class Usuario implements Serializable {
         } catch (Exception e) {
             Log.e("Classe Usuario", "Falha ao carregar perfil", e);
         }
-
     }
 
-    public String toJSON() {
+    public JSONObject toJSON() {
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -86,11 +85,11 @@ public class Usuario implements Serializable {
             jsonObject.put("linkpublic", getLinkpublic());
             jsonObject.put("dtinscricao", getDtinscricao());
 
-            return jsonObject.toString();
+            return jsonObject;
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            return "";
+            return null;
         }
     }
 

@@ -14,24 +14,24 @@
     android:background="#ffffff">
 
     <EditText
-        android:layout_width="165dp"
-        android:layout_height="40dp"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
         android:id="@+id/etBusca"
         android:layout_alignParentTop="false"
         android:layout_marginLeft="122dp"
-        android:layout_marginTop="1dp" />
+        android:layout_marginTop="0dp" />
 
     <ImageButton
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
         android:id="@+id/btBuscar"
         android:layout_alignParentTop="false"
         android:layout_alignParentRight="false"
         android:layout_alignParentEnd="false"
         android:src="@drawable/buscar"
-        android:layout_marginLeft="287dp"
+        android:layout_marginLeft="300dp"
         android:layout_marginTop="0dp"
-        android:background="#f0ff9d0c" />
+        android:background="#f02c2929" />
 
     <Spinner
         android:layout_width="120dp"
@@ -45,9 +45,9 @@
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="550dp"
+        android:layout_height="540dp"
         android:id="@+id/lvPerfis"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="50dp"
         android:background="#ffffff" />
 
     <TextView

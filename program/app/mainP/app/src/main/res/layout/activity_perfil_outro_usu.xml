@@ -13,19 +13,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ivFoto"
-        android:layout_centerHorizontal="true"
         android:src="@drawable/perfilimg"
-        android:layout_marginTop="0dp" />
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Nome Usuário"
         android:id="@+id/tvNome"
-        android:layout_below="@+id/ivFoto"
-        android:layout_centerHorizontal="true"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="32dp"
+        android:textSize="23dp"
+        android:textStyle="bold" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -169,7 +171,8 @@
         android:layout_alignParentStart="false"
         android:layout_marginLeft="255dp"
         android:layout_marginTop="102dp"
-        android:src="@drawable/copiar"/>
+        android:src="@drawable/copiar"
+        android:background="#000000" />
 
     <ImageButton
         android:layout_width="45dp"
@@ -180,7 +183,8 @@
         android:layout_alignParentStart="false"
         android:layout_marginLeft="255dp"
         android:layout_marginTop="153dp"
-        android:src="@drawable/copiar" />
+        android:src="@drawable/copiar"
+        android:background="#000000" />
 
     <ImageButton
         android:layout_width="45dp"
@@ -191,7 +195,8 @@
         android:layout_alignParentStart="false"
         android:layout_marginLeft="255dp"
         android:layout_marginTop="202dp"
-        android:src="@drawable/copiar" />
+        android:src="@drawable/copiar"
+        android:background="#000000" />
 
     <ImageButton
         android:layout_width="45dp"
@@ -202,7 +207,8 @@
         android:layout_alignParentStart="false"
         android:layout_marginLeft="255dp"
         android:layout_marginTop="253dp"
-        android:src="@drawable/copiar" />
+        android:src="@drawable/copiar"
+        android:background="#000000" />
 
     <ImageButton
         android:layout_width="45dp"
@@ -213,7 +219,8 @@
         android:layout_alignParentStart="false"
         android:layout_marginLeft="255dp"
         android:layout_marginTop="302dp"
-        android:src="@drawable/copiar" />
+        android:src="@drawable/copiar"
+        android:background="#000000" />
 
     <ImageButton
         android:layout_width="45dp"
@@ -224,7 +231,8 @@
         android:layout_alignParentStart="false"
         android:layout_marginLeft="255dp"
         android:layout_marginTop="353dp"
-        android:src="@drawable/copiar" />
+        android:src="@drawable/copiar"
+        android:background="#000000" />
 
     <ImageButton
         android:layout_width="45dp"
@@ -235,7 +243,8 @@
         android:layout_alignParentStart="false"
         android:layout_marginLeft="255dp"
         android:layout_marginTop="402dp"
-        android:src="@drawable/copiar" />
+        android:src="@drawable/copiar"
+        android:background="#000000" />
 
     <ImageButton
         android:layout_width="45dp"
@@ -244,9 +253,10 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="300dp"
+        android:layout_marginLeft="302dp"
         android:layout_marginTop="102dp"
-        android:src="@drawable/browse" />
+        android:src="@drawable/browse"
+        android:background="#000000" />
 
     <ImageButton
         android:layout_width="45dp"
@@ -255,9 +265,10 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="300dp"
+        android:layout_marginLeft="302dp"
         android:layout_marginTop="302dp"
-        android:src="@drawable/browse" />
+        android:src="@drawable/browse"
+        android:background="#000000" />
 
     <ImageButton
         android:layout_width="45dp"
@@ -266,9 +277,10 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="300dp"
+        android:layout_marginLeft="302dp"
         android:layout_marginTop="353dp"
-        android:src="@drawable/browse" />
+        android:src="@drawable/browse"
+        android:background="#000000" />
 
     <ImageButton
         android:layout_width="45dp"
@@ -276,7 +288,18 @@
         android:id="@+id/btBrowseInta"
         android:src="@drawable/browse"
         android:layout_alignParentTop="false"
+        android:layout_marginLeft="302dp"
+        android:layout_marginTop="202dp"
+        android:background="#000000" />
+
+    <ImageButton
+        android:layout_width="59dp"
+        android:layout_height="50dp"
+        android:id="@+id/btCompartilhar"
         android:layout_marginLeft="300dp"
-        android:layout_marginTop="202dp" />
+        android:layout_marginTop="15dp"
+        android:src="@drawable/comp"
+        android:onClick="compartilhar"
+        android:background="#000000" />
 
 </RelativeLayout>

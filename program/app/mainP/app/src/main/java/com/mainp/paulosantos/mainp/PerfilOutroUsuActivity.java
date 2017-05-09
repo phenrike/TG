@@ -8,8 +8,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.webkit.URLUtil;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -34,13 +34,17 @@ public class PerfilOutroUsuActivity extends AppCompatActivity {
     ImageButton btCopiarSite;
     ImageButton btBrowseSite;
     ImageButton btCopiarEmail;
+    Usuario receptor;
+    Usuario emissor;
+    Requisicao requisicao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_outro_usu);
 
-        Usuario usuario = (Usuario) this.getIntent().getSerializableExtra("usuario");
+        receptor = (Usuario) this.getIntent().getSerializableExtra("receptor");
+        emissor = (Usuario) this.getIntent().getSerializableExtra("emissor");
 
         tvNome = (TextView) findViewById(R.id.tvNome);
         tvFace = (TextView) findViewById(R.id.tvFace);
@@ -63,29 +67,29 @@ public class PerfilOutroUsuActivity extends AppCompatActivity {
         btBrowseSite = (ImageButton) findViewById(R.id.btBrowseSite);
         btCopiarEmail = (ImageButton) findViewById(R.id.btCopiarEmail);
 
-        if (usuario.getNome() != null) {
-            tvNome.setText(usuario.getNome());
+        if (receptor.getNome() != null) {
+            tvNome.setText(receptor.getNome());
         }
-        if (usuario.getFace() != null) {
-            tvFace.setText(usuario.getFace());
+        if (receptor.getFace() != null) {
+            tvFace.setText(receptor.getFace());
         }
-        if (usuario.getWpp() != null) {
-            tvWpp.setText(usuario.getWpp());
+        if (receptor.getWpp() != null) {
+            tvWpp.setText(receptor.getWpp());
         }
-        if (usuario.getInsta() != null) {
-            tvInsta.setText(usuario.getInsta());
+        if (receptor.getInsta() != null) {
+            tvInsta.setText(receptor.getInsta());
         }
-        if (usuario.getSnap() != null) {
-            tvSnap.setText(usuario.getSnap());
+        if (receptor.getSnap() != null) {
+            tvSnap.setText(receptor.getSnap());
         }
-        if (usuario.getTwitter() != null) {
-            tvTwitter.setText(usuario.getTwitter());
+        if (receptor.getTwitter() != null) {
+            tvTwitter.setText(receptor.getTwitter());
         }
-        if (usuario.getEmail() != null) {
-            tvEmail.setText(usuario.getEmail());
+        if (receptor.getEmail() != null) {
+            tvEmail.setText(receptor.getEmail());
         }
-        if (usuario.getLink() != null) {
-            tvLink.setText(usuario.getLink());
+        if (receptor.getLink() != null) {
+            tvLink.setText(receptor.getLink());
         }
 
         btCopiarFb.setOnClickListener(new View.OnClickListener() {
@@ -184,5 +188,46 @@ public class PerfilOutroUsuActivity extends AppCompatActivity {
             texto = texto.replace(e, "");
 
         return texto;
+    }
+
+    public void compartilhar(View v) {
+        try {
+            requisicao = new Requisicao();
+
+            // Use the Builder class for convenient dialog construction
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Você deseja compartilhar o seu perfil com " + receptor.getNome() + " ?")
+                    .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            boolean bCompartilhou = requisicao.compartilhar(emissor, receptor);
+                            if (bCompartilhou) {
+                                mostrarMensagem("IFY", emissor.getNome() + " seu perfil foi compartilhado.");
+                            }
+                        }
+                    })
+                    .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+            // Create the AlertDialog object and return it
+            builder.create().show();
+        } catch (Exception e) {
+            Log.e("", "Falha ao tentar compartilhar o perfil.", e);
+        }
+    }
+
+    public void mostrarMensagem(String titulo, String msg) {
+        AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
+        dlgAlert.setMessage(msg);
+        dlgAlert.setTitle(titulo);
+        dlgAlert.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        //dismiss the dialog
+                    }
+                });
+        dlgAlert.setCancelable(true);
+        dlgAlert.create().show();
     }
 }
