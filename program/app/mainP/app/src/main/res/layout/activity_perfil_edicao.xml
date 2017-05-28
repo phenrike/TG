@@ -10,11 +10,13 @@
     tools:context="com.mainp.paulosantos.mainp.PerfilEdicaoActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:id="@+id/ivFoto"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/perfilimg" />
+        android:src="@drawable/perfilimg"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:adjustViewBounds="false" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -24,7 +26,7 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="100dp" />
+        android:layout_marginTop="130dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -32,7 +34,7 @@
         android:id="@+id/ivWpp"
         android:src="@drawable/imgwpp"
         android:layout_alignParentLeft="false"
-        android:layout_marginTop="150dp" />
+        android:layout_marginTop="180dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -41,7 +43,7 @@
         android:src="@drawable/imginsta"
         android:layout_alignParentStart="false"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="200dp" />
+        android:layout_marginTop="230dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -50,7 +52,7 @@
         android:src="@drawable/imgsnap"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginTop="250dp" />
+        android:layout_marginTop="280dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -59,7 +61,7 @@
         android:src="@drawable/imgtwitter"
         android:layout_alignParentStart="false"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="300dp" />
+        android:layout_marginTop="330dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -68,7 +70,7 @@
         android:src="@drawable/imglink"
         android:layout_alignParentStart="false"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="350dp" />
+        android:layout_marginTop="380dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -77,15 +79,15 @@
         android:src="@drawable/imgemail"
         android:layout_alignParentStart="false"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="400dp" />
+        android:layout_marginTop="430dp" />
 
     <Button
         android:layout_width="175dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Cancelar"
         android:id="@+id/btCancelar"
         android:backgroundTint="#fb3535"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="490dp"
         android:layout_marginLeft="175dp"
         android:textColor="#ffffff"
         android:textStyle="bold"
@@ -93,11 +95,11 @@
 
     <Button
         android:layout_width="175dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Salvar"
         android:id="@+id/btSalvar"
         android:backgroundTint="#2cd72f"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="490dp"
         android:layout_marginLeft="0dp"
         android:textColor="#ffffff"
         android:textStyle="bold"
@@ -107,17 +109,18 @@
         android:layout_width="250dp"
         android:layout_height="45dp"
         android:id="@+id/etFace"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="55dp"
         android:textColor="#000000" />
 
     <EditText
         android:layout_width="250dp"
         android:layout_height="45dp"
         android:id="@+id/etWpp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="150dp"
-        android:textColor="#000000" />
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="180dp"
+        android:textColor="#000000"
+        android:phoneNumber="true" />
 
     <EditText
         android:layout_width="250dp"
@@ -126,8 +129,8 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="230dp"
         android:textColor="#000000" />
 
     <EditText
@@ -137,8 +140,8 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="280dp"
         android:textColor="#000000" />
 
     <EditText
@@ -148,8 +151,8 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="330dp"
         android:textColor="#000000" />
 
     <EditText
@@ -159,8 +162,8 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="380dp"
         android:textColor="#000000" />
 
     <EditText
@@ -170,8 +173,8 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="430dp"
         android:textColor="#000000" />
 
     <CheckBox
@@ -333,5 +336,34 @@
         android:layout_marginLeft="330dp"
         android:layout_marginTop="410dp"
         android:visibility="invisible" />
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="alterar foto"
+        android:id="@+id/btAlterar"
+        android:textSize="12dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="25dp"
+        android:textColor="#ffffff"
+        android:backgroundTint="#0f19e1"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:id="@+id/etNome"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="80dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NOME:"
+        android:id="@+id/tvNome"
+        android:textColor="#000000"
+        android:textSize="17dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="95dp" />
 
 </RelativeLayout>

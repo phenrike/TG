@@ -7,18 +7,19 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mainp.paulosantos.mainp.PerfilOutroUsuActivity">
+    tools:context="com.mainp.paulosantos.mainp.PerfilOutroUsuActivity"
+    android:background="#ffffff">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:id="@+id/ivFoto"
         android:src="@drawable/perfilimg"
         android:layout_marginTop="0dp"
         android:layout_marginLeft="0dp" />
 
     <TextView
-        android:layout_width="200dp"
+        android:layout_width="210dp"
         android:layout_height="75dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Nome Usuário"
@@ -37,16 +38,16 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="100dp" />
+        android:layout_marginTop="120dp" />
 
     <TextView
-        android:layout_width="205dp"
+        android:layout_width="225dp"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="facebook"
         android:id="@+id/tvFace"
         android:textColor="#000000"
-        android:layout_marginTop="111dp"
+        android:layout_marginTop="131dp"
         android:layout_marginLeft="50dp" />
 
     <ImageView
@@ -55,16 +56,16 @@
         android:id="@+id/ivWpp"
         android:src="@drawable/imgwpp"
         android:layout_alignParentLeft="false"
-        android:layout_marginTop="150dp" />
+        android:layout_marginTop="170dp" />
 
     <TextView
-        android:layout_width="205dp"
+        android:layout_width="225dp"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="+00 00 00000-0000"
         android:id="@+id/tvWpp"
         android:textColor="#000000"
-        android:layout_marginTop="162dp"
+        android:layout_marginTop="181dp"
         android:layout_marginLeft="50dp" />
 
     <ImageView
@@ -74,16 +75,16 @@
         android:src="@drawable/imginsta"
         android:layout_alignParentStart="false"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="200dp" />
+        android:layout_marginTop="220dp" />
 
     <TextView
-        android:layout_width="205dp"
+        android:layout_width="225dp"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="\@instagram"
         android:id="@+id/tvInsta"
         android:textColor="#000000"
-        android:layout_marginTop="211dp"
+        android:layout_marginTop="231dp"
         android:layout_marginLeft="50dp" />
 
     <ImageView
@@ -93,16 +94,16 @@
         android:src="@drawable/imgsnap"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginTop="250dp" />
+        android:layout_marginTop="270dp" />
 
     <TextView
-        android:layout_width="205dp"
+        android:layout_width="225dp"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="\@snapchat"
         android:id="@+id/tvSnap"
         android:textColor="#000000"
-        android:layout_marginTop="261dp"
+        android:layout_marginTop="281dp"
         android:layout_marginLeft="50dp" />
 
     <ImageView
@@ -112,16 +113,16 @@
         android:src="@drawable/imgtwitter"
         android:layout_alignParentStart="false"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="300dp" />
+        android:layout_marginTop="320dp" />
 
     <TextView
-        android:layout_width="205dp"
+        android:layout_width="225dp"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="\@twitter"
         android:id="@+id/tvTwitter"
         android:textColor="#000000"
-        android:layout_marginTop="311dp"
+        android:layout_marginTop="331dp"
         android:layout_marginLeft="50dp" />
 
     <ImageView
@@ -131,16 +132,16 @@
         android:src="@drawable/imglink"
         android:layout_alignParentStart="false"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="350dp" />
+        android:layout_marginTop="370dp" />
 
     <TextView
-        android:layout_width="205dp"
+        android:layout_width="225dp"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="http://www.site.com/"
         android:id="@+id/tvLink"
         android:textColor="#000000"
-        android:layout_marginTop="361dp"
+        android:layout_marginTop="381dp"
         android:layout_marginLeft="50dp" />
 
     <ImageView
@@ -150,156 +151,156 @@
         android:src="@drawable/imgemail"
         android:layout_alignParentStart="false"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="400dp" />
+        android:layout_marginTop="420dp" />
 
     <TextView
-        android:layout_width="205dp"
+        android:layout_width="225dp"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="email@email.com"
         android:id="@+id/tvEmail"
         android:textColor="#000000"
-        android:layout_marginTop="411dp"
+        android:layout_marginTop="431dp"
         android:layout_marginLeft="50dp" />
 
     <ImageButton
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/btCopiarFb"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="255dp"
-        android:layout_marginTop="102dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="125dp"
         android:src="@drawable/copiar"
-        android:background="#000000" />
+        android:backgroundTint="#ffffff" />
 
     <ImageButton
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/btCopiarNumero"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="255dp"
-        android:layout_marginTop="153dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="176dp"
         android:src="@drawable/copiar"
-        android:background="#000000" />
+        android:background="#ffffff" />
 
     <ImageButton
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/btCopiarInsta"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="255dp"
-        android:layout_marginTop="202dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="225dp"
         android:src="@drawable/copiar"
-        android:background="#000000" />
+        android:background="#ffffff" />
 
     <ImageButton
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/btCopiarSnap"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="255dp"
-        android:layout_marginTop="253dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="276dp"
         android:src="@drawable/copiar"
-        android:background="#000000" />
+        android:background="#ffffff" />
 
     <ImageButton
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/btCopiarTwitter"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="255dp"
-        android:layout_marginTop="302dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="325dp"
         android:src="@drawable/copiar"
-        android:background="#000000" />
+        android:background="#ffffff" />
 
     <ImageButton
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/btCopiarSite"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="255dp"
-        android:layout_marginTop="353dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="376dp"
         android:src="@drawable/copiar"
-        android:background="#000000" />
+        android:background="#ffffff" />
 
     <ImageButton
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/btCopiarEmail"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="255dp"
-        android:layout_marginTop="402dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="425dp"
         android:src="@drawable/copiar"
-        android:background="#000000" />
+        android:background="#ffffff" />
 
     <ImageButton
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/btBrowseFace"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="302dp"
-        android:layout_marginTop="102dp"
+        android:layout_marginLeft="320dp"
+        android:layout_marginTop="125dp"
         android:src="@drawable/browse"
-        android:background="#000000" />
+        android:background="#ffffff" />
 
     <ImageButton
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/btBrowseTwitter"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="302dp"
-        android:layout_marginTop="302dp"
+        android:layout_marginLeft="320dp"
+        android:layout_marginTop="325dp"
         android:src="@drawable/browse"
-        android:background="#000000" />
+        android:background="#ffffff" />
 
     <ImageButton
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/btBrowseSite"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="302dp"
-        android:layout_marginTop="353dp"
+        android:layout_marginLeft="320dp"
+        android:layout_marginTop="376dp"
         android:src="@drawable/browse"
-        android:background="#000000" />
+        android:background="#ffffff" />
 
     <ImageButton
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/btBrowseInta"
         android:src="@drawable/browse"
         android:layout_alignParentTop="false"
-        android:layout_marginLeft="302dp"
-        android:layout_marginTop="202dp"
-        android:background="#000000" />
+        android:layout_marginLeft="320dp"
+        android:layout_marginTop="225dp"
+        android:background="#ffffff" />
 
     <ImageButton
-        android:layout_width="59dp"
-        android:layout_height="50dp"
+        android:layout_width="44dp"
+        android:layout_height="35dp"
         android:id="@+id/btCompartilhar"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginLeft="310dp"
+        android:layout_marginTop="25dp"
         android:src="@drawable/comp"
         android:onClick="compartilhar"
-        android:background="#000000" />
+        android:background="#ffffff" />
 
 </RelativeLayout>
