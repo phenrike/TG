@@ -88,9 +88,10 @@ public class tab2Busca extends Fragment {
                 Requisicao requisicao = new Requisicao();
                 JSONArray jsonArrayUsuario = null;
 
-                if ((!etBusca.getText().toString().equals("")) && (!etBusca.getText().toString().equals(null))) {
-                    String conteudoDaBusca = substituirCaracteresEspeciais(etBusca.getText().toString());
-                    jsonArrayUsuario = requisicao.buscar(redesSociais.getSelectedItemPosition(), conteudoDaBusca);
+                String conteudoDaBusca = etBusca.getText().toString();
+
+                if ((!conteudoDaBusca.equals("")) && (!conteudoDaBusca.equals(null))) {
+                    jsonArrayUsuario = requisicao.buscar(redesSociais.getSelectedItemPosition() + 1, substituirCaracteresEspeciais(conteudoDaBusca));
                 } else {
                     lvPerfis.setVisibility(v.INVISIBLE);
                     tvMensagem.setVisibility(v.VISIBLE);
@@ -116,7 +117,7 @@ public class tab2Busca extends Fragment {
                 } else {
                     lvPerfis.setVisibility(v.INVISIBLE);
                     tvMensagem.setVisibility(v.VISIBLE);
-                    tvMensagem.setText("Nenhum usuário encontrado! Tente novamente.");
+                    tvMensagem.setText("Nenhum resultado encontrado");
                 }
             }
         } catch (Exception e) {
@@ -125,7 +126,7 @@ public class tab2Busca extends Fragment {
     }
 
     public String substituirCaracteresEspeciais(String conteudoDaBusca) {
-        String[] caracteresEspeciais = {"!", "@", "#", "$", "%", "¨", "&", "*", "(", ")", "'", "_", "-", "+"};
+        String[] caracteresEspeciais = {"!", "@", "#", "$", "%", "¨", "&", "*", "(", ")", "'", "-", "+"};
         String[] espacos = {"       ", "      ", "     ", "    ", "   ", "  ", " "};
 
         for (String ce : caracteresEspeciais)

@@ -3,7 +3,10 @@ package com.mainp.paulosantos.mainp;
 import android.util.Log;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,21 +20,12 @@ public class Usuario implements Serializable {
     private String senha;
     private String nome;
     private String sexo;
-    private String face;
-    private Boolean facepublic;
-    private String wpp;
-    private Boolean wpppublic;
-    private String insta;
-    private Boolean instapublic;
-    private String snap;
-    private Boolean snappublic;
-    private String twitter;
-    private Boolean twitterpublic;
-    private String email;
-    private Boolean emailpublic;
-    private String link;
-    private Boolean linkpublic;
     private String dtinscricao;
+    private List<Username> usernames;
+
+    public Usuario() {
+        usernames = new ArrayList<Username>();
+    }
 
     public void carregarUsuario(JSONObject jsonUsuario) {
         try {
@@ -40,21 +34,15 @@ public class Usuario implements Serializable {
             this.senha = jsonUsuario.getString("senha");
             this.nome = jsonUsuario.getString("nome");
             this.sexo = jsonUsuario.getString("sexo");
-            this.face = jsonUsuario.getString("face");
-            this.facepublic = jsonUsuario.getBoolean("facepublic");
-            this.wpp = jsonUsuario.getString("wpp");
-            this.wpppublic = jsonUsuario.getBoolean("wpppublic");
-            this.insta = jsonUsuario.getString("insta");
-            this.instapublic = jsonUsuario.getBoolean("instapublic");
-            this.snap = jsonUsuario.getString("snap");
-            this.snappublic = jsonUsuario.getBoolean("snappublic");
-            this.twitter = jsonUsuario.getString("twitter");
-            this.twitterpublic = jsonUsuario.getBoolean("twitterpublic");
-            this.email = jsonUsuario.getString("email");
-            this.emailpublic = jsonUsuario.getBoolean("emailpublic");
-            this.link = jsonUsuario.getString("link");
-            this.linkpublic = jsonUsuario.getBoolean("linkpublic");
             this.dtinscricao = jsonUsuario.getString("dtinscricao");
+
+            JSONArray jaUsernames = new JSONArray(jsonUsuario.getString("usernames"));
+            for (int i = 0; i < jaUsernames.length(); i++) {
+                Username username = new Username();
+                JSONObject joUsername = jaUsernames.getJSONObject(i);
+                username.carregarUsername(joUsername);
+                this.usernames.add(username);
+            }
         } catch (Exception e) {
             Log.e("Classe Usuario", "Falha ao carregar perfil", e);
         }
@@ -63,34 +51,25 @@ public class Usuario implements Serializable {
     public JSONObject toJSON() {
 
         JSONObject jsonObject = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
         try {
             jsonObject.put("id", getId());
             jsonObject.put("login", getLogin());
             jsonObject.put("senha", getSenha());
             jsonObject.put("nome", getNome());
             jsonObject.put("sexo", getSexo());
-            jsonObject.put("face", getFace());
-            jsonObject.put("facepublic", getFacepublic());
-            jsonObject.put("wpp", getWpp());
-            jsonObject.put("wpppublic", getWpppublic());
-            jsonObject.put("insta", getInsta());
-            jsonObject.put("instapublic", getInstapublic());
-            jsonObject.put("snap", getSnap());
-            jsonObject.put("snappublic", getSnappublic());
-            jsonObject.put("twitter", getTwitter());
-            jsonObject.put("twitterpublic", getTwitterpublic());
-            jsonObject.put("email", getEmail());
-            jsonObject.put("emailpublic", getEmailpublic());
-            jsonObject.put("link", getLink());
-            jsonObject.put("linkpublic", getLinkpublic());
             jsonObject.put("dtinscricao", getDtinscricao());
 
-            return jsonObject;
+            for (Username username : usernames) {
+                jsonArray.put(username.toJSON());
+            }
+
+            jsonObject.put("usernames", jsonArray);
         } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return null;
+            Log.e("Classe Usuario", "Falha ao tranformar usuário em JSON", e);
         }
+
+        return jsonObject;
     }
 
     public int getId() {
@@ -133,123 +112,19 @@ public class Usuario implements Serializable {
         this.sexo = sexo;
     }
 
-    public String getFace() {
-        return face;
-    }
-
-    public void setFace(String face) {
-        this.face = face;
-    }
-
-    public Boolean getFacepublic() {
-        return facepublic;
-    }
-
-    public void setFacepublic(Boolean facepublic) {
-        this.facepublic = facepublic;
-    }
-
-    public String getWpp() {
-        return wpp;
-    }
-
-    public void setWpp(String wpp) {
-        this.wpp = wpp;
-    }
-
-    public Boolean getWpppublic() {
-        return wpppublic;
-    }
-
-    public void setWpppublic(Boolean wpppublic) {
-        this.wpppublic = wpppublic;
-    }
-
-    public String getInsta() {
-        return insta;
-    }
-
-    public void setInsta(String insta) {
-        this.insta = insta;
-    }
-
-    public Boolean getInstapublic() {
-        return instapublic;
-    }
-
-    public void setInstapublic(Boolean instapublic) {
-        this.instapublic = instapublic;
-    }
-
-    public String getSnap() {
-        return snap;
-    }
-
-    public void setSnap(String snap) {
-        this.snap = snap;
-    }
-
-    public Boolean getSnappublic() {
-        return snappublic;
-    }
-
-    public void setSnappublic(Boolean snappublic) {
-        this.snappublic = snappublic;
-    }
-
-    public String getTwitter() {
-        return twitter;
-    }
-
-    public void setTwitter(String twitter) {
-        this.twitter = twitter;
-    }
-
-    public Boolean getTwitterpublic() {
-        return twitterpublic;
-    }
-
-    public void setTwitterpublic(Boolean twitterpublic) {
-        this.twitterpublic = twitterpublic;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Boolean getEmailpublic() {
-        return emailpublic;
-    }
-
-    public void setEmailpublic(Boolean emailpublic) {
-        this.emailpublic = emailpublic;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public Boolean getLinkpublic() {
-        return linkpublic;
-    }
-
-    public void setLinkpublic(Boolean linkpublic) {
-        this.linkpublic = linkpublic;
-    }
-
     public String getDtinscricao() {
         return dtinscricao;
     }
 
     public void setDtinscricao(String dtinscricao) {
         this.dtinscricao = dtinscricao;
+    }
+
+    public List<Username> getUsernames() {
+        return usernames;
+    }
+
+    public void setUsernames(ArrayList<Username> usernames) {
+        this.usernames = usernames;
     }
 }

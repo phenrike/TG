@@ -14,7 +14,7 @@
     android:background="#ffffff">
 
     <EditText
-        android:layout_width="175dp"
+        android:layout_width="160dp"
         android:layout_height="50dp"
         android:id="@+id/etBusca"
         android:layout_alignParentTop="false"
@@ -29,9 +29,9 @@
         android:layout_alignParentRight="false"
         android:layout_alignParentEnd="false"
         android:src="@drawable/buscar"
-        android:layout_marginLeft="300dp"
+        android:layout_marginLeft="285dp"
         android:layout_marginTop="0dp"
-        android:background="#f02c2929" />
+        android:background="#FFFF9800" />
 
     <Spinner
         android:layout_width="120dp"

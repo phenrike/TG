@@ -63,11 +63,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="+00 00 00000-0000"
+        android:text="0000000000000"
         android:id="@+id/tvWpp"
         android:textColor="#000000"
         android:layout_marginTop="162dp"
-        android:layout_marginLeft="50dp" />
+        android:layout_marginLeft="50dp"
+        android:phoneNumber="true" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -169,7 +170,7 @@
         android:layout_height="wrap_content"
         android:text="Sair"
         android:id="@+id/btSair"
-        android:backgroundTint="#fb3535"
+        android:backgroundTint="#FFFF9800"
         android:layout_marginTop="450dp"
         android:layout_marginLeft="175dp"
         android:textColor="#ffffff"
@@ -180,7 +181,7 @@
         android:layout_height="wrap_content"
         android:text="Editar"
         android:id="@+id/btEditar"
-        android:backgroundTint="#ffc936"
+        android:backgroundTint="#FFFF9800"
         android:layout_marginTop="450dp"
         android:layout_marginLeft="0dp"
         android:textColor="#ffffff"

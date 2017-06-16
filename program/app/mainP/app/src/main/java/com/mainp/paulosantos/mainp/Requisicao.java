@@ -24,21 +24,24 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.net.ssl.HttpsURLConnection;
+
 /**
  * Created by Paulo Santos on 11/02/2017.
  */
 public class Requisicao {
 
     public static String tokenDeAcesso;
-    public static String ip = "192.168.0.11";
+    //public static String ip = "192.168.0.11";
+    public static String ip = "192.168.15.20";
 
-    private void gerarTokenDeAcesso(String login, String senha) throws UnsupportedEncodingException {
+    public String logar(String login, String senha, Activity activity) throws UnsupportedEncodingException {
 
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost("http://" + ip + "/WebAPIMainP/token");
         List<NameValuePair> pairs = new ArrayList<>();
         JSONObject jsonResultado;
-        String stringResultado;
+        String mensagem = "";
         HttpResponse response;
         HttpEntity entity;
 
@@ -53,160 +56,163 @@ public class Requisicao {
             response = httpclient.execute(httppost);
             entity = response.getEntity();
 
-            //Verifica a resposta
-            if (entity != null) {
-                stringResultado = EntityUtils.toString(entity);
-                jsonResultado = new JSONObject(stringResultado);
-
-                if (jsonResultado.has("access_token")) {
+            switch (response.getStatusLine().getStatusCode()) {
+                //Se a requisição retornou 200 -> http ok status carrega o perfil do usuário
+                case HttpsURLConnection.HTTP_OK:
+                    jsonResultado = new JSONObject(EntityUtils.toString(entity));
                     tokenDeAcesso = jsonResultado.getString("access_token");
-                } else {
-                    tokenDeAcesso = "";
-                }
+                    carregarUsuario(login, senha, activity);
+                    break;
+                //Se a requisição retornou 400 -> http bad request status
+                case HttpsURLConnection.HTTP_BAD_REQUEST:
+                    mensagem = "Login incorreto e/ou Senha incorreta!";
+                    break;
+                //Erro ou problema de conexão com o servidor
+                default:
+                    mensagem = "Ocorreu um erro na comunicação com o servidor.";
             }
         } catch (Exception e) {
-            Log.e("gerarTokenDeAcesso", "Falha ao tentar gerar o token.", e);
-        }
-    }
-
-    public String logar(String login, String senha, Activity activity) {
-
-        HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/" + login + "/" + senha);
-        JSONObject jsonUsuario;
-        String stringResposta, mensagem = "";
-        HttpResponse response;
-        HttpEntity entity;
-
-        try {
-
-            gerarTokenDeAcesso(login, senha);
-
-            //Verifica se um token foi gerado e realiza o login
-            if ((!tokenDeAcesso.equals("")) && (!tokenDeAcesso.equals(null))) {
-
-                //Monta cabeçalho da requisição
-                httppost.setHeader("Authorization", "bearer " + tokenDeAcesso);
-
-                //Executa a requisição
-                response = httpclient.execute(httppost);
-                entity = response.getEntity();
-
-                //Verifica a resposta
-                if (entity != null) {
-
-                    //Converte a resposta em Json
-                    stringResposta = EntityUtils.toString(entity);
-                    jsonUsuario = new JSONObject(stringResposta);
-
-                    //Cria tela principal do app
-                    Intent mainActivity = new Intent(activity, MainActivity.class);
-
-                    //Converte o Json para um objeto Usuario
-                    Usuario usuario = new Usuario();
-                    usuario.carregarUsuario(jsonUsuario);
-
-                    //Abre a tela principal do app passando o usuário
-                    mainActivity.putExtra("usuario", (Serializable) usuario);
-                    activity.startActivity(mainActivity);
-                }
-            } else {
-                mensagem = "Login incorreto e/ou Senha incorreta!";
-            }
-        } catch (Exception e) {
-            Log.e("Requisicao.java logar", "Falha ao tentar executar o login.", e);
+            Log.e("logar", "Falha ao tentar gerar o token.", e);
+            mensagem = "Ocorreu um erro na comunicação com o servidor.";
         }
 
         return mensagem;
     }
 
-    public JSONArray buscar(int indexDaRedeSocial, String conteudoDaBusca) {
-        JSONArray jsonArrayPerfis = null;
+    private void carregarUsuario(String login, String senha, Activity activity) {
 
-        if (!tokenValido()) {
-            deslogar();
-        } else {
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpGet httpget = new HttpGet("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/" + Integer.toString(indexDaRedeSocial) + "/" + conteudoDaBusca);
-            String stringResposta;
-            HttpResponse response;
-            HttpEntity entity;
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPost httppost = new HttpPost("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/carregar");
+        JSONObject jsonUsuario;
+        HttpResponse response;
+        HttpEntity entity;
 
-            try {
-                httpget.setHeader("Authorization", "bearer " + tokenDeAcesso);
-                response = httpclient.execute(httpget);
-                entity = response.getEntity();
+        try {
+            //Monta cabeçalho da requisição
+            httppost.setHeader("Authorization", "bearer " + tokenDeAcesso);
+            httppost.setHeader("login", login);
+            httppost.setHeader("senha", senha);
 
-                if (entity != null) {
-                    stringResposta = EntityUtils.toString(entity);
+            response = httpclient.execute(httppost);
+            entity = response.getEntity();
 
-                    //Verifica se a resposta contém usuários e retorna um json array
-                    if (!stringResposta.equals("[]")) {
-                        jsonArrayPerfis = new JSONArray(stringResposta);
-                    } else {
-                        jsonArrayPerfis = null;
-                    }
-                }
-            } catch (Exception e) {
-                Log.e("Classe Requisicao.java", "Falha ao buscar usuários.", e);
+            //Verifica a resposta
+            if (response.getStatusLine().getStatusCode() == HttpsURLConnection.HTTP_OK) {
+
+                //Converte a resposta em Json
+                jsonUsuario = new JSONObject(EntityUtils.toString(entity));
+
+                //Cria tela principal do app
+                Intent mainActivity = new Intent(activity, MainActivity.class);
+
+                //Converte o Json para um objeto Usuario
+                Usuario usuario = new Usuario();
+                usuario.carregarUsuario(jsonUsuario);
+
+                //Abre a tela principal do app passando o usuário
+                mainActivity.putExtra("usuario", (Serializable) usuario);
+                activity.startActivity(mainActivity);
+            } else {
+                deslogar();
             }
+        } catch (Exception e) {
+            Log.e("carregarUsuario", "Falha ao tentar executar o login.", e);
+            deslogar();
         }
+    }
 
-        return jsonArrayPerfis;
+    public JSONArray buscar(int idRedeSocial, String username) {
+
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpGet httpget = new HttpGet("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/" + Integer.toString(idRedeSocial) + "/" + username);
+        HttpResponse response;
+        HttpEntity entity;
+        JSONArray jsonArrayPerfis;
+
+        try {
+            httpget.setHeader("Authorization", "bearer " + tokenDeAcesso);
+            response = httpclient.execute(httpget);
+            entity = response.getEntity();
+            String sEntity = EntityUtils.toString(entity);
+
+            if (response.getStatusLine().getStatusCode() == HttpsURLConnection.HTTP_OK) {
+                jsonArrayPerfis = new JSONArray(sEntity);
+                if(jsonArrayPerfis.length() > 0){
+                    return jsonArrayPerfis;
+                } else{
+                    return null;
+                }
+            } else {
+                deslogar();
+                return null;
+            }
+        } catch (Exception e) {
+            Log.e("Classe Requisicao.java", "Falha ao buscar usuários.", e);
+            return null;
+        }
     }
 
     public boolean cadastrar(Usuario usuario) {
 
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/");
+        HttpResponse response = null;
 
         try {
             //Monta cabeçalho da requisição
             httpPost.setHeader("Content-Type", "application/json");
-            httpPost.setEntity(new ByteArrayEntity(
-                    usuario.toJSON().toString().getBytes("UTF8")));
+            httpPost.setEntity(new ByteArrayEntity(usuario.toJSON().toString().getBytes("UTF8")));
 
             //Executa a requisição
-            httpclient.execute(httpPost);
-            return true;
+            response = httpclient.execute(httpPost);
         } catch (Exception e) {
             Log.e("Requisicao.Java", "Falha ao cadastrar.", e);
-            return false;
+        }
+
+        return response.getStatusLine().getStatusCode() == HttpsURLConnection.HTTP_NO_CONTENT;
+    }
+
+    public boolean verificarExistenciaLogin(String login) {
+
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/login/" + login);
+        HttpResponse response = null;
+        HttpEntity entity;
+
+        try {
+            //Executa a requisição
+            response = httpclient.execute(httpPost);
+            entity = response.getEntity();
+            return Boolean.parseBoolean(EntityUtils.toString(entity));
+        } catch (Exception e) {
+            Log.e("Requisicao.Java", "Falha ao verificar existência do login.", e);
+            return true;
         }
     }
 
     public boolean atualizarPerfil(Usuario usuario) {
 
-        boolean resultado = false;
         HttpClient httpclient = new DefaultHttpClient();
         HttpPut httpPut = new HttpPut("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/");
+        HttpResponse response = null;
 
         try {
             //Monta cabeçalho da requisição
             httpPut.setHeader("Content-Type", "application/json");
             httpPut.setHeader("Authorization", "bearer " + tokenDeAcesso);
-            httpPut.setEntity(new ByteArrayEntity(
-                    usuario.toJSON().toString().getBytes("UTF8")));
+            httpPut.setEntity(new ByteArrayEntity(usuario.toJSON().toString().getBytes("UTF8")));
 
             //Executa a requisição
-            httpclient.execute(httpPut);
-
-            return resultado = true;
+            response = httpclient.execute(httpPut);
         } catch (Exception e) {
             Log.e("Requisicao.Java", "Falha ao atualizar o perfil.", e);
-            return resultado = false;
         }
-    }
 
-    public boolean tokenValido() {
-
-        boolean resposta = false;
-
-        //Se o token estiver vazio ou nulo o usuario é redirecionado para o login
-        if (tokenDeAcesso.isEmpty() || tokenDeAcesso == null) {
-            return resposta = false;
-        } else {
-            return resposta = true;
+        if(response.getStatusLine().getStatusCode() == HttpsURLConnection.HTTP_NO_CONTENT){
+            return true;
+        }else{
+            deslogar();
+            return false;
         }
     }
 
@@ -231,35 +237,31 @@ public class Requisicao {
         List<Notificacao> listaDeNotificacoes = new ArrayList<Notificacao>();
 
         try {
-            //Monta cabeçalho da requisição
+
+            httpPost.setHeader("Authorization", "bearer " + tokenDeAcesso);
             httpPost.setHeader("Content-Type", "application/json");
-            httpPost.setEntity(new ByteArrayEntity(
-                    usuario.toJSON().toString().getBytes("UTF8")));
+            httpPost.setEntity(new ByteArrayEntity(usuario.toJSON().toString().getBytes("UTF8")));
 
-            //Executa a requisição
             response = httpclient.execute(httpPost);
-
             entity = response.getEntity();
 
-            //Verifica a resposta
-            if (entity != null) {
-                String stringResposta = EntityUtils.toString(entity);
+            if (response.getStatusLine().getStatusCode() == HttpsURLConnection.HTTP_OK) {
 
-                //Verifica se a resposta contém usuários e retorna um json array
-                if (!stringResposta.equals("[]")) {
-                    JSONArray jsonNotificacoes = new JSONArray(stringResposta);
+                String sEntity = EntityUtils.toString(entity);
+                JSONArray jsonNotificacoes = new JSONArray(sEntity);
 
+                if(jsonNotificacoes.length() > 0){
                     //Transforma JsonArray em ArrayList
                     for (int i = 0; i < jsonNotificacoes.length(); i++) {
                         Notificacao notificacao = new Notificacao(jsonNotificacoes.getJSONObject(i), usuario);
                         listaDeNotificacoes.add(notificacao);
                     }
-
                     return listaDeNotificacoes;
-                } else {
+                }else{
                     return null;
                 }
             } else {
+                deslogar();
                 return null;
             }
         } catch (Exception e) {
@@ -272,26 +274,29 @@ public class Requisicao {
 
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/compartilhar");
+        HttpResponse response = null;
 
         try {
             //Monta cabeçalho da requisição
             httpPost.setHeader("Content-Type", "application/json");
+            httpPost.setHeader("Authorization", "bearer " + tokenDeAcesso);
 
             JSONObject jsonObject = new JSONObject();
-
             jsonObject.put("id", 0);
             jsonObject.put("emissor", emissor.toJSON());
             jsonObject.put("receptor", receptor.toJSON());
             jsonObject.put("dataehora", "");
 
-            httpPost.setEntity(new ByteArrayEntity(
-                    jsonObject.toString().getBytes("UTF8")));
-
-            //Executa a requisição
-            httpclient.execute(httpPost);
-            return true;
+            httpPost.setEntity(new ByteArrayEntity(jsonObject.toString().getBytes("UTF8")));
+            response = httpclient.execute(httpPost);
         } catch (Exception e) {
             Log.e("Requisicao.Java", "Falha ao compartilhar.", e);
+        }
+
+        if(response.getStatusLine().getStatusCode() == HttpsURLConnection.HTTP_NO_CONTENT){
+            return true;
+        }else{
+            deslogar();
             return false;
         }
     }

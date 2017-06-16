@@ -25,48 +25,20 @@ namespace WebAPIMainP.Models
         public virtual string Sexo { get; set; }
 
         [DataMember]
-        public virtual string Face { get; set; }
-
-        [DataMember]
-        public virtual Boolean Facepublic { get; set; }
-
-        [DataMember]
-        public virtual string Wpp { get; set; }
-
-        [DataMember]
-        public virtual Boolean Wpppublic { get; set; }
-
-        [DataMember]
-        public virtual string Insta { get; set; }
-
-        [DataMember]
-        public virtual Boolean Instapublic { get; set; }
-
-        [DataMember]
-        public virtual string Snap { get; set; }
-
-        [DataMember]
-        public virtual Boolean Snappublic { get; set; }
-
-        [DataMember]
-        public virtual string Twitter { get; set; }
-
-        [DataMember]
-        public virtual Boolean Twitterpublic { get; set; }
-
-        [DataMember]
-        public virtual string Email { get; set; }
-
-        [DataMember]
-        public virtual Boolean Emailpublic { get; set; }
-
-        [DataMember]
-        public virtual string Link { get; set; }
-
-        [DataMember]
-        public virtual Boolean Linkpublic { get; set; }
-
-        [DataMember]
         public virtual DateTime Dtinscricao { get; set; }
+
+        [DataMember]
+        public virtual IList<Username> Usernames { get; set; }
+
+        public Usuario()
+        {
+            Usernames = new List<Username>();
+        }
+
+        public virtual void AdicionarUsername(Username un)
+        {
+            un.Idusuario = this;
+            Usernames.Add(un);
+        }
     }
 }

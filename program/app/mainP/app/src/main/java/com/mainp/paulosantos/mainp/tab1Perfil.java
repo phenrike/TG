@@ -39,29 +39,48 @@ public class tab1Perfil extends Fragment {
         Button btSair = (Button) rootView.findViewById(R.id.btSair);
         Button btEditar = (Button) rootView.findViewById(R.id.btEditar);
 
-        if (usuario.getNome() != null) {
-            tvNome.setText(usuario.getNome());
-        }
-        if (usuario.getFace() != null) {
-            tvFace.setText(usuario.getFace());
-        }
-        if (usuario.getWpp() != null) {
-            tvWpp.setText(usuario.getWpp());
-        }
-        if (usuario.getInsta() != null) {
-            tvInsta.setText(usuario.getInsta());
-        }
-        if (usuario.getSnap() != null) {
-            tvSnap.setText(usuario.getSnap());
-        }
-        if (usuario.getTwitter() != null) {
-            tvTwitter.setText(usuario.getTwitter());
-        }
-        if (usuario.getEmail() != null) {
-            tvEmail.setText(usuario.getEmail());
-        }
-        if (usuario.getLink() != null) {
-            tvLink.setText(usuario.getLink());
+        tvNome.setText("");
+        tvFace.setText("");
+        tvWpp.setText("");
+        tvInsta.setText("");
+        tvSnap.setText("");
+        tvTwitter.setText("");
+        tvEmail.setText("");
+        tvLink.setText("");
+
+        tvNome.setText(usuario.getNome());
+
+        for (Username un : usuario.getUsernames()) {
+            switch (un.getIdredesocial().nome) {
+                case "FACEBOOK":
+                    tvFace.setText(un.getNomeusuario());
+                    break;
+
+                case "WHATSAPP":
+                    tvWpp.setText(un.getNomeusuario());
+                    break;
+
+                case "INSTAGRAM":
+                    if(!un.getNomeusuario().isEmpty())
+                        tvInsta.setText(un.getNomeusuario());
+                    break;
+
+                case "SNAPCHAT":
+                    tvSnap.setText(un.getNomeusuario());
+                    break;
+
+                case "TWITTER":
+                    if(!un.getNomeusuario().isEmpty())
+                        tvTwitter.setText(un.getNomeusuario());
+                    break;
+
+                case "EMAIL":
+                    tvEmail.setText(un.getNomeusuario());
+                    break;
+                case "LINK":
+                    tvLink.setText(un.getNomeusuario());
+                    break;
+            }
         }
 
         btSair.setOnClickListener(new View.OnClickListener() {

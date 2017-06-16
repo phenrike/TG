@@ -9,16 +9,16 @@ import org.json.JSONObject;
  */
 public class Notificacao {
 
-    String tipo;
-    Usuario emissor = new Usuario();
-    Usuario receptor;
-    String dataEhora;
-    String mensagem;
+    private String tipo;
+    private Usuario emissor = new Usuario();
+    private Usuario receptor;
+    private String dataEhora;
+    private String mensagem;
 
     public Notificacao(JSONObject jsonNotificacao, Usuario receptor) {
         try {
             this.tipo = jsonNotificacao.getString("tipo");
-            this.emissor.carregarUsuario(jsonNotificacao.getJSONObject("usuario"));
+            this.emissor.carregarUsuario(jsonNotificacao.getJSONObject("emissor"));
             this.dataEhora = jsonNotificacao.getString("dataEhora");
             setMensagem(emissor.getNome() + " compartilhou o perfil com você.");
             this.receptor = receptor;

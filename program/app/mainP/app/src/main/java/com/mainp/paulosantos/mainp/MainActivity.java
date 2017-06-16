@@ -135,13 +135,13 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     return "Buscar";
                 case 2:
-                    return "Notificação";
+                    return "Notificações";
             }
             return null;
         }
     }
 
+    @Override
     public void onBackPressed() {
-        finish();
     }
 }

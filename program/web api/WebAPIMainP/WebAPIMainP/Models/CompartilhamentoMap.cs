@@ -11,8 +11,8 @@ namespace WebAPIMainP.Models
         CompartilhamentoMap()
         {
             Id(x => x.Id);
-            References(x => x.Emissor, "EMISSOR").Cascade.All(); ;
-            References(x => x.Receptor, "RECEPTOR").Cascade.All(); ;
+            References(x => x.Emissor, "EMISSOR").Cascade.All();
+            References(x => x.Receptor, "RECEPTOR").Cascade.All();
             Map(x => x.Dataehora);
         }
     }

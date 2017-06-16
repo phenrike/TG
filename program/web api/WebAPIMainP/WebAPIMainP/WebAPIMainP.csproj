@@ -207,6 +207,10 @@
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Notificacao.cs" />
     <Compile Include="Models\NotificacaoCompartilhamento.cs" />
+    <Compile Include="Models\Redesocial.cs" />
+    <Compile Include="Models\RedesocialMap.cs" />
+    <Compile Include="Models\Username.cs" />
+    <Compile Include="Models\UsernameMap.cs" />
     <Compile Include="Models\UsuarioMap.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

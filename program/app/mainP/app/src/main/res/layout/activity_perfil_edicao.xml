@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mainp.paulosantos.mainp.PerfilEdicaoActivity">
+    tools:context="com.mainp.paulosantos.mainp.PerfilEdicaoActivity"
+    android:touchscreenBlocksFocus="false">
 
     <ImageView
         android:layout_width="80dp"
@@ -86,7 +87,7 @@
         android:layout_height="50dp"
         android:text="Cancelar"
         android:id="@+id/btCancelar"
-        android:backgroundTint="#fb3535"
+        android:backgroundTint="#FFFF9800"
         android:layout_marginTop="490dp"
         android:layout_marginLeft="175dp"
         android:textColor="#ffffff"
@@ -98,7 +99,7 @@
         android:layout_height="50dp"
         android:text="Salvar"
         android:id="@+id/btSalvar"
-        android:backgroundTint="#2cd72f"
+        android:backgroundTint="#FFFF9800"
         android:layout_marginTop="490dp"
         android:layout_marginLeft="0dp"
         android:textColor="#ffffff"
@@ -106,24 +107,27 @@
         android:onClick="salvar" />
 
     <EditText
-        android:layout_width="250dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:id="@+id/etFace"
         android:layout_marginTop="130dp"
         android:layout_marginLeft="55dp"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:inputType="textNoSuggestions|text"
+        android:hint="Exemplo: zuck" />
 
     <EditText
-        android:layout_width="250dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:id="@+id/etWpp"
         android:layout_marginLeft="55dp"
         android:layout_marginTop="180dp"
         android:textColor="#000000"
-        android:phoneNumber="true" />
+        android:phoneNumber="true"
+        android:inputType="textNoSuggestions|text" />
 
     <EditText
-        android:layout_width="250dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:id="@+id/etInsta"
         android:layout_alignParentTop="false"
@@ -131,10 +135,11 @@
         android:layout_alignParentStart="false"
         android:layout_marginLeft="55dp"
         android:layout_marginTop="230dp"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:inputType="textNoSuggestions|text" />
 
     <EditText
-        android:layout_width="250dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:id="@+id/etSnap"
         android:layout_alignParentTop="false"
@@ -142,10 +147,11 @@
         android:layout_alignParentStart="false"
         android:layout_marginLeft="55dp"
         android:layout_marginTop="280dp"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:inputType="textNoSuggestions|text" />
 
     <EditText
-        android:layout_width="250dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:id="@+id/etTwitter"
         android:layout_alignParentTop="false"
@@ -153,10 +159,11 @@
         android:layout_alignParentStart="false"
         android:layout_marginLeft="55dp"
         android:layout_marginTop="330dp"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:inputType="textNoSuggestions|text" />
 
     <EditText
-        android:layout_width="250dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:id="@+id/etSite"
         android:layout_alignParentTop="false"
@@ -164,10 +171,11 @@
         android:layout_alignParentStart="false"
         android:layout_marginLeft="55dp"
         android:layout_marginTop="380dp"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:inputType="textNoSuggestions|text" />
 
     <EditText
-        android:layout_width="250dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:id="@+id/etEmail"
         android:layout_alignParentTop="false"
@@ -175,7 +183,8 @@
         android:layout_alignParentStart="false"
         android:layout_marginLeft="55dp"
         android:layout_marginTop="430dp"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:inputType="textNoSuggestions|text" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -184,9 +193,9 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginTop="105dp"
-        android:layout_marginLeft="300dp"
-        android:visibility="invisible" />
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="280dp"
+        android:visibility="visible" />
 
     <ImageView
         android:layout_width="20dp"
@@ -195,10 +204,10 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="330dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginLeft="310dp"
+        android:layout_marginTop="135dp"
         android:src="@drawable/privado"
-        android:visibility="invisible" />
+        android:visibility="visible" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -207,9 +216,9 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="155dp"
-        android:visibility="invisible" />
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="180dp"
+        android:visibility="visible" />
 
     <ImageView
         android:layout_width="20dp"
@@ -218,9 +227,9 @@
         android:layout_alignParentStart="false"
         android:src="@drawable/privado"
         android:layout_alignParentLeft="false"
-        android:layout_marginTop="160dp"
-        android:layout_marginLeft="330dp"
-        android:visibility="invisible" />
+        android:layout_marginTop="185dp"
+        android:layout_marginLeft="310dp"
+        android:visibility="visible" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -229,9 +238,9 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="205dp"
-        android:visibility="invisible" />
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="230dp"
+        android:visibility="visible" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -240,9 +249,9 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="255dp"
-        android:visibility="invisible" />
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="280dp"
+        android:visibility="visible" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -251,9 +260,9 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="305dp"
-        android:visibility="invisible" />
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="330dp"
+        android:visibility="visible" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -262,9 +271,9 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="355dp"
-        android:visibility="invisible" />
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="380dp"
+        android:visibility="visible" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -273,9 +282,9 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="405dp"
-        android:visibility="invisible" />
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="430dp"
+        android:visibility="visible" />
 
     <ImageView
         android:layout_width="20dp"
@@ -285,9 +294,9 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="330dp"
-        android:layout_marginTop="210dp"
-        android:visibility="invisible" />
+        android:layout_marginLeft="310dp"
+        android:layout_marginTop="235dp"
+        android:visibility="visible" />
 
     <ImageView
         android:layout_width="20dp"
@@ -297,9 +306,9 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="330dp"
-        android:layout_marginTop="260dp"
-        android:visibility="invisible" />
+        android:layout_marginLeft="310dp"
+        android:layout_marginTop="285dp"
+        android:visibility="visible" />
 
     <ImageView
         android:layout_width="20dp"
@@ -309,9 +318,9 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="330dp"
-        android:layout_marginTop="310dp"
-        android:visibility="invisible" />
+        android:layout_marginLeft="310dp"
+        android:layout_marginTop="335dp"
+        android:visibility="visible" />
 
     <ImageView
         android:layout_width="20dp"
@@ -321,9 +330,9 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="330dp"
-        android:layout_marginTop="360dp"
-        android:visibility="invisible" />
+        android:layout_marginLeft="310dp"
+        android:layout_marginTop="385dp"
+        android:visibility="visible" />
 
     <ImageView
         android:layout_width="20dp"
@@ -333,9 +342,9 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="330dp"
-        android:layout_marginTop="410dp"
-        android:visibility="invisible" />
+        android:layout_marginLeft="310dp"
+        android:layout_marginTop="435dp"
+        android:visibility="visible" />
 
     <Button
         android:layout_width="120dp"
@@ -346,11 +355,11 @@
         android:layout_marginLeft="85dp"
         android:layout_marginTop="25dp"
         android:textColor="#ffffff"
-        android:backgroundTint="#0f19e1"
+        android:backgroundTint="#FFFF9800"
         android:textStyle="bold" />
 
     <EditText
-        android:layout_width="250dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:id="@+id/etNome"
         android:layout_marginLeft="55dp"

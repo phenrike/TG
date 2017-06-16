@@ -15,6 +15,7 @@ public class CadastroActivity extends AppCompatActivity {
     public EditText etLogin;
     public EditText etSenha;
     public EditText etNome;
+    public boolean bCadastrou;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,44 +26,36 @@ public class CadastroActivity extends AppCompatActivity {
         etSenha = (EditText) findViewById(R.id.etSenha);
         etNome = (EditText) findViewById(R.id.etNome);
         usuario = new Usuario();
+        bCadastrou = false;
     }
 
     public void cadastrar(View v) {
 
         if ((!etLogin.getText().toString().isEmpty()) && (!etSenha.getText().toString().isEmpty()) && (!etNome.getText().toString().isEmpty())) {
 
-            usuario.setId(0);
-            usuario.setLogin(etLogin.getText().toString());
-            usuario.setSenha(etSenha.getText().toString());
-            usuario.setNome(etNome.getText().toString());
-            usuario.setSexo("");
-            usuario.setFace("");
-            usuario.setFacepublic(true);
-            usuario.setWpp("");
-            usuario.setWpppublic(true);
-            usuario.setInsta("");
-            usuario.setInstapublic(true);
-            usuario.setSnap("");
-            usuario.setSnappublic(true);
-            usuario.setTwitter("");
-            usuario.setTwitterpublic(true);
-            usuario.setEmail("");
-            usuario.setEmailpublic(true);
-            usuario.setLink("");
-            usuario.setLinkpublic(true);
-            usuario.setDtinscricao("");
 
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
 
             Requisicao requisicao = new Requisicao();
+            boolean loginExiste = requisicao.verificarExistenciaLogin(etLogin.getText().toString());
 
-            boolean b = requisicao.cadastrar(usuario);
+            if (!loginExiste) {
+                usuario.setId(0);
+                usuario.setLogin(etLogin.getText().toString());
+                usuario.setSenha(etSenha.getText().toString());
+                usuario.setNome(etNome.getText().toString());
+                usuario.setDtinscricao("");
 
-            if (b) {
-                mostrarMensagem("Bem-vindo!", "Seu cadastro foi realizado com sucesso.");
+                 bCadastrou = requisicao.cadastrar(usuario);
+
+                if (bCadastrou) {
+                    mostrarMensagem("Bem-vindo!", "Seu cadastro foi realizado com sucesso.");
+                } else {
+                    mostrarMensagem("Atenção!", "O cadastro não foi realizado. Tente novamente.");
+                }
             } else {
-                mostrarMensagem("Atenção!", "O cadastro não foi realizado. Tente novamente.");
+                mostrarMensagem("Altere o login!", "O login digitado já está sendo usado.");
             }
         } else {
             mostrarMensagem("Atenção!", "Preencha todos os campos do cadastro.");
@@ -85,7 +78,8 @@ public class CadastroActivity extends AppCompatActivity {
         dlgAlert.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        voltarParaTelaLogin();
+                        if(bCadastrou)
+                            voltarParaTelaLogin();
                     }
                 });
         dlgAlert.setCancelable(true);

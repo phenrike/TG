@@ -9,7 +9,7 @@ namespace WebAPIMainP.Models
     public interface Notificacao
     {
         String tipo { get; set; }
-        Usuario usuario { get; set; }
+        Usuario emissor { get; set; }
         DateTime dataEhora { get; set; }
     }
 }

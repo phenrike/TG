@@ -9,14 +9,14 @@ namespace WebAPIMainP.Models
     {
         public NotificacaoCompartilhamento(Compartilhamento c)
         {
-            usuario = c.Emissor;
+            emissor = c.Emissor;
             dataEhora = c.Dataehora;
             tipo = "compartilhamento";
         }
 
         public String tipo { get; set; }
 
-        public Usuario usuario { get; set; }
+        public Usuario emissor { get; set; }
 
         public DateTime dataEhora { get; set; }
     }

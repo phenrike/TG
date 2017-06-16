@@ -24,7 +24,7 @@ namespace WebAPIMainP.Providers
 
             UsuarioRepository _repo = new UsuarioRepository();
 
-            var user = _repo.Buscar(context.UserName, context.Password);
+            var user = _repo.CarregarUsuario(context.UserName, context.Password);
 
             if (user == null)
             {

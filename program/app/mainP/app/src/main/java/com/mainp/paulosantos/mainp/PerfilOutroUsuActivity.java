@@ -11,32 +11,40 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class PerfilOutroUsuActivity extends AppCompatActivity {
 
-    TextView tvNome;
-    TextView tvFace;
-    TextView tvWpp;
-    TextView tvInsta;
-    TextView tvSnap;
-    TextView tvTwitter;
-    TextView tvEmail;
-    TextView tvLink;
-    ImageButton btCopiarFb;
-    ImageButton btBrowseFace;
-    ImageButton btCopiarNumero;
-    ImageButton btCopiarInsta;
-    ImageButton btBrowseInta;
-    ImageButton btCopiarSnap;
-    ImageButton btCopiarTwitter;
-    ImageButton btBrowseTwitter;
-    ImageButton btCopiarSite;
-    ImageButton btBrowseSite;
-    ImageButton btCopiarEmail;
-    Usuario receptor;
-    Usuario emissor;
-    Requisicao requisicao;
+    public TextView tvNome;
+    public TextView tvFace;
+    public TextView tvWpp;
+    public TextView tvInsta;
+    public TextView tvSnap;
+    public TextView tvTwitter;
+    public TextView tvEmail;
+    public TextView tvLink;
+    public ImageButton btCopiarFb;
+    public ImageButton btBrowseFace;
+    public ImageButton btCopiarNumero;
+    public ImageButton btCopiarInsta;
+    public ImageButton btBrowseInta;
+    public ImageButton btCopiarSnap;
+    public ImageButton btCopiarTwitter;
+    public ImageButton btBrowseTwitter;
+    public ImageButton btCopiarSite;
+    public ImageButton btBrowseSite;
+    public ImageButton btCopiarEmail;
+    public Usuario receptor;
+    public Usuario emissor;
+    public Requisicao requisicao;
+    public ImageView iv1;
+    public ImageView iv2;
+    public ImageView iv3;
+    public ImageView iv4;
+    public ImageView iv5;
+    public ImageView iv6;
+    public ImageView iv7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,30 +74,97 @@ public class PerfilOutroUsuActivity extends AppCompatActivity {
         btCopiarSite = (ImageButton) findViewById(R.id.btCopiarSite);
         btBrowseSite = (ImageButton) findViewById(R.id.btBrowseSite);
         btCopiarEmail = (ImageButton) findViewById(R.id.btCopiarEmail);
+        iv1 = (ImageView) findViewById(R.id.iv1);
+        iv2 = (ImageView) findViewById(R.id.iv2);
+        iv3 = (ImageView) findViewById(R.id.iv3);
+        iv4 = (ImageView) findViewById(R.id.iv4);
+        iv5 = (ImageView) findViewById(R.id.iv5);
+        iv6 = (ImageView) findViewById(R.id.iv6);
+        iv7 = (ImageView) findViewById(R.id.iv7);
 
-        if (receptor.getNome() != null) {
-            tvNome.setText(receptor.getNome());
-        }
-        if (receptor.getFace() != null) {
-            tvFace.setText(receptor.getFace());
-        }
-        if (receptor.getWpp() != null) {
-            tvWpp.setText(receptor.getWpp());
-        }
-        if (receptor.getInsta() != null) {
-            tvInsta.setText(receptor.getInsta());
-        }
-        if (receptor.getSnap() != null) {
-            tvSnap.setText(receptor.getSnap());
-        }
-        if (receptor.getTwitter() != null) {
-            tvTwitter.setText(receptor.getTwitter());
-        }
-        if (receptor.getEmail() != null) {
-            tvEmail.setText(receptor.getEmail());
-        }
-        if (receptor.getLink() != null) {
-            tvLink.setText(receptor.getLink());
+        tvNome.setText("");
+        tvFace.setText("");
+        tvWpp.setText("");
+        tvInsta.setText("");
+        tvSnap.setText("");
+        tvTwitter.setText("");
+        tvEmail.setText("");
+        tvLink.setText("");
+
+        tvNome.setText(receptor.getNome());
+
+        for (Username un : receptor.getUsernames())
+        {
+            String nomeusuario = "";
+
+            if(un.getPrivado()){
+                nomeusuario = "Privado";
+            }else{
+                nomeusuario = un.getNomeusuario();
+            }
+
+            switch (un.getIdredesocial().nome)
+            {
+                case "FACEBOOK":
+                    tvFace.setText(nomeusuario);
+                    if(un.getPrivado()){
+                        iv1.setVisibility(View.VISIBLE);
+                        btCopiarFb.setVisibility(View.INVISIBLE);
+                        btBrowseFace.setVisibility(View.INVISIBLE);
+                    }
+                    break;
+
+                case "WHATSAPP":
+                    tvWpp.setText(nomeusuario);
+                    if(un.getPrivado()){
+                        iv2.setVisibility(View.VISIBLE);
+                        btCopiarNumero.setVisibility(View.INVISIBLE);
+                    }
+                    break;
+
+                case "INSTAGRAM":
+                    tvInsta.setText(nomeusuario);
+                    if(un.getPrivado()){
+                        iv3.setVisibility(View.VISIBLE);
+                        btBrowseInta.setVisibility(View.INVISIBLE);
+                        btCopiarInsta.setVisibility(View.INVISIBLE);
+                    }
+                    break;
+
+                case "SNAPCHAT":
+                    tvSnap.setText(nomeusuario);
+                    if(un.getPrivado()){
+                        iv4.setVisibility(View.VISIBLE);
+                        btCopiarSnap.setVisibility(View.INVISIBLE);
+                    }
+                    break;
+
+                case "TWITTER":
+                    tvTwitter.setText(nomeusuario);
+                    if(un.getPrivado()){
+                        iv5.setVisibility(View.VISIBLE);
+                        btBrowseTwitter.setVisibility(View.INVISIBLE);
+                        btCopiarTwitter.setVisibility(View.INVISIBLE);
+                    }
+                    break;
+
+                case "EMAIL":
+                    tvEmail.setText(nomeusuario);
+                    if(un.getPrivado()){
+                        iv7.setVisibility(View.VISIBLE);
+                        btCopiarEmail.setVisibility(View.INVISIBLE);
+                    }
+                    break;
+
+                case "LINK":
+                    tvLink.setText(nomeusuario);
+                    if(un.getPrivado()){
+                        iv6.setVisibility(View.VISIBLE);
+                        btBrowseSite.setVisibility(View.INVISIBLE);
+                        btCopiarSite.setVisibility(View.INVISIBLE);
+                    }
+                    break;
+            }
         }
 
         btCopiarFb.setOnClickListener(new View.OnClickListener() {
@@ -143,7 +218,7 @@ public class PerfilOutroUsuActivity extends AppCompatActivity {
 
         btBrowseSite.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String url = removerCaracteresEspeciais(tvLink.getText().toString());
+                String url = tvLink.getText().toString();
                 abrirUrlNoNavegador(url);
             }
         });

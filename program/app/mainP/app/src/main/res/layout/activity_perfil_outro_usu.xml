@@ -19,7 +19,7 @@
         android:layout_marginLeft="0dp" />
 
     <TextView
-        android:layout_width="210dp"
+        android:layout_width="200dp"
         android:layout_height="75dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Nome Usuário"
@@ -41,7 +41,7 @@
         android:layout_marginTop="120dp" />
 
     <TextView
-        android:layout_width="225dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="facebook"
@@ -59,14 +59,15 @@
         android:layout_marginTop="170dp" />
 
     <TextView
-        android:layout_width="225dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="+00 00 00000-0000"
+        android:text="0000000000000"
         android:id="@+id/tvWpp"
         android:textColor="#000000"
         android:layout_marginTop="181dp"
-        android:layout_marginLeft="50dp" />
+        android:layout_marginLeft="50dp"
+        android:phoneNumber="true" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -78,7 +79,7 @@
         android:layout_marginTop="220dp" />
 
     <TextView
-        android:layout_width="225dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="\@instagram"
@@ -97,7 +98,7 @@
         android:layout_marginTop="270dp" />
 
     <TextView
-        android:layout_width="225dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="\@snapchat"
@@ -116,7 +117,7 @@
         android:layout_marginTop="320dp" />
 
     <TextView
-        android:layout_width="225dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="\@twitter"
@@ -135,7 +136,7 @@
         android:layout_marginTop="370dp" />
 
     <TextView
-        android:layout_width="225dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="http://www.site.com/"
@@ -154,7 +155,7 @@
         android:layout_marginTop="420dp" />
 
     <TextView
-        android:layout_width="225dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="email@email.com"
@@ -170,7 +171,7 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="280dp"
+        android:layout_marginLeft="275dp"
         android:layout_marginTop="125dp"
         android:src="@drawable/copiar"
         android:backgroundTint="#ffffff" />
@@ -182,7 +183,7 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="280dp"
+        android:layout_marginLeft="275dp"
         android:layout_marginTop="176dp"
         android:src="@drawable/copiar"
         android:background="#ffffff" />
@@ -194,7 +195,7 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="280dp"
+        android:layout_marginLeft="275dp"
         android:layout_marginTop="225dp"
         android:src="@drawable/copiar"
         android:background="#ffffff" />
@@ -206,7 +207,7 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="280dp"
+        android:layout_marginLeft="275dp"
         android:layout_marginTop="276dp"
         android:src="@drawable/copiar"
         android:background="#ffffff" />
@@ -218,7 +219,7 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="280dp"
+        android:layout_marginLeft="275dp"
         android:layout_marginTop="325dp"
         android:src="@drawable/copiar"
         android:background="#ffffff" />
@@ -230,7 +231,7 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="280dp"
+        android:layout_marginLeft="275dp"
         android:layout_marginTop="376dp"
         android:src="@drawable/copiar"
         android:background="#ffffff" />
@@ -242,7 +243,7 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="280dp"
+        android:layout_marginLeft="275dp"
         android:layout_marginTop="425dp"
         android:src="@drawable/copiar"
         android:background="#ffffff" />
@@ -254,7 +255,7 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="320dp"
+        android:layout_marginLeft="300dp"
         android:layout_marginTop="125dp"
         android:src="@drawable/browse"
         android:background="#ffffff" />
@@ -266,7 +267,7 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="320dp"
+        android:layout_marginLeft="300dp"
         android:layout_marginTop="325dp"
         android:src="@drawable/browse"
         android:background="#ffffff" />
@@ -278,7 +279,7 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="320dp"
+        android:layout_marginLeft="300dp"
         android:layout_marginTop="376dp"
         android:src="@drawable/browse"
         android:background="#ffffff" />
@@ -289,7 +290,7 @@
         android:id="@+id/btBrowseInta"
         android:src="@drawable/browse"
         android:layout_alignParentTop="false"
-        android:layout_marginLeft="320dp"
+        android:layout_marginLeft="300dp"
         android:layout_marginTop="225dp"
         android:background="#ffffff" />
 
@@ -297,10 +298,80 @@
         android:layout_width="44dp"
         android:layout_height="35dp"
         android:id="@+id/btCompartilhar"
-        android:layout_marginLeft="310dp"
+        android:layout_marginLeft="300dp"
         android:layout_marginTop="25dp"
         android:src="@drawable/comp"
         android:onClick="compartilhar"
         android:background="#ffffff" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/iv1"
+        android:src="@drawable/privado"
+        android:visibility="invisible"
+        android:layout_marginTop="131dp"
+        android:layout_marginLeft="115dp" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/iv2"
+        android:layout_alignParentStart="false"
+        android:src="@drawable/privado"
+        android:visibility="invisible"
+        android:layout_marginTop="181dp"
+        android:layout_marginLeft="115dp" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/iv3"
+        android:src="@drawable/privado"
+        android:layout_alignParentStart="false"
+        android:visibility="invisible"
+        android:layout_marginTop="231dp"
+        android:layout_marginLeft="115dp" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/iv4"
+        android:src="@drawable/privado"
+        android:layout_alignParentStart="false"
+        android:visibility="invisible"
+        android:layout_marginTop="281dp"
+        android:layout_marginLeft="115dp" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/iv5"
+        android:src="@drawable/privado"
+        android:layout_alignParentStart="false"
+        android:visibility="invisible"
+        android:layout_marginTop="331dp"
+        android:layout_marginLeft="115dp" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/iv6"
+        android:src="@drawable/privado"
+        android:layout_alignParentStart="false"
+        android:visibility="invisible"
+        android:contentDescription="private"
+        android:layout_marginTop="381dp"
+        android:layout_marginLeft="115dp" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/iv7"
+        android:src="@drawable/privado"
+        android:layout_alignParentStart="false"
+        android:visibility="invisible"
+        android:layout_marginTop="431dp"
+        android:layout_marginLeft="115dp" />
 
 </RelativeLayout>

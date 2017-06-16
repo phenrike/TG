@@ -29,10 +29,21 @@ namespace WebAPIMainP.Controllers
         }
 
         [AcceptVerbs("POST")]
-        [Route("usuarios/{login}/{senha}")]
-        public Usuario CarregarUsuario(String login, String senha)
+        [Route("usuarios/carregar")]
+        public Usuario CarregarUsuario()
         {
-            return usuarioRepository.Buscar(login, senha);
+            var request = Request;
+            var headers = request.Headers;
+            var login = string.Empty;
+            var senha = string.Empty;
+
+            if (headers.Contains("login") && headers.Contains("senha"))
+            {
+                login = headers.GetValues("login").First();
+                senha = headers.GetValues("senha").First();
+            }
+
+            return usuarioRepository.CarregarUsuario(login, senha);
         }
 
         [AcceptVerbs("PUT")]
@@ -51,28 +62,26 @@ namespace WebAPIMainP.Controllers
 
         [AcceptVerbs("GET")]
         [Route("usuarios/{redeSocial}/{busca}")]
-        public IList<Usuario> buscarUsuario(int redeSocial, String busca)
+        public IList<Usuario> BuscarUsuarios(int redeSocial, String busca)
         {
             return usuarioRepository.BuscarUsuarios(redeSocial, busca); ;
         }
 
-        [AllowAnonymous]
         [AcceptVerbs("POST")]
         [Route("usuarios/compartilhar")]
-        public void compartilharPerfil(Compartilhamento compartilhamento)
+        public void CompartilharPerfil(Compartilhamento compartilhamento)
         {
-            usuarioRepository.compartilharPerfil(compartilhamento);
+            usuarioRepository.CompartilharPerfil(compartilhamento);
         }
 
-        [AllowAnonymous]
         [AcceptVerbs("POST")]
         [Route("usuarios/notificacoes")]
-        public IList<Notificacao> carregarNotificacoes(Usuario receptor)
+        public IList<Notificacao> CarregarNotificacoes(Usuario receptor)
         {
             IList<Notificacao> notificacoes = new List<Notificacao>();
             IList<Compartilhamento> compartilhamentos = new List<Compartilhamento>();
 
-            compartilhamentos = usuarioRepository.carregarCompartilhamentos(receptor);
+            compartilhamentos = usuarioRepository.CarregarCompartilhamentos(receptor);
 
             foreach (Compartilhamento c in compartilhamentos)
             {
@@ -81,6 +90,14 @@ namespace WebAPIMainP.Controllers
             }
 
             return notificacoes;            
+        }
+
+        [AllowAnonymous]
+        [AcceptVerbs("POST")]
+        [Route("usuarios/login/{login}")]
+        public Boolean VerificarExistenciaLogin(String login)
+        {
+            return usuarioRepository.VerificarExistenciaLogin(login);
         }
     }
 }

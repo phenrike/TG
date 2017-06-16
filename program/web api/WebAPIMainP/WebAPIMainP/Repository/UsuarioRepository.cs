@@ -24,7 +24,7 @@ namespace WebAPIMainP.Repository
         private static ISessionFactory CreateSessionFactory()
         {
             ISessionFactory isessionFactory = Fluently.Configure()
-        .Database(MySQLConfiguration.Standard.ConnectionString(@"Server=localhost;Database=nsmainp;Uid=root;Pwd=1234;"))
+        .Database(MySQLConfiguration.Standard.ConnectionString(@"Server=localhost;Database=teste;Uid=root;Pwd=1234;"))
         .Mappings(m => m
         .FluentMappings.AddFromAssemblyOf<UsuarioMap>())
         .BuildSessionFactory();
@@ -32,136 +32,146 @@ namespace WebAPIMainP.Repository
             return isessionFactory;
         }
 
-        private void abrirConexao()
+        private void AbrirConexao()
         {
             this.session = this.sessionFactory.OpenSession();
         }
 
-        private void iniciarTransacao()
+        private void IniciarTransacao()
         {
-            abrirConexao();
+            AbrirConexao();
             this.transaction = this.session.BeginTransaction();
         }
 
-        private void fazerCommit()
+        private void FinalizarTransacao()
         {
             this.transaction.Commit();
-            fecharConexao();
+            FecharConexao();
         }
 
-        private void fecharConexao()
+        private void FecharConexao()
         {
             this.session.Close();
         }
 
         public void Salvar(Usuario usuario)
         {
-            iniciarTransacao();
+            IniciarTransacao();
 
             // Variável para pegar a data e hora de cadastro do usuário
             DateTime localDate = DateTime.Now;
             usuario.Dtinscricao = localDate;
 
+            //Adiciona o id do usuário nos usernames
+            foreach (Username username in usuario.Usernames)
+            {
+                username.Idusuario = usuario;
+            }
+
             this.session.Save(usuario);
-            fazerCommit();
+            FinalizarTransacao();
         }
 
         public void Alterar(Usuario usuario)
         {
-            iniciarTransacao();
-            this.session.Update(usuario);
-            fazerCommit();
-        }
+            IniciarTransacao();
 
-        public Usuario Buscar(String login, String senha)
-        {
-            abrirConexao();
-            Usuario usuario = new Usuario();
-            IQueryOver<Usuario> qo;
-            qo = this.session.QueryOver<Usuario>().Where(x => x.Login == login).And(x => x.Senha == senha);
-            usuario = qo.SingleOrDefault<Usuario>();
-            fecharConexao();
-            return usuario;
+            foreach (Username username in usuario.Usernames)
+            {
+                username.Idusuario = usuario;
+            }
+
+            this.session.Update(usuario);
+            FinalizarTransacao();
         }
 
         public void Excluir(Usuario usuario)
         {
-            iniciarTransacao();
-            this.session.Delete(usuario);
-            fazerCommit();
-        }
+            IniciarTransacao();
 
-        public IList<Usuario> BuscarUsuarios(int rede, String busca)
-        {
-            abrirConexao();
-            IList<Usuario> listaConsulta = null;
-            IQueryOver<Usuario> qo;
-
-            switch (rede)
+            foreach (Username username in usuario.Usernames)
             {
-                // Facebook
-                case 0:
-                    qo = this.session.QueryOver<Usuario>().Where(Restrictions.On<Usuario>(x => x.Face).IsLike(busca, MatchMode.Anywhere));
-                    listaConsulta = qo.List<Usuario>();
-                    break;
-
-                //WhatsApp
-                case 1:
-                    qo = this.session.QueryOver<Usuario>().Where(Restrictions.On<Usuario>(x => x.Wpp).IsLike(busca, MatchMode.Anywhere));
-                    listaConsulta = qo.List<Usuario>();
-                    break;
-
-                //Instagram
-                case 2:
-                    qo = this.session.QueryOver<Usuario>().Where(Restrictions.On<Usuario>(x => x.Insta).IsLike(busca, MatchMode.Anywhere));
-                    listaConsulta = qo.List<Usuario>();
-                    break;
-
-                //Snapchat
-                case 3:
-                    qo = this.session.QueryOver<Usuario>().Where(Restrictions.On<Usuario>(x => x.Snap).IsLike(busca, MatchMode.Anywhere));
-                    listaConsulta = qo.List<Usuario>();
-                    break;
-
-                //Twitter
-                case 4:
-                    qo = this.session.QueryOver<Usuario>().Where(Restrictions.On<Usuario>(x => x.Twitter).IsLike(busca, MatchMode.Anywhere));
-                    listaConsulta = qo.List<Usuario>();
-                    break;
-
-                //E-mail
-                case 5:
-                    qo = this.session.QueryOver<Usuario>().Where(Restrictions.On<Usuario>(x => x.Email).IsLike(busca, MatchMode.Anywhere));
-                    listaConsulta = qo.List<Usuario>();
-                    break;
-
-                //Link
-                case 6:
-                    qo = this.session.QueryOver<Usuario>().Where(Restrictions.On<Usuario>(x => x.Link).IsLike(busca, MatchMode.Anywhere));
-                    listaConsulta = qo.List<Usuario>();
-                    break;
+                username.Idusuario = usuario;
             }
 
-            fecharConexao();
+            this.session.Delete(usuario);
+            FinalizarTransacao();
+        }
+
+        public Usuario CarregarUsuario(String login, String senha)
+        {
+            AbrirConexao();
+            Usuario usuario = new Usuario();
+            IQueryOver<Usuario> qo;
+            qo = this.session.QueryOver<Usuario>().Where(x => x.Login == login).And(x => x.Senha == senha);
+            usuario = qo.SingleOrDefault<Usuario>();
+            FecharConexao();
+
+            if (usuario != null)
+            {
+                // Se o usuário for atualizado com novas redes sociais ele é carregado novamente
+                if (VerificarExistenciaRedesSociais(usuario))
+                {
+                    AbrirConexao();
+                    qo = this.session.QueryOver<Usuario>().Where(x => x.Login == login).And(x => x.Senha == senha);
+                    usuario = qo.SingleOrDefault<Usuario>();
+                    FecharConexao();
+                }
+
+            }
+            
+            return usuario;
+        }
+
+        public IList<Usuario> BuscarUsuarios(int redeSocial, String busca)
+        {
+            AbrirConexao();
+            IList<Usuario> listaConsulta = null;
+                      
+            // ID | REDE SOCIAL
+            //  1 | Facebook
+            //  2 | WhatsApp
+            //  3 | Instagram
+            //  4 | Snapchat
+            //  5 | Twitter
+            //  6 | YouTube
+            //  7 | E-mail
+            //  8 | Link
+
+            IQueryOver<Usuario,Username> qoUsuario = this.session.QueryOver<Usuario>().JoinQueryOver<Username>(u => u.Usernames).Where(un => un.Idredesocial.Id == redeSocial).And(un => un.Nomeusuario.IsLike(busca, MatchMode.Anywhere));
+            listaConsulta = qoUsuario.List<Usuario>();
+
+            FecharConexao();
 
             return listaConsulta;
         }
 
-        public void compartilharPerfil(Compartilhamento compartilhamento)
+        public void CompartilharPerfil(Compartilhamento compartilhamento)
         {
-            iniciarTransacao();
+            IniciarTransacao();
 
             // Variável para pegar a data e hora da notificação
             DateTime localDate = DateTime.Now;
             compartilhamento.Dataehora = localDate;
 
+            //Adiciona o id do usuário nos usernames
+            foreach (Username username in compartilhamento.Emissor.Usernames)
+            {
+                username.Idusuario = compartilhamento.Emissor;
+            }
+
+            foreach (Username username in compartilhamento.Receptor.Usernames)
+            {
+                username.Idusuario = compartilhamento.Receptor;
+            }
+
             this.session.Save(compartilhamento);
-            fazerCommit();
+            FinalizarTransacao();
         }
 
-        public IList<Compartilhamento> carregarCompartilhamentos(Usuario receptor)
+        public IList<Compartilhamento> CarregarCompartilhamentos(Usuario receptor)
         {
-            abrirConexao();
+            AbrirConexao();
             IList<Compartilhamento> listaConsulta = null;
             IQueryOver<Compartilhamento> qo;
             Usuario usuario = null;
@@ -169,9 +179,66 @@ namespace WebAPIMainP.Repository
             qo = this.session.QueryOver<Compartilhamento>().JoinAlias(x => x.Emissor, () => usuario).Where(x => x.Receptor.Id == receptor.Id);
             listaConsulta = qo.List<Compartilhamento>();
 
-            fecharConexao();
+            FecharConexao();
 
             return listaConsulta;
+        }
+
+        public Boolean VerificarExistenciaRedesSociais(Usuario usuario)
+        {
+            /* Esse método verifica se o usuário possui todas as redes sociais disponíveis na base, caso o usuário não tenha 
+             * alguma rede social, essa rede social será adicionada no perfil dele com o nome de usuário vazio. */
+            AbrirConexao();
+
+            Boolean Atualizado = false;
+            IList<Redesocial> redesSociais = null;
+            IQueryOver<Redesocial> qoRedes;
+            IList<int> redesSociaisUsuario = new List<int>();
+
+            qoRedes = this.session.QueryOver<Redesocial>();
+            redesSociais = qoRedes.List<Redesocial>();
+            FecharConexao();
+            
+            foreach (Username un in usuario.Usernames)
+            {
+                redesSociaisUsuario.Add(un.Idredesocial.Id);
+            }
+
+            foreach (Redesocial rs in redesSociais)
+            {
+                if (!redesSociaisUsuario.Contains(rs.Id))
+                {
+                    Username un = new Username();
+                    un.Idredesocial = rs;
+                    un.Nomeusuario = "";
+                    usuario.AdicionarUsername(un);
+                    Alterar(usuario);
+                    Atualizado = true;
+                }
+            }
+
+            
+
+            return Atualizado;
+        }
+
+        public Boolean VerificarExistenciaLogin(String login)
+        {
+            AbrirConexao();
+            Usuario usuario = new Usuario();
+            IQueryOver<Usuario> qo;
+            qo = this.session.QueryOver<Usuario>().Where(x => x.Login == login);
+            usuario = qo.SingleOrDefault<Usuario>();
+            FecharConexao();
+
+            if (usuario == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

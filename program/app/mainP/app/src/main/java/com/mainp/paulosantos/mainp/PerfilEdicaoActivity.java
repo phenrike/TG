@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -29,6 +30,13 @@ public class PerfilEdicaoActivity extends AppCompatActivity {
     public EditText etEmail;
     public EditText etNome;
     public Button btAlterar;
+    public CheckBox cbFace;
+    public CheckBox cbWpp;
+    public CheckBox cbInsta;
+    public CheckBox cbSnap;
+    public CheckBox cbTwitter;
+    public CheckBox cbSite;
+    public CheckBox cbEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,33 +63,110 @@ public class PerfilEdicaoActivity extends AppCompatActivity {
         etSite = (EditText) findViewById(R.id.etSite);
         etEmail = (EditText) findViewById(R.id.etEmail);
         etNome = (EditText) findViewById(R.id.etNome);
+        cbFace = (CheckBox) findViewById(R.id.cbFace);
+        cbWpp = (CheckBox) findViewById(R.id.cbWpp);
+        cbInsta = (CheckBox) findViewById(R.id.cbInsta);
+        cbSnap = (CheckBox) findViewById(R.id.cbSnap);
+        cbTwitter = (CheckBox) findViewById(R.id.cbTwitter);
+        cbSite = (CheckBox) findViewById(R.id.cbSite);
+        cbEmail = (CheckBox) findViewById(R.id.cbEmail);
 
-        etFace.setText(usuario.getFace());
-        etWpp.setText(usuario.getWpp());
-        etInsta.setText(usuario.getInsta());
-        etSnap.setText(usuario.getSnap());
-        etTwitter.setText(usuario.getTwitter());
-        etSite.setText(usuario.getLink());
-        etEmail.setText(usuario.getEmail());
         etNome.setText(usuario.getNome());
+
+        for (Username un : usuario.getUsernames())
+        {
+            switch (un.getIdredesocial().nome)
+            {
+                case "FACEBOOK":
+                    etFace.setText(un.getNomeusuario());
+                    cbFace.setChecked(un.getPrivado());
+                    break;
+
+                case "WHATSAPP":
+                    etWpp.setText(un.getNomeusuario());
+                    cbWpp.setChecked(un.getPrivado());
+                    break;
+
+                case "INSTAGRAM":
+                    etInsta.setText(un.getNomeusuario());
+                    cbInsta.setChecked(un.getPrivado());
+                    break;
+
+                case "SNAPCHAT":
+                    etSnap.setText(un.getNomeusuario());
+                    cbSnap.setChecked(un.getPrivado());
+                    break;
+
+                case "TWITTER":
+                    etTwitter.setText(un.getNomeusuario());
+                    cbTwitter.setChecked(un.getPrivado());
+                    break;
+
+                case "EMAIL":
+                    etEmail.setText(un.getNomeusuario());
+                    cbEmail.setChecked(un.getPrivado());
+                    break;
+
+                case "LINK":
+                    etSite.setText(un.getNomeusuario());
+                    cbSite.setChecked(un.getPrivado());
+                    break;
+            }
+        }
     }
 
     public void salvar(View v) {
-        usuarioAtualizado.setFace(etFace.getText().toString());
-        usuarioAtualizado.setWpp(etWpp.getText().toString());
-        usuarioAtualizado.setInsta(etInsta.getText().toString());
-        usuarioAtualizado.setSnap(etSnap.getText().toString());
-        usuarioAtualizado.setTwitter(etTwitter.getText().toString());
-        usuarioAtualizado.setLink(etSite.getText().toString());
-        usuarioAtualizado.setEmail(etEmail.getText().toString());
+
+        for (Username un : usuarioAtualizado.getUsernames())
+        {
+            switch (un.getIdredesocial().nome)
+            {
+                case "FACEBOOK":
+                    un.setNomeusuario(substituirCaracteresEspeciais(etFace.getText().toString()));
+                    un.setPrivado(cbFace.isChecked());
+                    break;
+
+                case "WHATSAPP":
+                    un.setNomeusuario(substituirCaracteresEspeciais(etWpp.getText().toString()));
+                    un.setPrivado(cbWpp.isChecked());
+                    break;
+
+                case "INSTAGRAM":
+                    un.setNomeusuario(substituirCaracteresEspeciais(etInsta.getText().toString()));
+                    un.setPrivado(cbInsta.isChecked());
+                    break;
+
+                case "SNAPCHAT":
+                    un.setNomeusuario(substituirCaracteresEspeciais(etSnap.getText().toString()));
+                    un.setPrivado(cbSnap.isChecked());
+                    break;
+
+                case "TWITTER":
+                    un.setNomeusuario(substituirCaracteresEspeciais(etTwitter.getText().toString()));
+                    un.setPrivado(cbTwitter.isChecked());
+                    break;
+
+                case "EMAIL":
+                    un.setNomeusuario(substituirCaracteresEspeciais(etEmail.getText().toString()));
+                    un.setPrivado(cbEmail.isChecked());
+                    break;
+
+                case "LINK":
+                    un.setNomeusuario(substituirCaracteresEspeciais(etSite.getText().toString()));
+                    un.setPrivado(cbSite.isChecked());
+                    break;
+            }
+        }
+
         usuarioAtualizado.setNome(etNome.getText().toString());
 
         Requisicao requisicao = new Requisicao();
 
         if (requisicao.atualizarPerfil(usuario)) {
-            mostrarMensagem("Seu perfil atualizado com sucesso.", usuarioAtualizado);
+            mostrarMensagem("Seu perfil atualizado com sucesso.");
         } else {
-            mostrarMensagem("Falha ao atualizar o perfil. Tente novamente!", usuario);
+            usuarioAtualizado = usuario;
+            mostrarMensagem("Falha ao atualizar o perfil. Tente novamente!");
         }
     }
 
@@ -89,19 +174,18 @@ public class PerfilEdicaoActivity extends AppCompatActivity {
         voltarParaPerfil(usuario);
     }
 
-    public void mostrarMensagem(String s, Usuario u) {
+    public void mostrarMensagem(String s) {
         AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
         dlgAlert.setMessage(s);
-        dlgAlert.setTitle(u.getNome());
+        dlgAlert.setTitle(usuarioAtualizado.getNome());
         dlgAlert.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        //dismiss the dialog
+                        voltarParaPerfil(usuarioAtualizado);
                     }
                 });
         dlgAlert.setCancelable(true);
         dlgAlert.create().show();
-        voltarParaPerfil(u);
     }
 
     public void voltarParaPerfil(Usuario u) {
@@ -121,5 +205,18 @@ public class PerfilEdicaoActivity extends AppCompatActivity {
                 ivFoto.setImageURI(imagemSelecionada);
             }
         }
+    }
+
+    public String substituirCaracteresEspeciais(String username) {
+        String[] caracteresEspeciais = {"!", "#", "$", "%", "¨", "&", "*", "(", ")", "'", "-", "+"};
+        String[] espacos = {"       ", "      ", "     ", "    ", "   ", "  ", " "};
+
+        for (String ce : caracteresEspeciais)
+            username = username.replace(ce, "");
+
+        for (String e : espacos)
+            username = username.replace(e, "");
+
+        return username;
     }
 }

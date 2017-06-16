@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(it);
     }
 
+    @Override
     public void onBackPressed() {
-        finish();
     }
 }
