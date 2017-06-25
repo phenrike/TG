@@ -32,8 +32,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class Requisicao {
 
     public static String tokenDeAcesso;
-    //public static String ip = "192.168.0.11";
-    public static String ip = "192.168.15.20";
+    public static String ip = "192.168.0.11";
 
     public String logar(String login, String senha, Activity activity) throws UnsupportedEncodingException {
 

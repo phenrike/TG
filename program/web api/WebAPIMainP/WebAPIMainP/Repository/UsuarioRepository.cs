@@ -24,7 +24,7 @@ namespace WebAPIMainP.Repository
         private static ISessionFactory CreateSessionFactory()
         {
             ISessionFactory isessionFactory = Fluently.Configure()
-        .Database(MySQLConfiguration.Standard.ConnectionString(@"Server=localhost;Database=teste;Uid=root;Pwd=1234;"))
+        .Database(MySQLConfiguration.Standard.ConnectionString(@"Server=mysql08-farm68.kinghost.net;Database=devphps;Uid=devphps;Pwd=h4g4n4h;"))
         .Mappings(m => m
         .FluentMappings.AddFromAssemblyOf<UsuarioMap>())
         .BuildSessionFactory();

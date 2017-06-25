@@ -124,7 +124,8 @@
         android:layout_marginTop="180dp"
         android:textColor="#000000"
         android:phoneNumber="true"
-        android:inputType="textNoSuggestions|text" />
+        android:inputType="textNoSuggestions|phone|text"
+        android:hint="Exemplo: 988887777" />
 
     <EditText
         android:layout_width="220dp"
@@ -136,7 +137,8 @@
         android:layout_marginLeft="55dp"
         android:layout_marginTop="230dp"
         android:textColor="#000000"
-        android:inputType="textNoSuggestions|text" />
+        android:inputType="textNoSuggestions|text"
+        android:hint="Exemplo: _psantos" />
 
     <EditText
         android:layout_width="220dp"
@@ -148,7 +150,8 @@
         android:layout_marginLeft="55dp"
         android:layout_marginTop="280dp"
         android:textColor="#000000"
-        android:inputType="textNoSuggestions|text" />
+        android:inputType="textNoSuggestions|text"
+        android:hint="Exemplo: _psantos" />
 
     <EditText
         android:layout_width="220dp"
@@ -160,7 +163,8 @@
         android:layout_marginLeft="55dp"
         android:layout_marginTop="330dp"
         android:textColor="#000000"
-        android:inputType="textNoSuggestions|text" />
+        android:inputType="textNoSuggestions|text"
+        android:hint="Exemplo: _psantos" />
 
     <EditText
         android:layout_width="220dp"
@@ -172,7 +176,8 @@
         android:layout_marginLeft="55dp"
         android:layout_marginTop="380dp"
         android:textColor="#000000"
-        android:inputType="textNoSuggestions|text" />
+        android:inputType="textNoSuggestions|text"
+        android:hint="Exemplo: www.site.com" />
 
     <EditText
         android:layout_width="220dp"
@@ -184,7 +189,8 @@
         android:layout_marginLeft="55dp"
         android:layout_marginTop="430dp"
         android:textColor="#000000"
-        android:inputType="textNoSuggestions|text" />
+        android:inputType="textNoSuggestions|text"
+        android:hint="Ex.: phps95@email.com" />
 
     <CheckBox
         android:layout_width="wrap_content"

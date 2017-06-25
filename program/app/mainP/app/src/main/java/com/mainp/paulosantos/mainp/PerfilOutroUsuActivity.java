@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -245,11 +246,18 @@ public class PerfilOutroUsuActivity extends AppCompatActivity {
     }
 
     public void abrirUrlNoNavegador(String url) {
-        Uri uri = Uri.parse(url);
 
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        boolean bURLvalida = URLUtil.isValidUrl(url);
 
-        startActivity(intent);
+        if(bURLvalida){
+            Uri uri = Uri.parse(url);
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+
+            startActivity(intent);
+        }else {
+            mostrarMensagem("IFY", "O endereço do site é inválido.");
+        }
     }
 
     public String removerCaracteresEspeciais(String texto) {
