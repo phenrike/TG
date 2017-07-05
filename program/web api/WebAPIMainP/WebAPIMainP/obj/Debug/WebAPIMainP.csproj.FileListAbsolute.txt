@@ -57,3 +57,4 @@ C:\Users\PauloHenrique\Documents\GitHub\TG\program\web api\WebAPIMainP\WebAPIMai
 C:\Users\PauloHenrique\Documents\GitHub\TG\program\web api\WebAPIMainP\WebAPIMainP\bin\Antlr3.Runtime.pdb
 C:\Users\PauloHenrique\Documents\GitHub\TG\program\web api\WebAPIMainP\WebAPIMainP\obj\Debug\WebAPIMainP.dll
 C:\Users\PauloHenrique\Documents\GitHub\TG\program\web api\WebAPIMainP\WebAPIMainP\obj\Debug\WebAPIMainP.pdb
+C:\Users\PauloHenrique\Documents\GitHub\TG\program\web api\WebAPIMainP\WebAPIMainP\obj\Debug\WebAPIMainP.csprojResolveAssemblyReference.cache

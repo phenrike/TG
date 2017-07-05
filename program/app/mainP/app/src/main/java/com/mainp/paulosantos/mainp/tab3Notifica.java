@@ -4,7 +4,9 @@ package com.mainp.paulosantos.mainp;
  * Created by Paulo Santos on 24/01/2017.
  */
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,11 +29,17 @@ public class tab3Notifica extends Fragment {
 
         final Usuario usuario = (Usuario) getActivity().getIntent().getSerializableExtra("usuario");
 
+        ProgressDialog progress;
+        progress = ProgressDialog.show(getActivity(), "IFY",
+                "Carregando notificações...", true);
+
         tvMensagem = (TextView) view.findViewById(R.id.tvMensagem);
         lvNotificacoes = (ListView) view.findViewById(R.id.lvNotificacoes);
 
-        Requisicao requisicao = new Requisicao();
-        listaDeNotificacoes = requisicao.carregarNotificacoes(usuario);
+        if(listaDeNotificacoes == null){
+            Requisicao requisicao = new Requisicao();
+            listaDeNotificacoes = requisicao.carregarNotificacoes(usuario);
+        }
 
         if (listaDeNotificacoes != null) {
             lvNotificacoes.setVisibility(view.VISIBLE);
@@ -43,6 +51,8 @@ public class tab3Notifica extends Fragment {
             tvMensagem.setVisibility(view.VISIBLE);
             tvMensagem.setText("Você não possui notificações.");
         }
+
+        progress.dismiss();
 
         return view;
     }

@@ -247,16 +247,34 @@ public class PerfilOutroUsuActivity extends AppCompatActivity {
 
     public void abrirUrlNoNavegador(String url) {
 
-        boolean bURLvalida = URLUtil.isValidUrl(url);
+        if(url.contains("http://")){
 
-        if(bURLvalida){
-            Uri uri = Uri.parse(url);
+            boolean bURLvalida = URLUtil.isValidUrl(url);
 
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            if(bURLvalida){
+                Uri uri = Uri.parse(url);
 
-            startActivity(intent);
-        }else {
-            mostrarMensagem("IFY", "O endereço do site é inválido.");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+
+                startActivity(intent);
+            }else {
+                mostrarMensagem("IFY", "O endereço do site é inválido.");
+            }
+        }else{
+
+            url = "http://" + url;
+
+            boolean bURLvalida = URLUtil.isValidUrl(url);
+
+            if(bURLvalida){
+                Uri uri = Uri.parse(url);
+
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+
+                startActivity(intent);
+            }else {
+                mostrarMensagem("IFY", "O endereço do site é inválido.");
+            }
         }
     }
 

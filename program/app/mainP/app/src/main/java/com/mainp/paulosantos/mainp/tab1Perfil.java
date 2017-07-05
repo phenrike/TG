@@ -4,6 +4,7 @@ package com.mainp.paulosantos.mainp;
  * Created by Paulo Santos on 24/01/2017.
  */
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -25,6 +26,10 @@ public class tab1Perfil extends Fragment {
         //Esconde o teclado
         getActivity().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        ProgressDialog progress;
+        progress = ProgressDialog.show(getActivity(), "IFY",
+                "Carregando perfil...", true);
 
         final Usuario usuario = (Usuario) getActivity().getIntent().getSerializableExtra("usuario");
 
@@ -101,6 +106,8 @@ public class tab1Perfil extends Fragment {
                 getActivity().startActivity(perfilEdicaoActivity);
             }
         });
+
+        progress.dismiss();
 
         return rootView;
     }

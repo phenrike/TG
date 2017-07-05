@@ -13,6 +13,10 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
+    public Fragment tab1Perfil;
+    public Fragment tab2Busca;
+    public Fragment tab3Notifica;
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -46,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+        tab1Perfil = new tab1Perfil();
+        tab2Busca = new tab2Busca();
+        tab3Notifica = new tab3Notifica();
     }
 
     @Override
@@ -111,11 +118,11 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new tab1Perfil();
+                    return tab1Perfil;
                 case 1:
-                    return new tab2Busca();
+                    return tab2Busca;
                 case 2:
-                    return new tab3Notifica();
+                    return tab3Notifica;
                 default:
                     return null;
             }

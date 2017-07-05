@@ -1,7 +1,9 @@
 package com.mainp.paulosantos.mainp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import org.apache.http.HttpEntity;
@@ -32,12 +34,13 @@ import javax.net.ssl.HttpsURLConnection;
 public class Requisicao {
 
     public static String tokenDeAcesso;
-    public static String ip = "192.168.0.11";
+    public final String webapi = "http://devphps.azurewebsites.net";
+
 
     public String logar(String login, String senha, Activity activity) throws UnsupportedEncodingException {
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://" + ip + "/WebAPIMainP/token");
+        HttpPost httppost = new HttpPost(webapi + "/token");
         List<NameValuePair> pairs = new ArrayList<>();
         JSONObject jsonResultado;
         String mensagem = "";
@@ -59,7 +62,12 @@ public class Requisicao {
                 //Se a requisição retornou 200 -> http ok status carrega o perfil do usuário
                 case HttpsURLConnection.HTTP_OK:
                     jsonResultado = new JSONObject(EntityUtils.toString(entity));
-                    tokenDeAcesso = jsonResultado.getString("access_token");
+                    String token = jsonResultado.getString("access_token");
+                    SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("token", token);
+                    editor.commit();
+                    tokenDeAcesso = sharedPref.getString("token","");
                     carregarUsuario(login, senha, activity);
                     break;
                 //Se a requisição retornou 400 -> http bad request status
@@ -81,7 +89,7 @@ public class Requisicao {
     private void carregarUsuario(String login, String senha, Activity activity) {
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/carregar");
+        HttpPost httppost = new HttpPost(webapi + "/api/mainp/usuarios/carregar");
         JSONObject jsonUsuario;
         HttpResponse response;
         HttpEntity entity;
@@ -123,7 +131,7 @@ public class Requisicao {
     public JSONArray buscar(int idRedeSocial, String username) {
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpGet httpget = new HttpGet("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/" + Integer.toString(idRedeSocial) + "/" + username);
+        HttpGet httpget = new HttpGet(webapi + "/api/mainp/usuarios/" + Integer.toString(idRedeSocial) + "/" + username);
         HttpResponse response;
         HttpEntity entity;
         JSONArray jsonArrayPerfis;
@@ -154,7 +162,7 @@ public class Requisicao {
     public boolean cadastrar(Usuario usuario) {
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/");
+        HttpPost httpPost = new HttpPost(webapi + "/api/mainp/usuarios/");
         HttpResponse response = null;
 
         try {
@@ -174,7 +182,7 @@ public class Requisicao {
     public boolean verificarExistenciaLogin(String login) {
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/login/" + login);
+        HttpPost httpPost = new HttpPost(webapi + "/api/mainp/usuarios/login/" + login);
         HttpResponse response = null;
         HttpEntity entity;
 
@@ -192,7 +200,7 @@ public class Requisicao {
     public boolean atualizarPerfil(Usuario usuario) {
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPut httpPut = new HttpPut("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/");
+        HttpPut httpPut = new HttpPut(webapi + "/api/mainp/usuarios/");
         HttpResponse response = null;
 
         try {
@@ -230,7 +238,7 @@ public class Requisicao {
     public List<Notificacao> carregarNotificacoes(Usuario usuario) {
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/notificacoes");
+        HttpPost httpPost = new HttpPost(webapi + "/api/mainp/usuarios/notificacoes");
         HttpResponse response;
         HttpEntity entity;
         List<Notificacao> listaDeNotificacoes = new ArrayList<Notificacao>();
@@ -272,7 +280,7 @@ public class Requisicao {
     public boolean compartilhar(Usuario emissor, Usuario receptor) {
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://" + ip + "/WebAPIMainP/api/mainp/usuarios/compartilhar");
+        HttpPost httpPost = new HttpPost(webapi + "/api/mainp/usuarios/compartilhar");
         HttpResponse response = null;
 
         try {

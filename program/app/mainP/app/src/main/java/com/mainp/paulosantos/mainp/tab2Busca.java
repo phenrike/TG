@@ -133,19 +133,6 @@ public class tab2Busca extends Fragment {
             conteudoDaBusca = conteudoDaBusca.replace(ce, "");
 
         for (String e : espacos)
-            conteudoDaBusca = conteudoDaBusca.replace(e, "_");
-
-        return conteudoDaBusca;
-    }
-
-    public String substituirCaracteresEspeciaisTelefone(String conteudoDaBusca) {
-        String[] caracteresEspeciais = {"!", "@", "#", "$", "%", "¨", "&", "*", "(", ")", "'", "-", "+"};
-        String[] espacos = {"       ", "      ", "     ", "    ", "   ", "  ", " "};
-
-        for (String ce : caracteresEspeciais)
-            conteudoDaBusca = conteudoDaBusca.replace(ce, "");
-
-        for (String e : espacos)
             conteudoDaBusca = conteudoDaBusca.replace(e, "");
 
         return conteudoDaBusca;
